@@ -1,0 +1,14 @@
+@import '../../app.component.scss';
+
+.base-style {
+  margin-top: 50px;
+  height: 110px;
+
+  .logo {
+    margin-left: 50px;
+  }
+
+  button {
+    margin-right: 50px;
+  }
+}
