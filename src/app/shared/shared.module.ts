@@ -10,7 +10,9 @@ import {NavbarComponent} from './navbar/navbar.component';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, NavbarComponent],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,

@@ -5,4 +5,5 @@ export interface Article {
   author: string;
   preview: string;
   content: string | null;
+  reading_time: string;
 }

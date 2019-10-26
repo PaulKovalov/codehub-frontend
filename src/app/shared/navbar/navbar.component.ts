@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../accounts/auth.service';
+import {UserService} from '../../accounts/user.service';
 import {ApiService} from '../../home/api.service';
 import {Article} from '../../interfaces/article';
 import {Tutorial} from '../../interfaces/tutorial';
+import {NavbarElement} from '../../interfaces/navbar-element';
 
 @Component({
   selector: 'app-navbar',
@@ -11,16 +12,20 @@ import {Tutorial} from '../../interfaces/tutorial';
 })
 export class NavbarComponent implements OnInit {
 
-  isAuthorized: boolean;
-  myArticles: Article[];
-  myTutorials: Tutorial[];
+  public myArticles: Article[];
+  public myTutorials: Tutorial[];
+  public selectedNavbarItem: string;
+  public navbarItems: NavbarElement[];
 
-  constructor(private authService: AuthService, private apiService: ApiService) {
-    this.isAuthorized = authService.isAuthorized();
+  constructor(private userService: UserService, private apiService: ApiService) {
   }
 
   ngOnInit() {
-
+    this.navbarItems = this.userService.getNavbarItems();
+    this.selectedNavbarItem = this.navbarItems[0].title;
   }
 
+  public selectMode(mode: string) {
+    this.selectedNavbarItem = mode;
+  }
 }

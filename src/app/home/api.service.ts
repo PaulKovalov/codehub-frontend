@@ -18,7 +18,7 @@ export class ApiService {
     this.tutorialsFrom = 10;
   }
 
-  public loadArticles(): Observable<Article[]> {
+  public loadArticleShortcuts(): Observable<Article[]> {
     const paramOffset = {
       start: String(this.articlesFrom),
     };
@@ -26,11 +26,19 @@ export class ApiService {
     return this.http.get<Article[]>(this.doUrl('articles'), {params: paramOffset});
   }
 
-  public loadTutorials(): Observable<Tutorial[]> {
+  public loadTutorialShortcuts(): Observable<Tutorial[]> {
     const paramOffset = {
       start: String(this.tutorialsFrom),
     };
     return this.http.get<Tutorial[]>(this.doUrl('tutorials'), {params: paramOffset});
+  }
+
+  public loadArticle(id: number): Observable<Article> {
+    return this.http.get<Article>(this.doUrl('articles/' + id));
+  }
+
+  public loadTutorialArticle(tutorialId: number, articleId: number): Observable<Article> {
+    return this.http.get<Article>(this.doUrl('articles/' + tutorialId + '/' + articleId));
   }
 
   private doUrl(path: string) {

@@ -1,14 +1,9 @@
-@import '../../app.component.scss';
+@import '../../scss/base.scss';
 
 .base-style {
-  margin-top: 50px;
-  height: 110px;
-
-  .logo {
-    margin-left: 50px;
-  }
-
+  padding: 42px 42px 30px 42px;
+  flex-shrink: 0;
   button {
-    margin-right: 50px;
+    width: 200px;
   }
 }

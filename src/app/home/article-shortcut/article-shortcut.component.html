@@ -1,1 +1,5 @@
-<p>article-shortcut works!</p>
+<div *ngIf="article" class="base-style">
+  <h3>{{article.title}}</h3>
+  <p class="content-main preview">{{article.preview}}</p>
+  <p class="tips-text">Reading time: {{article.reading_time}}</p>
+</div>

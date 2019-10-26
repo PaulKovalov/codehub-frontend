@@ -1,9 +1,9 @@
-<div>
-  <button>Articles</button>
-  <button>Tutorials</button>
-  <div *ngIf="isAuthorized">
-    <button>My Articles</button>
-    <button>My Tutorials</button>
+<div class="base-style">
+  <div *ngFor="let item of navbarItems">
+    <div class="nav-element">
+      <img *ngIf="item.asset" src="{{item.asset}}">
+      <button (click)="selectMode(item.title)"
+              [class.selected]="selectedNavbarItem === item.title">{{item.title | titlecase}}</button>
+    </div>
   </div>
-  <button>Search</button>
 </div>
