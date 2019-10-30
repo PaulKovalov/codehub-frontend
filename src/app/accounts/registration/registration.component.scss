@@ -1,0 +1,38 @@
+@import '../../scss/base.scss';
+
+.base-style {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vw;
+
+  .container {
+    .item {
+      margin-top: 13px;
+      text-align: center;
+
+      .content-secondary {
+        margin-top: 45px;
+      }
+
+      h3 {
+        font-size: 21px;
+      }
+
+      input {
+        border: 1px solid #8492A6;
+        border-radius: 5px;
+        width: 287px;
+        height: 50px;
+        padding-left: 14px;
+        font-size: 18px;
+        color: #8190A5;
+      }
+
+      ::placeholder {
+        color: #8190A5;
+        font-size: 18px;
+      }
+    }
+  }
+}
