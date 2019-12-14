@@ -6,21 +6,29 @@
     <div class="item">
       <h3>Join the Code Hub community</h3>
     </div>
-    <div class="item">
-      <input placeholder="Your name" type=""/>
+    <form [formGroup]="userDataFormGroup">
+      <div class="item">
+        <input formControlName="username" placeholder="Your name"/>
+      </div>
+      <div class="item">
+        <input formControlName="email" placeholder="Email" type="email"/>
+      </div>
+      <div class="item">
+        <input formControlName="password" placeholder="Password" type="password"/>
+      </div>
+      <div class="item">
+        <input formControlName="confirmPassword" placeholder="Confirm Password" type="password"/>
+      </div>
+    </form>
+    <div *ngIf="errorsText" class="error">
+      {{errorsText}}
     </div>
     <div class="item">
-      <input placeholder="Email" type="email"/>
-    </div>
-    <div class="item">
-      <input placeholder="Password" type="password"/>
-    </div>
-    <div class="item">
-      <button>Sign Up</button>
+      <button (click)="register()">Sign Up</button>
     </div>
     <div class="item">
       <div class="content-secondary supply">
-        <p class="content-secondary supply">Already have an account? <a [routerLink]="signInLink">Sign In</a></p>
+        <p class="content-secondary supply">Already have an account? <a routerLink="../sign-in">Sign In</a></p>
         <p>By signing up, you agree to our<br>Terms & Conditions</p>
       </div>
     </div>

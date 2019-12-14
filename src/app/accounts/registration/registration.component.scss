@@ -4,15 +4,17 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 50vw;
 
   .container {
     .item {
-      margin-top: 13px;
+      padding: 6px;
       text-align: center;
-
       .content-secondary {
         margin-top: 45px;
+      }
+
+      h3, h1 {
+        padding-top: 20px;
       }
 
       h3 {
@@ -23,8 +25,8 @@
         border: 1px solid #8492A6;
         border-radius: 5px;
         width: 287px;
-        height: 50px;
-        padding-left: 14px;
+        height: 40px;
+        padding: 5px 14px 5px 14px;
         font-size: 18px;
         color: #8190A5;
       }
@@ -33,6 +35,12 @@
         color: #8190A5;
         font-size: 18px;
       }
+    }
+
+    .error {
+      color: #cc0000;
+      text-align: center;
+      padding: 10px;
     }
   }
 }

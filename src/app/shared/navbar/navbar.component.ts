@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../accounts/user.service';
-import {ApiService} from '../../home/api.service';
+import {AccountService} from '../../accounts/account.service';
+import {ContentService} from '../../home/content.service';
 import {Article} from '../../interfaces/article';
 import {Tutorial} from '../../interfaces/tutorial';
 import {NavbarElement} from '../../interfaces/navbar-element';
@@ -17,11 +17,11 @@ export class NavbarComponent implements OnInit {
   public selectedNavbarItem: string;
   public navbarItems: NavbarElement[];
 
-  constructor(private userService: UserService, private apiService: ApiService) {
+  constructor(private accountService: AccountService, private contentService: ContentService) {
   }
 
   ngOnInit() {
-    this.navbarItems = this.userService.getNavbarItems();
+    this.navbarItems = this.contentService.getNavbarItems();
     this.selectedNavbarItem = this.navbarItems[0].title;
   }
 
