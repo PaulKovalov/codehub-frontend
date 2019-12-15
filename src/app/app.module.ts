@@ -6,6 +6,7 @@ import {HomeModule} from './home/home.module';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {AccountsModule} from './accounts/accounts.module';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import {AccountsModule} from './accounts/accounts.module';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    CookieService,
+  ],
   exports: [
     HomeModule,
     AccountsModule

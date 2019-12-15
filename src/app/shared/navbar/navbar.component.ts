@@ -21,7 +21,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarItems = this.contentService.getNavbarItems();
+    this.contentService.getNavbarItems().subscribe((data) => {
+      this.navbarItems = data;
+    });
     this.selectedNavbarItem = this.navbarItems[0].title;
   }
 

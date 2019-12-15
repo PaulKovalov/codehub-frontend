@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {UserData} from '../../interfaces/user-data';
+import {BaseUserData, UserData} from '../../interfaces/user-data';
 import {AccountService} from '../account.service';
 import {getFormValidationErrors, sortErrors} from '../userform-utils';
 
@@ -63,7 +63,13 @@ export class RegistrationComponent implements OnInit {
 
   public register() {
     if (this.userDataFormGroup.valid) {
-      this.accountService.registerUser(this.userDataFormGroup.value as UserData);
+      this.accountService.registerUser(this.userDataFormGroup.value as UserData).subscribe(() => {
+        this.accountService.loginUser(this.userDataFormGroup.value as BaseUserData).subscribe((data: { token: string }) => {
+          // todo: redirect user after succesfull login
+        });
+      }, (err) => {
+        this.errorsText = 'Error occured';
+      });
     } else {
       this.errorsText = this.parseErrors(this.userDataFormGroup);
     }

@@ -1,11 +1,39 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Article} from '../interfaces/article';
 import {Tutorial} from '../interfaces/tutorial';
 import {NavbarElement} from '../interfaces/navbar-element';
 import {AccountService} from '../accounts/account.service';
 import {doApiUrl} from '../shared/Utils';
+
+const nonAuthorizedNavbarSet: NavbarElement[] = [
+  {
+    title: 'articles',
+    asset: null
+  },
+  {
+    title: 'tutorials',
+    asset: null
+  },
+  {
+    title: 'search',
+    asset: 'assets/img/search.png'
+  }
+];
+
+const authorizedNavbarSet: NavbarElement[] = [...nonAuthorizedNavbarSet, ...[
+  {
+    title: 'my articles',
+    asset: null
+  },
+  {
+    title: 'my tutorials',
+    asset: null
+  },
+]
+];
+
 
 @Injectable({
   providedIn: 'root'
@@ -42,45 +70,13 @@ export class ContentService {
     return this.http.get<Article>(doApiUrl(`articles/${tutorialId}/${articleId}`));
   }
 
-  public getNavbarItems(): NavbarElement[] {
-    if (this.accountService.isAuthorized()) {
-      return [
-        {
-          title: 'articles',
-          asset: null
-        },
-        {
-          title: 'tutorials',
-          asset: null
-        },
-        {
-          title: 'my articles',
-          asset: null
-        },
-        {
-          title: 'my tutorials',
-          asset: null
-        },
-        {
-          title: 'search',
-          asset: 'assets/img/search.png'
-        }
-      ];
-    } else {
-      return [
-        {
-          title: 'articles',
-          asset: null
-        },
-        {
-          title: 'tutorials',
-          asset: null
-        },
-        {
-          title: 'search',
-          asset: 'assets/img/search.png'
-        }
-      ];
-    }
+  public getNavbarItems(): Subject<NavbarElement[]> {
+    const subject = new Subject<NavbarElement[]>();
+    this.accountService.me().subscribe((data) => {
+      subject.next(authorizedNavbarSet);
+    }, (err) => {
+      subject.next(nonAuthorizedNavbarSet);
+    });
+    return subject;
   }
 }

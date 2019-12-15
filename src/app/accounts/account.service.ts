@@ -8,21 +8,8 @@ import {doApiUrl} from '../shared/Utils';
 })
 
 export class AccountService {
-  private authTokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {
-  }
-
-  public isAuthorized(): boolean {
-    return localStorage.getItem(this.authTokenKey) !== undefined && localStorage.getItem(this.authTokenKey) !== '';
-  }
-
-  public getAuthToken(): string {
-    return localStorage.getItem(this.authTokenKey);
-  }
-
-  public setAuthToken(token: string): void {
-    localStorage.setItem(this.authTokenKey, token);
   }
 
   public registerUser(user: UserData) {
@@ -30,12 +17,15 @@ export class AccountService {
       username: user.username,
       email: user.email,
       password: user.password,
-      confirm_password: user.confirmPassword,
     };
-    return this.http.post(doApiUrl('accounts/register'), data);
+    return this.http.post(doApiUrl('accounts/'), data);
   }
 
   public loginUser(user: BaseUserData) {
-    return this.http.post(doApiUrl('accounts/login'), user);
+    return this.http.post(doApiUrl('accounts/login/'), user);
+  }
+
+  public me() {
+    return this.http.get(doApiUrl('accounts/me/'));
   }
 }

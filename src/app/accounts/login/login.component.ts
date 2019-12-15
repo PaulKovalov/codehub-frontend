@@ -45,9 +45,10 @@ export class LoginComponent implements OnInit {
 
   public login() {
     if (this.userDataFormGroup.valid) {
-      this.accountService.loginUser(this.userDataFormGroup.value as BaseUserData).subscribe((data: { token: string }) => {
-        this.accountService.setAuthToken(data.token);
+      this.accountService.loginUser(this.userDataFormGroup.value as BaseUserData).subscribe(() => {
         this.router.navigateByUrl('/');
+      }, (err) => {
+        this.errorsText = 'Unable to log in';
       });
     } else {
       this.errorsText = this.parseErrors(this.userDataFormGroup);
