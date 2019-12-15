@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {UserData} from '../interfaces/user-data';
+import {BaseUserData, UserData} from '../interfaces/user-data';
 import {HttpClient} from '@angular/common/http';
-import {doUrl} from '../shared/Utils';
+import {doApiUrl} from '../shared/Utils';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,10 @@ export class AccountService {
       password: user.password,
       confirm_password: user.confirmPassword,
     };
-    return this.http.post(doUrl('accounts/register'), data);
+    return this.http.post(doApiUrl('accounts/register'), data);
+  }
+
+  public loginUser(user: BaseUserData) {
+    return this.http.post(doApiUrl('accounts/login'), user);
   }
 }

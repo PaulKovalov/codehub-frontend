@@ -1,4 +1,4 @@
-@import '../../scss/base.scss';
+@import '../scss/base.scss';
 
 .base-style {
   display: flex;
@@ -9,6 +9,7 @@
     .item {
       padding: 6px;
       text-align: center;
+
       .content-secondary {
         margin-top: 45px;
       }
@@ -29,6 +30,10 @@
         padding: 5px 14px 5px 14px;
         font-size: 18px;
         color: #8190A5;
+      }
+
+      .action-button {
+        padding: 10px;
       }
 
       ::placeholder {

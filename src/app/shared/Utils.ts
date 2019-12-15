@@ -1,35 +1,5 @@
-import {FormGroup, ValidationErrors} from '@angular/forms';
+import {environment} from '../../environments/environment';
 
-export function doUrl(path: string) {
-  return `${this.BASE_URL}${path}`;
+export function doApiUrl(path: string) {
+  return `${environment.apiBaseUrl}/api/v${environment.apiMajorVersion}/${path}`;
 }
-
-export interface FormControlError {
-  control: string;
-  error: string;
-  value: any;
-}
-
-export function getFormValidationErrors(form: FormGroup) {
-  const result: FormControlError | ValidationErrors[] = [];
-  if (form.errors) {
-    result.push(form.errors);
-  }
-  Object.keys(form.controls).forEach(key => {
-    const control = form.get(key);
-    if (control !== null) {
-      const errors = control.errors;
-      if (errors) {
-        Object.keys(errors).forEach(keyError => {
-          result.push({
-            control: key,
-            error: keyError,
-            value: errors[keyError]
-          });
-        });
-      }
-    }
-  });
-  return result;
-}
-

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {UserData} from '../../interfaces/user-data';
 import {AccountService} from '../account.service';
-import {FormControlError, getFormValidationErrors} from '../../shared/Utils';
+import {getFormValidationErrors, sortErrors} from '../userform-utils';
 
 
 const passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
@@ -25,7 +25,7 @@ const errorsNamesMapping: FormError = {
   confirmPassword: 'Confirm Password'
 };
 
-const ControlErrorsOrder = {
+const controlErrorsOrder = {
   username: 0,
   email: 1,
   password: 2,
@@ -35,7 +35,7 @@ const ControlErrorsOrder = {
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['../account-styles.scss']
 })
 export class RegistrationComponent implements OnInit {
   public errorsText: string;
@@ -73,7 +73,7 @@ export class RegistrationComponent implements OnInit {
   private parseErrors(userForm: FormGroup) {
     let errorText = '';
     const errors = getFormValidationErrors(userForm);
-    errors.sort(this.compareErrors);
+    sortErrors(controlErrorsOrder, errors);
     errors.forEach((error) => {
       if (error.error !== undefined) {
         const fieldName = errorsNamesMapping[error.control as keyof FormError] || error.control;
@@ -93,9 +93,5 @@ export class RegistrationComponent implements OnInit {
       }
     });
     return errorText;
-  }
-
-  private compareErrors(a: FormControlError, b: FormControlError): number {
-    return ControlErrorsOrder[b.control] - ControlErrorsOrder[a.control];
   }
 }

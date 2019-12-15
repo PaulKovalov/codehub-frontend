@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="base-style">
+  <div class="container">
+    <div class="item">
+      <h1>Sign in</h1>
+    </div>
+    <form [formGroup]="userDataFormGroup">
+      <div class="item">
+        <input formControlName="email" placeholder="Email" type="email"/>
+      </div>
+      <div class="item">
+        <input formControlName="password" placeholder="Password" type="password"/>
+      </div>
+    </form>
+    <div *ngIf="errorsText" class="error">
+      {{errorsText}}
+    </div>
+    <div class="item">
+      <button (click)="login()" class="action-button">Sign in</button>
+    </div>
+    <div class="item">
+      <div class="content-secondary supply">
+        <p class="content-secondary supply">Don't have an account? <a routerLink="../registration">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+</div>

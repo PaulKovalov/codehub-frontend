@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   authPrefix: 'Token: ',
-  apiBaseUrl: 'http://localhost:8000/',
+  apiBaseUrl: 'http://localhost:8000',
+  apiMajorVersion: '1',
 };
 
 /*

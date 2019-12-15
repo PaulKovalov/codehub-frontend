@@ -3,10 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Article} from '../interfaces/article';
 import {Tutorial} from '../interfaces/tutorial';
-import {environment} from '../../environments/environment';
 import {NavbarElement} from '../interfaces/navbar-element';
 import {AccountService} from '../accounts/account.service';
-import {doUrl} from '../shared/Utils';
+import {doApiUrl} from '../shared/Utils';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,6 @@ import {doUrl} from '../shared/Utils';
 export class ContentService {
   private articlesFrom: number;
   private tutorialsFrom: number;
-  private BASE_URL = environment.apiBaseUrl;
 
   constructor(private http: HttpClient, private accountService: AccountService) {
     this.articlesFrom = 0;
@@ -26,22 +24,22 @@ export class ContentService {
       start: String(this.articlesFrom),
     };
     this.articlesFrom += 10;
-    return this.http.get<Article[]>(doUrl('articles'), {params: paramOffset});
+    return this.http.get<Article[]>(doApiUrl('articles'), {params: paramOffset});
   }
 
   public loadTutorialShortcuts(): Observable<Tutorial[]> {
     const paramOffset = {
       start: String(this.tutorialsFrom),
     };
-    return this.http.get<Tutorial[]>(doUrl('tutorials'), {params: paramOffset});
+    return this.http.get<Tutorial[]>(doApiUrl('tutorials'), {params: paramOffset});
   }
 
   public loadArticle(id: number): Observable<Article> {
-    return this.http.get<Article>(doUrl(`articles/${id}`));
+    return this.http.get<Article>(doApiUrl(`articles/${id}`));
   }
 
   public loadTutorialArticle(tutorialId: number, articleId: number): Observable<Article> {
-    return this.http.get<Article>(doUrl(`articles/${tutorialId}/${articleId}`));
+    return this.http.get<Article>(doApiUrl(`articles/${tutorialId}/${articleId}`));
   }
 
   public getNavbarItems(): NavbarElement[] {
