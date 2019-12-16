@@ -6,6 +6,7 @@ import {Tutorial} from '../interfaces/tutorial';
 import {NavbarElement} from '../interfaces/navbar-element';
 import {AccountService} from '../accounts/account.service';
 import {doApiUrl} from '../shared/Utils';
+import {User} from '../interfaces/user-data';
 
 const nonAuthorizedNavbarSet: NavbarElement[] = [
   {
@@ -41,6 +42,7 @@ const authorizedNavbarSet: NavbarElement[] = [...nonAuthorizedNavbarSet, ...[
 export class ContentService {
   private articlesFrom: number;
   private tutorialsFrom: number;
+  public currentUser: User | null;
 
   constructor(private http: HttpClient, private accountService: AccountService) {
     this.articlesFrom = 0;
@@ -71,12 +73,13 @@ export class ContentService {
   }
 
   public getNavbarItems(): Subject<NavbarElement[]> {
-    const subject = new Subject<NavbarElement[]>();
+    const navbarSubject = new Subject<NavbarElement[]>();
     this.accountService.me().subscribe((data) => {
-      subject.next(authorizedNavbarSet);
+      this.currentUser = data;
+      navbarSubject.next(authorizedNavbarSet);
     }, (err) => {
-      subject.next(nonAuthorizedNavbarSet);
+      navbarSubject.next(nonAuthorizedNavbarSet);
     });
-    return subject;
+    return navbarSubject;
   }
 }

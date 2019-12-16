@@ -1,6 +1,11 @@
 <div class="base-style">
   <div class="two-column">
     <h1 class="logo column-wrapper">{{appTitle}}</h1>
-    <button class="column-wrapper" routerLink="accounts/sign-in">Log in</button>
+    <ng-container *ngIf="contentService.currentUser else login">
+      <button class="column-wrapper" routerLink="accounts/sign-in">Log out</button>
+    </ng-container>
+    <ng-template #login>
+      <button class="column-wrapper" routerLink="accounts/sign-in">Log in</button>
+    </ng-template>
   </div>
 </div>

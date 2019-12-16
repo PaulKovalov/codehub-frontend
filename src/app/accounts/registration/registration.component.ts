@@ -3,6 +3,7 @@ import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from 
 import {BaseUserData, UserData} from '../../interfaces/user-data';
 import {AccountService} from '../account.service';
 import {getFormValidationErrors, sortErrors} from '../userform-utils';
+import {Router} from '@angular/router';
 
 
 const passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
@@ -55,7 +56,7 @@ export class RegistrationComponent implements OnInit {
     ]),
   }, {validators: passwordMatchValidator});
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router) {
   }
 
   ngOnInit() {
@@ -65,7 +66,7 @@ export class RegistrationComponent implements OnInit {
     if (this.userDataFormGroup.valid) {
       this.accountService.registerUser(this.userDataFormGroup.value as UserData).subscribe(() => {
         this.accountService.loginUser(this.userDataFormGroup.value as BaseUserData).subscribe((data: { token: string }) => {
-          // todo: redirect user after succesfull login
+          this.router.navigateByUrl('/');
         });
       }, (err) => {
         this.errorsText = 'Error occured';
