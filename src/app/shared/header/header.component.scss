@@ -1,9 +1,37 @@
 @import '../../scss/base.scss';
 
-.base-style {
-  padding: 42px 42px 30px 42px;
-  flex-shrink: 0;
-  button {
-    width: 200px;
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.toolbar-elements {
+  .links {
+    padding: 20px;
+    .link {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
+
+  display: flex;
+  justify-content: space-between;
+  flex: 1 1 auto;
 }

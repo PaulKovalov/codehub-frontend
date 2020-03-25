@@ -1,9 +1,0 @@
-<div class="base-style">
-  <div *ngFor="let item of navbarItems">
-    <div class="nav-element">
-      <img *ngIf="item.asset" src="{{item.asset}}">
-      <button (click)="selectMode(item.title)"
-              [class.selected]="selectedNavbarItem === item.title">{{item.title | titlecase}}</button>
-    </div>
-  </div>
-</div>

@@ -1,11 +1,39 @@
 <div class="base-style">
-  <div class="two-column">
-    <h1 class="logo column-wrapper">{{appTitle}}</h1>
-    <ng-container *ngIf="contentService.currentUser else login">
-      <button class="column-wrapper" routerLink="accounts/sign-in">Log out</button>
-    </ng-container>
-    <ng-template #login>
-      <button class="column-wrapper" routerLink="accounts/sign-in">Log in</button>
-    </ng-template>
-  </div>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+                 [ngClass]="{hidden: !(isHandset$ | async)}"
+                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                 [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                 [opened]="(isHandset$ | async) === false">
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item href="#">Articles</a>
+        <a mat-list-item href="#">Tutorials</a>
+        <a mat-list-item href="#">Search</a>
+        <a mat-list-item href="#">Log in</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon"></mat-icon>
+        </button>
+        <h2>Code Hub</h2>
+        <div class="toolbar-elements" *ngIf="!(isHandset$ | async)">
+          <div class="links">
+            <button class="link">Articles</button>
+            <button class="link">Tutorials</button>
+            <button class="link">Search</button>
+          </div>
+          <button>Log in</button>
+        </div>
+      </mat-toolbar>
+      <!-- Add Content Here -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

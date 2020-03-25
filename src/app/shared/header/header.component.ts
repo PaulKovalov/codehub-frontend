@@ -1,19 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {ContentService} from '../../home/content.service';
+import { Component } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  public appTitle = 'Code Hub';
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
-  constructor(private contentService: ContentService) {
-  }
-
-  ngOnInit() {
-  }
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
 }
