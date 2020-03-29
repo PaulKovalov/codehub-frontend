@@ -1,9 +1,10 @@
 @import '../../scss/base.scss';
 
 .base-style {
-  padding: 42px 42px 30px 42px;
+  padding: 20px;
   flex-shrink: 0;
+
   button {
-    width: 200px;
+    width: 100px;
   }
 }

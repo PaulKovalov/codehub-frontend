@@ -1,40 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
-import {Article} from '../interfaces/article';
-import {Tutorial} from '../interfaces/tutorial';
-import {NavbarElement} from '../interfaces/navbar-element';
-import {AccountService} from '../accounts/account.service';
-import {doApiUrl} from '../shared/Utils';
-import {User} from '../interfaces/user-data';
-
-const nonAuthorizedNavbarSet: NavbarElement[] = [
-  {
-    title: 'articles',
-    asset: null
-  },
-  {
-    title: 'tutorials',
-    asset: null
-  },
-  {
-    title: 'search',
-    asset: 'assets/img/search.png'
-  }
-];
-
-const authorizedNavbarSet: NavbarElement[] = [...nonAuthorizedNavbarSet, ...[
-  {
-    title: 'my articles',
-    asset: null
-  },
-  {
-    title: 'my tutorials',
-    asset: null
-  },
-]
-];
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Article } from '../interfaces/article';
+import { Tutorial } from '../interfaces/tutorial';
+import { AccountService } from '../accounts/account.service';
+import { doApiUrl } from '../shared/Utils';
+import { User } from '../interfaces/user-data';
 
 @Injectable({
   providedIn: 'root'
@@ -70,16 +41,5 @@ export class ContentService {
 
   public loadTutorialArticle(tutorialId: number, articleId: number): Observable<Article> {
     return this.http.get<Article>(doApiUrl(`articles/${tutorialId}/${articleId}`));
-  }
-
-  public getNavbarItems(): Subject<NavbarElement[]> {
-    const navbarSubject = new Subject<NavbarElement[]>();
-    this.accountService.me().subscribe((data) => {
-      this.currentUser = data;
-      navbarSubject.next(authorizedNavbarSet);
-    }, (err) => {
-      navbarSubject.next(nonAuthorizedNavbarSet);
-    });
-    return navbarSubject;
   }
 }

@@ -1,6 +1,6 @@
 <div class="base-style">
   <div class="two-column">
-    <h1 class="logo column-wrapper">{{appTitle}}</h1>
+    <h1 class="column-wrapper">{{appTitle}}</h1>
     <ng-container *ngIf="contentService.currentUser else login">
       <button class="column-wrapper" routerLink="accounts/sign-in">Log out</button>
     </ng-container>

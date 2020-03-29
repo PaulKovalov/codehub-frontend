@@ -1,16 +1,23 @@
-import {Injectable} from '@angular/core';
-import {BaseUserData, User, UserData} from '../interfaces/user-data';
-import {HttpClient} from '@angular/common/http';
-import {doApiUrl} from '../shared/Utils';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BaseUserData, User, UserData } from '../interfaces/user-data';
+import { HttpClient } from '@angular/common/http';
+import { doApiUrl } from '../shared/Utils';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AccountService {
+  private user$ = new BehaviorSubject<User | null>(null);
+  private isAuthenticated$ = new ReplaySubject<boolean>(1);
 
   constructor(private http: HttpClient) {
+    this.http.get<User>(doApiUrl('accounts/me/')).subscribe((user) => {
+      this.user$.next(user);
+      this.isAuthenticated$.next(user!==null);
+    });
   }
 
   public registerUser(user: UserData) {
@@ -27,7 +34,11 @@ export class AccountService {
     return this.http.post(doApiUrl('accounts/login/'), user);
   }
 
-  public me(): Observable<User> {
-    return this.http.get<User>(doApiUrl('accounts/me/'));
+  public isLoggedIn$(): Observable<boolean> {
+    return this.isAuthenticated$.asObservable();
+  }
+
+  public getCurrentUser$(): Observable<User> {
+    return this.user$.asObservable().pipe(filter((user: User) => user!==null));
   }
 }
