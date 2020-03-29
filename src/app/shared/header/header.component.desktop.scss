@@ -1,0 +1,19 @@
+.base-style {
+  padding: 20px;
+  flex-shrink: 0;
+
+  button {
+    width: 100px;
+  }
+}
+
+.mobile-toolbar-header {
+  display: none;
+  height: 0px;
+}
+
+.header-elements {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

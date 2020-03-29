@@ -1,11 +1,24 @@
 <div class="base-style">
-  <div class="two-column">
-    <h1 class="column-wrapper">{{appTitle}}</h1>
+  <div class="header-elements">
+    <div class="header-elements">
+      <div class="mobile-toolbar-header">
+        <button (click)="active = !active"
+                [ngClass]="active ? 'is-active' : ''" class="hamburger hamburger--slider"
+                type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <h1>{{appTitle}}</h1>
+    </div>
     <ng-container *ngIf="contentService.currentUser else login">
-      <button class="column-wrapper" routerLink="accounts/sign-in">Log out</button>
+      <button routerLink="accounts/sign-in">Log out</button>
     </ng-container>
     <ng-template #login>
-      <button class="column-wrapper" routerLink="accounts/sign-in">Log in</button>
+      <button routerLink="accounts/sign-in">Log in</button>
     </ng-template>
   </div>
+  <app-navbar (clickOutside)="outsideClickHandler()" [exclude]="'.header-elements'"
+              [ngClass]="active ? '' : 'hide-navbar'"></app-navbar>
 </div>

@@ -19,6 +19,8 @@
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
+    "hamburgers": "^1.1.3",
+    "ng-click-outside": "^6.0.0",
     "ngx-cookie-service": "^2.2.0",
     "rxjs": "~6.4.0",
     "serialize-javascript": "^2.1.2",

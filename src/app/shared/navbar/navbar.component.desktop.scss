@@ -1,0 +1,14 @@
+.base-style {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin-top: 10px;
+
+  .nav-element {
+    margin-bottom: 4px;
+  }
+
+  .selected {
+    border-bottom: 8px solid #E5E9F2;
+  }
+}

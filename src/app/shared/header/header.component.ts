@@ -9,6 +9,7 @@ import { ContentService } from '../../home/content.service';
 export class HeaderComponent implements OnInit {
 
   public appTitle = 'Code Hub';
+  public active = false;
 
   constructor(private contentService: ContentService) {
   }
@@ -16,4 +17,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  public outsideClickHandler() {
+    if (this.active) {
+      this.active = !this.active;
+    }
+  }
 }

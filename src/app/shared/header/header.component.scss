@@ -1,10 +1,9 @@
 @import '../../scss/base.scss';
 
-.base-style {
-  padding: 20px;
-  flex-shrink: 0;
+@media (max-width: $mobile_screen_width) {
+  @import "header.component.mobile.scss";
+}
 
-  button {
-    width: 100px;
-  }
+@media (min-width: $mobile_screen_width) {
+  @import "header.component.desktop.scss";
 }
