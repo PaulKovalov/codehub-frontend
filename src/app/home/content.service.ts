@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Article } from '../interfaces/article';
 import { Tutorial } from '../interfaces/tutorial';
 import { AccountService } from '../accounts/account.service';
-import { doApiUrl } from '../shared/Utils';
+import { Utils } from '../shared/utils';
 import { User } from '../interfaces/user-data';
 
 @Injectable({
@@ -25,21 +25,21 @@ export class ContentService {
       start: String(this.articlesFrom),
     };
     this.articlesFrom += 10;
-    return this.http.get<Article[]>(doApiUrl('articles'), {params: paramOffset});
+    return this.http.get<Article[]>(Utils.doApiUrl('articles'), {params: paramOffset});
   }
 
   public loadTutorialShortcuts(): Observable<Tutorial[]> {
     const paramOffset = {
       start: String(this.tutorialsFrom),
     };
-    return this.http.get<Tutorial[]>(doApiUrl('tutorials'), {params: paramOffset});
+    return this.http.get<Tutorial[]>(Utils.doApiUrl('tutorials'), {params: paramOffset});
   }
 
   public loadArticle(id: number): Observable<Article> {
-    return this.http.get<Article>(doApiUrl(`articles/${id}`));
+    return this.http.get<Article>(Utils.doApiUrl(`articles/${id}`));
   }
 
   public loadTutorialArticle(tutorialId: number, articleId: number): Observable<Article> {
-    return this.http.get<Article>(doApiUrl(`articles/${tutorialId}/${articleId}`));
+    return this.http.get<Article>(Utils.doApiUrl(`articles/${tutorialId}/${articleId}`));
   }
 }

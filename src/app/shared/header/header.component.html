@@ -12,7 +12,7 @@
       </div>
       <h1>{{appTitle}}</h1>
     </div>
-    <ng-container *ngIf="contentService.currentUser else login">
+    <ng-container *ngIf="(accountService.isLoggedIn$() | async) else login">
       <button routerLink="accounts/sign-in">Log out</button>
     </ng-container>
     <ng-template #login>

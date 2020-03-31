@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContentService } from '../../home/content.service';
+import { AccountService } from '../../accounts/account.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   public appTitle = 'Code Hub';
   public active = false;
 
-  constructor(private contentService: ContentService) {
+  constructor(public accountService: AccountService) {
   }
 
   ngOnInit() {

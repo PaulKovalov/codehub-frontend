@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {flatMap} from 'rxjs/operators';
-import {CookieService} from 'ngx-cookie-service';
-import {doApiUrl} from '../shared/Utils';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { flatMap } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
+import { Utils } from '../shared/utils';
 
 @Injectable()
 export class CsrfInjector implements HttpInterceptor {
@@ -32,7 +32,7 @@ export class CsrfInjector implements HttpInterceptor {
   }
 
   private getCsrfToken() {
-    return this.http.get(doApiUrl('get-csrf'), {observe: 'response'});
+    return this.http.get(Utils.doApiUrl('get-csrf'), {observe: 'response'});
   }
 
   private updateReq(token: string, req: HttpRequest<any>): HttpRequest<any> {

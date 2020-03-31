@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseUserData, User, UserData } from '../interfaces/user-data';
 import { HttpClient } from '@angular/common/http';
-import { doApiUrl } from '../shared/Utils';
+import { Utils } from '../shared/utils';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -14,9 +14,9 @@ export class AccountService {
   private isAuthenticated$ = new ReplaySubject<boolean>(1);
 
   constructor(private http: HttpClient) {
-    this.http.get<User>(doApiUrl('accounts/me/')).subscribe((user) => {
+    this.http.get<User>(Utils.doApiUrl('accounts/me/')).subscribe((user) => {
       this.user$.next(user);
-      this.isAuthenticated$.next(user!==null);
+      this.isAuthenticated$.next(user !== null);
     });
   }
 
@@ -26,12 +26,11 @@ export class AccountService {
       email: user.email,
       password: user.password,
     };
-    console.log(doApiUrl('accounts/'));
-    return this.http.post(doApiUrl('accounts/'), data);
+    return this.http.post(Utils.doApiUrl('accounts/'), data);
   }
 
   public loginUser(user: BaseUserData) {
-    return this.http.post(doApiUrl('accounts/login/'), user);
+    return this.http.post(Utils.doApiUrl('accounts/login/'), user);
   }
 
   public isLoggedIn$(): Observable<boolean> {
@@ -39,6 +38,6 @@ export class AccountService {
   }
 
   public getCurrentUser$(): Observable<User> {
-    return this.user$.asObservable().pipe(filter((user: User) => user!==null));
+    return this.user$.asObservable().pipe(filter((user: User) => user !== null));
   }
 }
