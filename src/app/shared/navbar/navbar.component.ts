@@ -47,11 +47,12 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarItems = nonAuthenticatedNavbarSet;
-    this.selectedNavbarItem = this.navbarItems[0].title;
     this.accountService.isLoggedIn$().subscribe((loggedIn) => {
       if (loggedIn) {
         this.navbarItems = authenticatedNavbarSet;
+        this.selectedNavbarItem = this.navbarItems[0].title;
+      } else {
+        this.navbarItems = nonAuthenticatedNavbarSet;
         this.selectedNavbarItem = this.navbarItems[0].title;
       }
     });

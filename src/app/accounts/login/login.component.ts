@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {getFormValidationErrors, sortErrors} from '../userform-utils';
-import {AccountService} from '../account.service';
-import {BaseUserData} from '../../interfaces/user-data';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { getFormValidationErrors, sortErrors } from '../userform-utils';
+import { AccountService } from '../account.service';
+import { BaseUserData } from '../../interfaces/user-data';
+import { Router } from '@angular/router';
 
 interface FormError {
   email: string;
@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit {
 
   public login() {
     if (this.userDataFormGroup.valid) {
-      this.accountService.loginUser(this.userDataFormGroup.value as BaseUserData).subscribe(() => {
+      this.accountService.login(this.userDataFormGroup.value as BaseUserData).subscribe(() => {
+        this.accountService.updateAuthState();
         this.router.navigateByUrl('/');
       }, (err) => {
         this.errorsText = 'Unable to log in';

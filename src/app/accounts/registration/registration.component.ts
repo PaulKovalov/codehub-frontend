@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {BaseUserData, UserData} from '../../interfaces/user-data';
-import {AccountService} from '../account.service';
-import {getFormValidationErrors, sortErrors} from '../userform-utils';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { UserData } from '../../interfaces/user-data';
+import { AccountService } from '../account.service';
+import { getFormValidationErrors, sortErrors } from '../userform-utils';
+import { Router } from '@angular/router';
 
 
 const passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const newPassword = control.get('password');
   const confirmNewPassword = control.get('confirmPassword');
-  return newPassword && confirmNewPassword && newPassword.value !== confirmNewPassword.value ? {passwordMatchValidator: true} : null;
+  return newPassword && confirmNewPassword && newPassword.value !== confirmNewPassword.value ? {passwordMatchValidator: true}:null;
 };
 
 interface FormError {
@@ -65,9 +65,8 @@ export class RegistrationComponent implements OnInit {
   public register() {
     if (this.userDataFormGroup.valid) {
       this.accountService.registerUser(this.userDataFormGroup.value as UserData).subscribe(() => {
-        this.accountService.loginUser(this.userDataFormGroup.value as BaseUserData).subscribe((data: { token: string }) => {
-          this.router.navigateByUrl('/');
-        });
+        this.accountService.updateAuthState();
+        this.router.navigateByUrl('/');
       }, (err) => {
         this.errorsText = 'Error occured';
       });
