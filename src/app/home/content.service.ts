@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Article, ArticlePreview } from './interfaces';
+import { Article, ArticlesPage } from './interfaces';
 import { AccountService } from '../accounts/account.service';
 import { Utils } from '../shared/utils';
 import { User } from '../accounts/interfaces';
@@ -19,8 +19,12 @@ export class ContentService {
     this.tutorialsFrom = 10;
   }
 
-  public loadArticlesList(): Observable<ArticlePreview[]> {
-    return this.http.get<ArticlePreview[]>(Utils.doApiUrl('articles/'));
+  public loadArticlesList(cursor: string | null): Observable<ArticlesPage> {
+    if (cursor) {
+      return this.http.get<ArticlesPage>(Utils.doApiUrl('articles/?cursor=' + cursor));
+    } else {
+      return this.http.get<ArticlesPage>(Utils.doApiUrl('articles/'));
+    }
   }
 
   public loadArticle(id: number): Observable<Article> {

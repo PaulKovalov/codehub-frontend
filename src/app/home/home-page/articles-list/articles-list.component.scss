@@ -1,0 +1,11 @@
+@import '../../../scss/base.scss';
+
+.articles-list {
+  padding-left: 20px;
+}
+
+@media (max-width: $mobile_screen_width) {
+  .articles-list {
+    padding-left: 10px;
+  }
+}

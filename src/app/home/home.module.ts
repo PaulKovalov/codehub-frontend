@@ -9,9 +9,10 @@ import { NewArticleComponent } from './new-article/new-article.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticlePreviewComponent } from './home-page/article-preview/article-preview.component';
+import { ArticlesListComponent } from './home-page/articles-list/articles-list.component';
 
 @NgModule({
-  declarations: [HomePageComponent, ArticlePreviewComponent, NewArticleComponent],
+  declarations: [HomePageComponent, ArticlePreviewComponent, NewArticleComponent, ArticlesListComponent],
   providers: [
     ContentService,
     {provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'}

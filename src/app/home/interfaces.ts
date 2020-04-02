@@ -15,3 +15,9 @@ export interface CreateArticle {
   title: string;
   text: string;
 }
+
+export interface ArticlesPage {
+  next: string | null;
+  prev: string | null;
+  results: ArticlePreview[];
+}
