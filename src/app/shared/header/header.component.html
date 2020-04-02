@@ -1,17 +1,6 @@
 <div class="base-style">
   <div class="header-elements">
-    <div class="header-elements">
-      <div class="mobile-toolbar-header">
-        <button (click)="active = !active"
-                [ngClass]="active ? 'is-active' : ''" class="hamburger hamburger--slider"
-                type="button">
-          <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-          </span>
-        </button>
-      </div>
-      <h1>{{appTitle}}</h1>
-    </div>
+    <h1>{{appTitle}}</h1>
     <ng-container *ngIf="loggedIn else login">
       <button (click)="doLogout()">Log out</button>
     </ng-container>
@@ -19,6 +8,4 @@
       <button routerLink="accounts/sign-in">Log in</button>
     </ng-template>
   </div>
-  <app-navbar (clickOutside)="outsideClickHandler()" [exclude]="'.header-elements'"
-              [ngClass]="active ? '' : 'hide-navbar'"></app-navbar>
 </div>

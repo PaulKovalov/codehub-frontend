@@ -1,6 +1,10 @@
-<editor
-  [(ngModel)]="editor"
-  [init]="{
+<app-header></app-header>
+<div>
+  <p>Give a title to your article</p>
+  <input [formControl]="articleTitle" maxlength="128" minlength="8">
+  <editor
+    [(ngModel)]="editor"
+    [init]="{
      base_url: '/tinymce',
      suffix: '.min',
      height: 500,
@@ -13,5 +17,11 @@
      toolbar:
        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | codesample | removeformat | help'
    }"
-></editor>
-<button (click)="printEditor()">Print content</button>
+  ></editor>
+  <p>You can edit the article at any time after it's submitted</p>
+  <div *ngIf="errorsText" class="error">
+    {{errorsText}}
+  </div>
+  <button (click)="submit()" [disabled]="!submitButtonEnabled">Create</button>
+</div>
+<app-footer></app-footer>

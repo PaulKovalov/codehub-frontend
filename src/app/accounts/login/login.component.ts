@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { getFormValidationErrors, sortErrors } from '../userform-utils';
 import { AccountService } from '../account.service';
-import { BaseUserData } from '../../interfaces/user-data';
+import { BaseUserData } from '../interfaces';
 import { Router } from '@angular/router';
 
 interface FormError {

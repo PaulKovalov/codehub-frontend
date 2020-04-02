@@ -1,11 +1,18 @@
 .base-style {
   display: flex;
   justify-content: space-between;
-  width: 300px;
-  margin-top: 10px;
+  width: 800px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   .nav-element {
     margin-bottom: 4px;
+    width: max-content;
+  }
+
+  .mobile-toolbar {
+    display: none;
+    height: 0px;
   }
 
   .selected {

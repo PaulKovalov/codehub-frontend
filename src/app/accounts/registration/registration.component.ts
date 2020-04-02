@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { UserData } from '../../interfaces/user-data';
 import { AccountService } from '../account.service';
 import { getFormValidationErrors, sortErrors } from '../userform-utils';
 import { Router } from '@angular/router';
+import { UserData } from '../interfaces';
 
 
 const passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {

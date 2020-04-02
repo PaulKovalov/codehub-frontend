@@ -1,3 +1,5 @@
+@import '~hamburgers/_sass/hamburgers/hamburgers.scss';
+
 .base-style {
   display: flex;
   flex-direction: column;
@@ -7,5 +9,14 @@
   .nav-element {
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .hamburger {
+    padding: 10px 15px;
+  }
+
+  .hide-navbar {
+    display: none;
+    height: 0px;
   }
 }

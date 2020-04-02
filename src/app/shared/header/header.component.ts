@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   public appTitle = 'Code Hub';
-  public active = false;
   public loggedIn = false;
 
   constructor(public accountService: AccountService, private router: Router) {
@@ -20,12 +19,6 @@ export class HeaderComponent implements OnInit {
     this.accountService.isLoggedIn$().subscribe((loggedIn) => {
       this.loggedIn = loggedIn;
     });
-  }
-
-  public outsideClickHandler() {
-    if (this.active) {
-      this.active = !this.active;
-    }
   }
 
   public doLogout() {

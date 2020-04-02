@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../accounts/account.service';
-import { Article } from '../../interfaces/article';
-import { Tutorial } from '../../interfaces/tutorial';
-import { NavbarElement } from '../../interfaces/navbar-element';
+import { NavbarElement } from '../interfaces';
+import { ArticlePreview } from '../../home/interfaces';
 
 const nonAuthenticatedNavbarSet: NavbarElement[] = [
   {
@@ -38,10 +37,11 @@ const authenticatedNavbarSet: NavbarElement[] = [...nonAuthenticatedNavbarSet, .
 })
 export class NavbarComponent implements OnInit {
 
-  public myArticles: Article[];
-  public myTutorials: Tutorial[];
+  public myArticles: ArticlePreview[];
   public selectedNavbarItem: string;
   public navbarItems: NavbarElement[];
+
+  public mobileOpened = false;
 
   constructor(private accountService: AccountService) {
   }
@@ -60,5 +60,11 @@ export class NavbarComponent implements OnInit {
 
   public selectMode(mode: string) {
     this.selectedNavbarItem = mode;
+  }
+
+  public outsideClickHandler() {
+    if (this.mobileOpened) {
+      this.mobileOpened = !this.mobileOpened;
+    }
   }
 }

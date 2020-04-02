@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Article } from '../interfaces/article';
-import { Tutorial } from '../interfaces/tutorial';
+import { Article, ArticlePreview } from './interfaces';
 import { AccountService } from '../accounts/account.service';
 import { Utils } from '../shared/utils';
-import { User } from '../interfaces/user-data';
+import { User } from '../accounts/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -20,26 +19,11 @@ export class ContentService {
     this.tutorialsFrom = 10;
   }
 
-  public loadArticleShortcuts(): Observable<Article[]> {
-    const paramOffset = {
-      start: String(this.articlesFrom),
-    };
-    this.articlesFrom += 10;
-    return this.http.get<Article[]>(Utils.doApiUrl('articles'), {params: paramOffset});
-  }
-
-  public loadTutorialShortcuts(): Observable<Tutorial[]> {
-    const paramOffset = {
-      start: String(this.tutorialsFrom),
-    };
-    return this.http.get<Tutorial[]>(Utils.doApiUrl('tutorials'), {params: paramOffset});
+  public loadArticlesList(): Observable<ArticlePreview[]> {
+    return this.http.get<ArticlePreview[]>(Utils.doApiUrl('articles/'));
   }
 
   public loadArticle(id: number): Observable<Article> {
-    return this.http.get<Article>(Utils.doApiUrl(`articles/${id}`));
-  }
-
-  public loadTutorialArticle(tutorialId: number, articleId: number): Observable<Article> {
-    return this.http.get<Article>(Utils.doApiUrl(`articles/${tutorialId}/${articleId}`));
+    return this.http.get<Article>(Utils.doApiUrl(`articles/${id}/`));
   }
 }
