@@ -36,10 +36,9 @@ export class ArticlesListComponent implements OnInit {
     }
   }
 
-  @HostListener('scroll', ['$event'])
+  @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
-    if (event.target.offsetHeight + event.target.scrollTop + 10 >= event.target.scrollHeight) {
-      console.log('event trigger');
+    if (document.documentElement.scrollHeight - document.documentElement.scrollTop === document.body.scrollHeight) {
       this.nextArticles();
     }
   }

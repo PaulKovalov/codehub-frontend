@@ -21,7 +21,6 @@ export class NewArticleComponent implements OnInit {
   }
 
   public submit() {
-    this.submitButtonEnabled = false;
     if (!this.articleTitle.valid) {
       Object.keys(this.articleTitle.errors).forEach(keyError => {
         switch (keyError) {
@@ -58,10 +57,13 @@ export class NewArticleComponent implements OnInit {
         title: this.articleTitle.value,
         text: this.editor
       };
+      this.submitButtonEnabled = false;
       this.articleService.postArticle(article).subscribe(() => {
         this.submitButtonEnabled = true;
       }, (err) => {
         this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t save, make sure to save it!';
+        this.submitButtonEnabled = true;
+
       });
     } else {
       this.errorsText = 'The article is empty';

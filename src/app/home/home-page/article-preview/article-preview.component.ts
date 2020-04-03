@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ArticlePreview } from '../../interfaces';
 
 @Component({
-  selector: 'app-article-shortcut',
+  selector: 'app-article-preview',
   templateUrl: './article-preview.component.html',
   styleUrls: ['./article-preview.component.scss']
 })

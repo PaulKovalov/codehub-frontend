@@ -4,6 +4,7 @@ export interface ArticlePreview {
   estimate_reading_time: string;
   author: string;
   title: string;
+  preview: string;
 }
 
 export interface Article extends ArticlePreview {

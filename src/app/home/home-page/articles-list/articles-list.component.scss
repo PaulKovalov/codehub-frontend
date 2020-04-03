@@ -2,10 +2,12 @@
 
 .articles-list {
   padding-left: 20px;
+  padding-top: 30px;
 }
 
 @media (max-width: $mobile_screen_width) {
   .articles-list {
     padding-left: 10px;
+    padding-top: 20px;
   }
 }

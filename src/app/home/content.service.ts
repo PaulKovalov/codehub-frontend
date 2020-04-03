@@ -27,7 +27,7 @@ export class ContentService {
     }
   }
 
-  public loadArticle(id: number): Observable<Article> {
+  public loadArticle(id: string | number): Observable<Article> {
     return this.http.get<Article>(Utils.doApiUrl(`articles/${id}/`));
   }
 }

@@ -4,6 +4,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NewArticleComponent } from './new-article/new-article.component';
 import { AuthGuardService } from '../shared/services/auth-guard.service';
 import { ArticlesListComponent } from './home-page/articles-list/articles-list.component';
+import { ArticleViewComponent } from './home-page/article-view/article-view.component';
 
 
 const routes: Routes = [
@@ -14,13 +15,17 @@ const routes: Routes = [
       {
         path: '',
         component: ArticlesListComponent,
-      }
+      },
     ]
   },
   {
     path: 'new-article',
     canActivate: [AuthGuardService],
     component: NewArticleComponent,
+  },
+  {
+    path: 'article/:id',
+    component: ArticleViewComponent,
   }
 ];
 
