@@ -12,7 +12,6 @@ export class NavbarComponent {
 
   public selectedNavbarItem: string;
   public navbarItems: NavbarElement[];
-
   public mobileOpened = false;
 
   constructor(private navbarService: NavbarService, private router: Router) {

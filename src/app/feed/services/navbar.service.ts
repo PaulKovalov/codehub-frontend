@@ -23,14 +23,9 @@ const nonAuthenticatedNavbarSet: NavbarElement[] = [
 
 const authenticatedNavbarSet: NavbarElement[] = [...nonAuthenticatedNavbarSet, ...[
   {
-    title: 'my articles',
+    title: 'profile',
     asset: null,
-    routerLink: '',
-  },
-  {
-    title: 'my tutorials',
-    asset: null,
-    routerLink: ''
+    routerLink: '/profile',
   },
 ]
 ];

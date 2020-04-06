@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ContentService } from './services/content.service';
 import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
     NavbarComponent,
     ArticlePreviewComponent,
     ArticleViewComponent,
-    ArticlesListComponent
+    ArticlesListComponent,
   ],
   providers: [
     ContentService,
@@ -28,8 +29,9 @@ import { ClickOutsideModule } from 'ng-click-outside';
     CommonModule,
     SharedModule,
     FeedRoutingModule,
+    ProfileModule,
     ClickOutsideModule
-  ]
+  ],
 })
 export class FeedModule {
 }

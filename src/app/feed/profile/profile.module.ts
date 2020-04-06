@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.component';
 import { NewArticleComponent } from './new-article/new-article.component';
+import { SharedModule } from '../../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 @NgModule({
@@ -13,8 +16,13 @@ import { NewArticleComponent } from './new-article/new-article.component';
   ],
   imports: [
     CommonModule,
-    ProfileRoutingModule
-  ]
+    ProfileRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    EditorModule,
+    FormsModule
+  ],
+  exports: []
 })
 export class ProfileModule {
 }
