@@ -22,3 +22,10 @@ export interface ArticlesPage {
   prev: string | null;
   results: ArticlePreview[];
 }
+
+export interface NavbarElement {
+  title: string;
+  asset: string | null;
+  routerLink: string;
+}
+

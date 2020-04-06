@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ContentService } from '../../content.service';
-import { ArticlePreview } from '../../interfaces';
+import { ContentService } from '../services/content.service';
+import { ArticlePreview } from '../interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-articles-list',
@@ -13,18 +14,22 @@ export class ArticlesListComponent implements OnInit {
   private cursor: string | null;
   private noContentLeft = false;
   private canRequestNext = true;
+  private urlPrefix = '';
 
-  constructor(private contentService: ContentService) {
+  constructor(private contentService: ContentService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    if (this.activatedRoute.snapshot.data.mode === 'my-articles') {
+      this.urlPrefix = 'my';
+    }
     this.nextArticles();
   }
 
   public nextArticles() {
     if (!this.noContentLeft && this.canRequestNext) {
       this.canRequestNext = false;
-      this.contentService.loadArticlesList(this.cursor).subscribe((page) => {
+      this.contentService.loadArticlesList(this.cursor, this.urlPrefix).subscribe((page) => {
         this.articles = this.articles.concat(page.results);
         if (!page.next) {
           this.noContentLeft = true;

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HomeModule } from './home/home.module';
+import { FeedModule } from './feed/feed.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AccountsModule } from './accounts/accounts.module';
@@ -38,7 +38,7 @@ const appEnvironmentFn = (appConfig: AppConfigService) => {
     {provide: HTTP_INTERCEPTORS, useClass: CsrfInjector, multi: true},
   ],
   exports: [
-    HomeModule,
+    FeedModule,
     AccountsModule
   ],
   bootstrap: [AppComponent]

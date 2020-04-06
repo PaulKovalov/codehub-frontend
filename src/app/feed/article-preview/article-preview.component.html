@@ -1,0 +1,7 @@
+<div *ngIf="article" class="base-style">
+  <h3>{{article.title}}</h3>
+  <p class="content-main preview">{{article.preview}}</p>
+  <ng-container *ngIf="article.estimate_reading_time as time">
+    <p class="tips-text">Reading time: {{time}} minute{{time > 1 ? 's' : ''}}</p>
+  </ng-container>
+</div>

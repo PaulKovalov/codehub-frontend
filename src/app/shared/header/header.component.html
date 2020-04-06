@@ -1,7 +1,7 @@
 <div class="base-style">
   <div class="header-elements">
-    <h1>{{appTitle}}</h1>
-    <ng-container *ngIf="loggedIn else login">
+    <a class="logo" routerLink="/">{{appTitle}}</a>
+    <ng-container *ngIf="(accountService.isLoggedIn$() | async) else login">
       <button (click)="doLogout()">Log out</button>
     </ng-container>
     <ng-template #login>

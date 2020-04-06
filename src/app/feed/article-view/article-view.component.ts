@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ContentService } from '../../content.service';
-import { Article } from '../../interfaces';
+import { ContentService } from '../services/content.service';
+import { Article } from '../interfaces';
 
 @Component({
   selector: 'app-article-view',
