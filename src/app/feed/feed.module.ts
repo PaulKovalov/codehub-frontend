@@ -11,7 +11,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ContentService } from './services/content.service';
 import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { ProfileModule } from './profile/profile.module';
     CommonModule,
     SharedModule,
     FeedRoutingModule,
-    ProfileModule,
     ClickOutsideModule
   ],
 })

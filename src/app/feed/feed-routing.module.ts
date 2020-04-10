@@ -24,7 +24,16 @@ const routes: Routes = [
   {
     path: 'profile',
     canActivate: [AuthGuardService],
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+      },
+      {
+        path: 'my-articles',
+        component: ArticlesListComponent,
+      }
+    ]
   }
 ];
 
