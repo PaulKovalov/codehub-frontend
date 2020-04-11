@@ -1,5 +1,16 @@
-<app-header></app-header>
-<h2>{{ article.title }}</h2>
-<div>{{article.text}}</div>
-<p> {{ article.author}}</p>
-<app-footer></app-footer>
+<ng-container *ngIf="article; else loading">
+  <div class="base-style">
+    <h2>{{ article.title }}</h2>
+    <div [innerHTML]="article.text"></div>
+    <p> {{ article.username}}</p>
+    <p> {{articleViews}} views</p>
+    <div class="discussion">
+      <h3>Discussion</h3>
+    </div>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <div class="loading">
+    Loading article...
+  </div>
+</ng-template>

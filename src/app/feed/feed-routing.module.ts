@@ -4,6 +4,7 @@ import { FeedComponent } from './feed.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleViewComponent } from './article-view/article-view.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { NotFoundComponent } from '../shared/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -28,13 +29,18 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
+        redirectTo: 'my-articles'
       },
       {
         path: 'my-articles',
         component: ArticlesListComponent,
       }
     ]
-  }
+  },
+  {
+    path: '404',
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({

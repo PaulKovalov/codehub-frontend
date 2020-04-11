@@ -1,14 +1,15 @@
 export interface ArticlePreview {
+  id: number;
   date_created: string;
   views: number;
   estimate_reading_time: string;
   author: string;
+  username: string;
   title: string;
   preview: string;
 }
 
 export interface Article extends ArticlePreview {
-  id: number;
   text: string | null;
 }
 

@@ -14,13 +14,24 @@ export class ArticleViewComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService) {
   }
 
+  get articleViews() {
+    const mod = 10 ** (Math.round(Math.log(this.article.views) / Math.log(10)) - 2);
+    if (this.article.views > 1e6) {
+      return `${(this.article.views - (this.article.views % mod)) / 1e6}M`;
+    }
+    if (this.article.views > 1e3) {
+      return `${(this.article.views - (this.article.views % mod)) / 1e3}K`;
+    }
+    return this.article.views;
+  }
+
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
       const articleId = params.get('id');
       this.contentService.loadArticle(articleId).subscribe((article) => {
         this.article = article;
       }, (error) => {
-        this.router.navigateByUrl('not-found');
+        this.router.navigateByUrl('404');
       });
     });
   }

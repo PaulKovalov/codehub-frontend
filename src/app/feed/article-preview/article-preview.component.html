@@ -1,5 +1,6 @@
-<div *ngIf="article" class="base-style">
+<div *ngIf="article" [routerLink]="linkToArticle" class="base-style">
   <h3>{{article.title}}</h3>
+  <p class="tips-text">{{article.username}} on {{dateCreated}}</p>
   <p class="content-main preview">{{article.preview}}</p>
   <ng-container *ngIf="article.estimate_reading_time as time">
     <p class="tips-text">Reading time: {{time}} minute{{time > 1 ? 's' : ''}}</p>
