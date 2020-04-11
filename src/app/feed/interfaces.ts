@@ -7,6 +7,7 @@ export interface ArticlePreview {
   username: string;
   title: string;
   preview: string;
+  published?: boolean;
 }
 
 export interface Article extends ArticlePreview {

@@ -1,5 +1,20 @@
 <div *ngIf="article" [routerLink]="linkToArticle" class="article">
-  <h3>{{article.title}}</h3>
+  <ng-container *ngIf="mode === 'profile'; else noProfileMode">
+    <div class="align-items">
+      <h3>{{article.title}}</h3>
+      <div *ngIf="article.published" class="align-items">
+        <img src="assets/img/published.png">
+        (published)
+      </div>
+      <div *ngIf="!article.published" class="align-items">
+        <img src="assets/img/pending.png">
+        (pending)
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noProfileMode>
+    <h3>{{article.title}}</h3>
+  </ng-template>
   <p class="tips-text">{{article.username}} on {{dateCreated}}</p>
   <p class="content-main preview">{{article.preview}}</p>
   <ng-container *ngIf="article.estimate_reading_time as time">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-article',
@@ -14,7 +15,7 @@ export class NewArticleComponent implements OnInit {
   public submitButtonEnabled = true;
   public errorsText = '';
 
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService, private router: Router) {
   }
 
   ngOnInit() {
@@ -59,9 +60,9 @@ export class NewArticleComponent implements OnInit {
       };
       this.submitButtonEnabled = false;
       this.articleService.postArticle(article).subscribe(() => {
-        this.submitButtonEnabled = true;
+        this.router.navigateByUrl('/profile/my-articles');
       }, (err) => {
-        this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t save, make sure to save it!';
+        this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
         this.submitButtonEnabled = true;
 
       });

@@ -1,21 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, Injector, OnDestroy } from '@angular/core';
 import { NavbarElement } from '../interfaces';
-import { Router } from '@angular/router';
-import { NavbarService } from '../services/navbar.service';
+import { NAVBAR_SERVICE_TOKEN, PROFILE_NAVBAR_SERVICE_TOKEN } from '../services/injection-tokens';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnDestroy {
 
   public navbarItems: NavbarElement[];
   public mobileOpened = false;
+  private navbarService;
+  private routeChangesSubscription;
 
-  constructor(private navbarService: NavbarService, private router: Router) {
-    this.navbarService.navbarItems$().subscribe((items) => {
-      this.navbarItems = items;
+  constructor(private injector: Injector, private router: Router) {
+    this.routeChangesSubscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
+      if (this.router.url.startsWith('/profile')) {
+        this.navbarService = this.injector.get(PROFILE_NAVBAR_SERVICE_TOKEN);
+      } else {
+        this.navbarService = this.injector.get(NAVBAR_SERVICE_TOKEN);
+      }
+      this.navbarService.navbarItems$().subscribe((items) => {
+        this.navbarItems = items;
+      });
     });
   }
 
@@ -23,5 +33,9 @@ export class NavbarComponent {
     if (this.mobileOpened) {
       this.mobileOpened = !this.mobileOpened;
     }
+  }
+
+  ngOnDestroy() {
+    this.routeChangesSubscription.unsubscribe();
   }
 }

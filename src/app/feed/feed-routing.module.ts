@@ -6,6 +6,8 @@ import { ArticleViewComponent } from './article-view/article-view.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { RecentActivityComponent } from './recent-activity/recent-activity.component';
+import { MyArticlesComponent } from './profile/my-articles/my-articles.component';
+import { NewArticleComponent } from './profile/new-article/new-article.component';
 
 
 const routes: Routes = [
@@ -30,21 +32,25 @@ const routes: Routes = [
         path: 'articles/:id',
         component: ArticleViewComponent,
       },
-    ]
-  },
-  {
-    path: 'profile',
-    canActivate: [AuthGuardService],
-    children: [
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'my-articles'
+        path: 'profile',
+        canActivate: [AuthGuardService],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'my-articles'
+          },
+          {
+            path: 'my-articles',
+            component: MyArticlesComponent,
+          },
+          {
+            path: 'compose-article',
+            component: NewArticleComponent,
+          }
+        ]
       },
-      {
-        path: 'my-articles',
-        component: ArticlesListComponent,
-      }
     ]
   },
   {

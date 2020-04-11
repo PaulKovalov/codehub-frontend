@@ -1,7 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ContentService } from '../services/content.service';
 import { ArticlePreview } from '../interfaces';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-articles-list',
@@ -15,12 +14,13 @@ export class ArticlesListComponent implements OnInit {
   private noContentLeft = false;
   private canRequestNext = true;
   private urlPrefix = '';
+  @Input() public mode = '';
 
-  constructor(private contentService: ContentService, private activatedRoute: ActivatedRoute) {
+  constructor(private contentService: ContentService) {
   }
 
   ngOnInit() {
-    if (this.activatedRoute.snapshot.data.mode === 'my-articles') {
+    if (this.mode === 'profile') {
       this.urlPrefix = 'my';
     }
     this.nextArticles();

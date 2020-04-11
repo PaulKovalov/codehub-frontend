@@ -1,6 +1,6 @@
-<div class="recent-activity-wrapper">
+<div>
   <h2>Popular articles today</h2>
-  <ng-container *ngIf="(contentService.loadRecentArticles() | async) as recentArticles; else noArticles">
+  <ng-container *ngIf="recentArticles && recentArticles.length; else noArticles">
     <div *ngFor="let article of recentArticles">
       <app-article-preview [article]="article"></app-article-preview>
     </div>
@@ -9,7 +9,7 @@
     <p>Nothing here</p>
   </ng-template>
   <h2>Popular tutorials today</h2>
-  <ng-container *ngIf="(contentService.loadRecentArticles() | async) as recentTutorials; else noTutorials">
+  <ng-container *ngIf="recentTutorials; else noTutorials">
     <div *ngFor="let tutorial of recentTutorials">
     </div>
   </ng-container>

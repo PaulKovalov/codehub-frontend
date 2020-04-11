@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseUserData, User, UserData } from './interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from '../shared/utils';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { filter } from 'rxjs/operators';
 
 export class AccountService {
   private user$ = new BehaviorSubject<User | null>(null);
-  private isAuthenticated$ = new Subject<boolean>();
+  private isAuthenticated$ = new ReplaySubject<boolean>(1);
 
   constructor(private http: HttpClient) {
     this.updateAuthState();

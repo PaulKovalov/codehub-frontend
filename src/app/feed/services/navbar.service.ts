@@ -30,7 +30,7 @@ const authenticatedNavbarSet: NavbarElement[] = [...nonAuthenticatedNavbarSet, .
   {
     title: 'profile',
     asset: null,
-    routerLink: '/profile',
+    routerLink: '/profile/my-articles',
   },
 ]
 ];

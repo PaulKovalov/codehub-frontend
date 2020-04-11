@@ -1,0 +1,11 @@
+@import '../../../scss/base.scss';
+
+.compose-button {
+  margin: 20px 0px 20px 0px;
+}
+
+@media (max-width: $mobile_screen_width) {
+  .compose-button {
+    margin: 10px 0px 20px 0px;
+  }
+}

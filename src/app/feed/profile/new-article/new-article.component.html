@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div>
   <p>Give a title to your article</p>
   <input [formControl]="articleTitle" maxlength="128" minlength="8">
@@ -24,4 +23,3 @@
   </div>
   <button (click)="submit()" [disabled]="!submitButtonEnabled">Create</button>
 </div>
-<app-footer></app-footer>

@@ -21,8 +21,8 @@ export class ContentService {
     }
   }
 
-  public loadRecentArticles(): Observable<ArticlePreview> {
-    return this.http.get<ArticlePreview>(Utils.doApiUrl('articles/recent/'));
+  public loadRecentArticles(): Observable<ArticlePreview[]> {
+    return this.http.get<ArticlePreview[]>(Utils.doApiUrl('articles/recent/'));
   }
 
   public loadRecentTutorials(): Observable<ArticlePreview> {
