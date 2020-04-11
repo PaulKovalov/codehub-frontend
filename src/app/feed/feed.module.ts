@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ContentService } from './services/content.service';
 import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { RecentActivityComponent } from './recent-activity/recent-activity.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
     ArticlePreviewComponent,
     ArticleViewComponent,
     ArticlesListComponent,
+    RecentActivityComponent,
   ],
   providers: [
     ContentService,

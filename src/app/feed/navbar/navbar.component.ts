@@ -10,7 +10,6 @@ import { NavbarService } from '../services/navbar.service';
 })
 export class NavbarComponent {
 
-  public selectedNavbarItem: string;
   public navbarItems: NavbarElement[];
   public mobileOpened = false;
 
@@ -18,11 +17,6 @@ export class NavbarComponent {
     this.navbarService.navbarItems$().subscribe((items) => {
       this.navbarItems = items;
     });
-  }
-
-  public selectMode(element: NavbarElement) {
-    this.selectedNavbarItem = element.title;
-    this.router.navigateByUrl(element.routerLink);
   }
 
   public outsideClickHandler() {

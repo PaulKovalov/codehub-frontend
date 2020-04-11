@@ -1,6 +1,39 @@
 @import '../../scss/base.scss';
 
-.base-style {
-  width: 800px;
+.article {
+  max-width: 800px;
   cursor: pointer;
+
+  .content-main {
+    font-size: 18px;
+    font-weight: 400;
+
+    .preview {
+      color: #595959;
+    }
+  }
+
+  .tips-text {
+    color: #47525E;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+  }
+}
+
+@media (max-width: $mobile_screen_width) {
+  .article {
+    .content-main {
+      margin: 5px 0px 5px 0px;
+      font-size: 16px;
+    }
+
+    .tips-text {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 5px 0px 5px 0px;
+
+    }
+  }
 }

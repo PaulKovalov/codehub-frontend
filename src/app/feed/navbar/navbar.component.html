@@ -12,8 +12,7 @@
   <div *ngFor="let item of navbarItems" [ngClass]="mobileOpened ? '' : 'hide-navbar'">
     <div class="nav-element">
       <img *ngIf="item.asset" src="{{item.asset}}">
-      <button (click)="selectMode(item)"
-              [class.selected]="selectedNavbarItem === item.title">{{item.title | titlecase}}</button>
+      <button [routerLink]="item.routerLink" routerLinkActive="selected">{{item.title | titlecase}}</button>
     </div>
   </div>
 </div>

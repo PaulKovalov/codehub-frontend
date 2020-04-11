@@ -5,6 +5,7 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleViewComponent } from './article-view/article-view.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
+import { RecentActivityComponent } from './recent-activity/recent-activity.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,15 @@ const routes: Routes = [
     path: '',
     component: FeedComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        component: RecentActivityComponent,
+      },
       {
         path: 'articles',
         component: ArticlesListComponent,

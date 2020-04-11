@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Article, ArticlesPage } from '../interfaces';
+import { Article, ArticlePreview, ArticlesPage } from '../interfaces';
 import { Utils } from '../../shared/utils';
 
 @Injectable({
@@ -21,6 +21,13 @@ export class ContentService {
     }
   }
 
+  public loadRecentArticles(): Observable<ArticlePreview> {
+    return this.http.get<ArticlePreview>(Utils.doApiUrl('articles/recent/'));
+  }
+
+  public loadRecentTutorials(): Observable<ArticlePreview> {
+    return this.http.get<ArticlePreview>(Utils.doApiUrl('tutorials/recent/'));
+  }
 
   public loadArticle(id: string | number): Observable<Article> {
     return this.http.get<Article>(Utils.doApiUrl(`articles/${id}/`));
