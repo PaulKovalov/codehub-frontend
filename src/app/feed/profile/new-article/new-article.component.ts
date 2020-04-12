@@ -87,7 +87,6 @@ export class NewArticleComponent implements OnInit {
 
         });
       } else if (this.mode === 'edit') {
-        console.log(this.editor);
         const updateData = {
           text: this.editor,
           title: this.articleTitle.value

@@ -2,7 +2,7 @@
   <div class="article">
     <h2>{{ article.title }}</h2>
     <div [innerHTML]="article.text"></div>
-    <p> {{ article.username}}</p>
+    <p> Written by {{ article.username}} on {{dateCreated}}</p>
     <p> {{articleViews}} views</p>
     <ng-container *ngIf="viewedByOwner">
       <div class="bottom-buttons">
