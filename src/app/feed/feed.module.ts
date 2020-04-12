@@ -19,6 +19,7 @@ import { NAVBAR_SERVICE_TOKEN, PROFILE_NAVBAR_SERVICE_TOKEN } from './services/i
 import { NewArticleComponent } from './profile/new-article/new-article.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ArticleEditorGuardService } from './services/article-editor-guard.service';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { AuthGuardService } from './services/auth-guard.service';
   providers: [
     ContentService,
     AuthGuardService,
+    ArticleEditorGuardService,
     {provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'},
     {provide: NAVBAR_SERVICE_TOKEN, useClass: NavbarService},
     {provide: PROFILE_NAVBAR_SERVICE_TOKEN, useClass: ProfileNavbarService}

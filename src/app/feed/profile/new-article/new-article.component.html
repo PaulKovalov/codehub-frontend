@@ -1,6 +1,11 @@
-<div>
-  <p>Give a title to your article</p>
-  <input [formControl]="articleTitle" maxlength="128" minlength="8">
+<div class="new-article">
+  <ng-container *ngIf="mode === 'create'">
+    <p>You are creating {{articlesCount === 0 ? 'your first' : 'another'}} article! We are glad you are
+      contributing to the Code Hub. Please follow our simple rules when creating an article
+    </p>
+    <p>Give a title to your article</p>
+  </ng-container>
+  <input [formControl]="articleTitle" class="article-title-input" maxlength="128" minlength="8">
   <editor
     [(ngModel)]="editor"
     [init]="{
@@ -17,9 +22,11 @@
        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | codesample | removeformat | help'
    }"
   ></editor>
-  <p>You can edit the article at any time after it's submitted</p>
-  <div *ngIf="errorsText" class="error">
-    {{errorsText}}
+  <div class="bottom-content">
+    <p>You can edit the article at any time after it's submitted</p>
+    <div *ngIf="errorsText" class="error">
+      {{errorsText}}
+    </div>
+    <button (click)="submit()" [disabled]="!submitButtonEnabled">{{mode === 'create' ? 'Create' : 'Submit'}}</button>
   </div>
-  <button (click)="submit()" [disabled]="!submitButtonEnabled">Create</button>
 </div>

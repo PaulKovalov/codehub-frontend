@@ -32,4 +32,12 @@ export class ContentService {
   public loadArticle(id: string | number): Observable<Article> {
     return this.http.get<Article>(Utils.doApiUrl(`articles/${id}/`));
   }
+
+  public myArticlesCount(): Observable<{ count: number }> {
+    return this.http.get<{ count: number }>(Utils.doApiUrl('articles/my/'));
+  }
+
+  public myArticlesIds(): Observable<[number]> {
+    return this.http.get<[number]>(Utils.doApiUrl('articles/my/ids'));
+  }
 }

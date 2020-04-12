@@ -8,6 +8,7 @@ import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { RecentActivityComponent } from './recent-activity/recent-activity.component';
 import { MyArticlesComponent } from './profile/my-articles/my-articles.component';
 import { NewArticleComponent } from './profile/new-article/new-article.component';
+import { ArticleEditorGuardService } from './services/article-editor-guard.service';
 
 
 const routes: Routes = [
@@ -48,6 +49,13 @@ const routes: Routes = [
           {
             path: 'compose-article',
             component: NewArticleComponent,
+            data: {mode: 'create'}
+          },
+          {
+            path: 'edit-article/:id',
+            component: NewArticleComponent,
+            canActivate: [ArticleEditorGuardService],
+            data: {mode: 'edit'}
           }
         ]
       },

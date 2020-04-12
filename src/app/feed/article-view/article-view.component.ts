@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from '../services/content.service';
 import { Article } from '../interfaces';
+import { AccountService } from '../../accounts/account.service';
 
 @Component({
   selector: 'app-article-view',
@@ -10,8 +11,11 @@ import { Article } from '../interfaces';
 })
 export class ArticleViewComponent implements OnInit {
   public article: Article;
+  public viewedByOwner = false;
+  public editLink: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService,
+              private authService: AccountService) {
   }
 
   get articleViews() {
@@ -30,6 +34,12 @@ export class ArticleViewComponent implements OnInit {
       const articleId = params.get('id');
       this.contentService.loadArticle(articleId).subscribe((article) => {
         this.article = article;
+        this.authService.getCurrentUser$().subscribe((user) => {
+          if (user.id === this.article.author) {
+            this.viewedByOwner = true;
+            this.editLink = `/profile/edit-article/${articleId}`;
+          }
+        });
       }, (error) => {
         this.router.navigateByUrl('404');
       });

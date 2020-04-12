@@ -15,4 +15,8 @@ export class ArticleService {
   public postArticle(article: CreateArticle): Observable<void> {
     return this.http.post<void>(Utils.doApiUrl('articles/'), article);
   }
+
+  public editArticle(articleId: number, updateData: any): Observable<void> {
+    return this.http.patch<void>(Utils.doApiUrl(`articles/${articleId}/`), updateData);
+  }
 }

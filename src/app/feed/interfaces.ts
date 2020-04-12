@@ -3,7 +3,7 @@ export interface ArticlePreview {
   date_created: string;
   views: number;
   estimate_reading_time: string;
-  author: string;
+  author: number;
   username: string;
   title: string;
   preview: string;

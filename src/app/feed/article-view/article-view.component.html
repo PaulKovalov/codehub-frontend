@@ -4,6 +4,11 @@
     <div [innerHTML]="article.text"></div>
     <p> {{ article.username}}</p>
     <p> {{articleViews}} views</p>
+    <ng-container *ngIf="viewedByOwner">
+      <div class="bottom-buttons">
+        <button [routerLink]="editLink">Edit</button>
+      </div>
+    </ng-container>
     <div class="discussion">
       <h3>Discussion</h3>
     </div>
