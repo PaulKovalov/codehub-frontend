@@ -20,10 +20,10 @@ export class ArticleViewComponent implements OnInit {
 
   get articleViews() {
     const mod = 10 ** (Math.round(Math.log(this.article.views) / Math.log(10)) - 2);
-    if (this.article.views > 1e6) {
+    if (this.article.views >= 1e6) {
       return `${(this.article.views - (this.article.views % mod)) / 1e6}M`;
     }
-    if (this.article.views > 1e3) {
+    if (this.article.views >= 1e3) {
       return `${(this.article.views - (this.article.views % mod)) / 1e3}K`;
     }
     return this.article.views;

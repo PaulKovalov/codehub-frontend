@@ -34,7 +34,7 @@ export class ContentService {
   }
 
   public myArticlesCount(): Observable<{ count: number }> {
-    return this.http.get<{ count: number }>(Utils.doApiUrl('articles/my/'));
+    return this.http.get<{ count: number }>(Utils.doApiUrl('articles/my/count/'));
   }
 
   public myArticlesIds(): Observable<[number]> {

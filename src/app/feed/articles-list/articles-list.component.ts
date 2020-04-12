@@ -1,6 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ContentService } from '../services/content.service';
 import { ArticlePreview } from '../interfaces';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-articles-list',
@@ -14,6 +15,7 @@ export class ArticlesListComponent implements OnInit {
   private noContentLeft = false;
   private canRequestNext = true;
   private urlPrefix = '';
+  public orderingControl = new FormControl('date');
   @Input() public mode = '';
 
   constructor(private contentService: ContentService) {
@@ -51,4 +53,24 @@ export class ArticlesListComponent implements OnInit {
   private getCursorFromUrl(url: string) {
     return url.substring(url.indexOf('cursor') + 'cursor'.length + 1);
   }
+
+  public setOrder() {
+    const value = this.orderingControl.value;
+    this.articles.sort((a, b) => {
+      if (value === 'date') {
+        const firstArticleDate = new Date(a.date_created);
+        const secondArticleDate = new Date(b.date_created);
+        if (firstArticleDate < secondArticleDate) {
+          return 1;
+        }
+        if (firstArticleDate > secondArticleDate) {
+          return -1;
+        }
+        return 0;
+      } else {
+        return b.views - a.views;
+      }
+    });
+  }
 }
+
