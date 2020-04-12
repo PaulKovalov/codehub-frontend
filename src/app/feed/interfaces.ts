@@ -19,6 +19,23 @@ export interface CreateArticle {
   text: string;
 }
 
+export interface CreateTutorial {
+  title: string;
+  preview?: string;
+}
+
+export interface Tutorial {
+  id: number;
+  views: number;
+  author: number;
+  username: string;
+  total_views: number;
+  date_created: string;
+  table_of_content: [{ title: string, id: number }];
+  title: string;
+  preview: string;
+}
+
 export interface ArticlesPage {
   next: string | null;
   prev: string | null;

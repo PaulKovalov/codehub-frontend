@@ -20,6 +20,9 @@ import { NewArticleComponent } from './profile/new-article/new-article.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ArticleEditorGuardService } from './services/article-editor-guard.service';
+import { TutorialsListComponent } from './tutorials-list/tutorials-list.component';
+import { MyTutorialsComponent } from './profile/my-tutorials/my-tutorials.component';
+import { NewTutorialComponent } from './profile/new-tutorial/new-tutorial.component';
 
 
 @NgModule({
@@ -32,6 +35,9 @@ import { ArticleEditorGuardService } from './services/article-editor-guard.servi
     RecentActivityComponent,
     MyArticlesComponent,
     NewArticleComponent,
+    TutorialsListComponent,
+    MyTutorialsComponent,
+    NewTutorialComponent,
   ],
   providers: [
     ContentService,

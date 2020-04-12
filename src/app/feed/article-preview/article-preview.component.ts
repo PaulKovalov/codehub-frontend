@@ -9,7 +9,7 @@ import { ArticlePreview } from '../interfaces';
 
 export class ArticlePreviewComponent implements OnInit {
   @Input() article: ArticlePreview;
-  @Input() public mode: boolean;
+  @Input() public mode: string;
   public linkToArticle: string;
   public dateCreated: string;
 

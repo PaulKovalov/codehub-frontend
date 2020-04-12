@@ -9,6 +9,9 @@ import { RecentActivityComponent } from './recent-activity/recent-activity.compo
 import { MyArticlesComponent } from './profile/my-articles/my-articles.component';
 import { NewArticleComponent } from './profile/new-article/new-article.component';
 import { ArticleEditorGuardService } from './services/article-editor-guard.service';
+import { NewTutorialComponent } from './profile/new-tutorial/new-tutorial.component';
+import { MyTutorialsComponent } from './profile/my-tutorials/my-tutorials.component';
+import { TutorialsListComponent } from './tutorials-list/tutorials-list.component';
 
 
 const routes: Routes = [
@@ -34,6 +37,10 @@ const routes: Routes = [
         component: ArticleViewComponent,
       },
       {
+        path: 'tutorials',
+        component: TutorialsListComponent,
+      },
+      {
         path: 'profile',
         canActivate: [AuthGuardService],
         children: [
@@ -56,6 +63,15 @@ const routes: Routes = [
             component: NewArticleComponent,
             canActivate: [ArticleEditorGuardService],
             data: {mode: 'edit'}
+          },
+          {
+            path: 'my-tutorials',
+            component: MyTutorialsComponent,
+          },
+          {
+            path: 'compose-tutorial',
+            component: NewTutorialComponent,
+            data: {mode: 'create'}
           }
         ]
       },

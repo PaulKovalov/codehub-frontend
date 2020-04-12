@@ -1,0 +1,12 @@
+<div class="main"><p>Create a title for your tutorial</p>
+  <input [formControl]="tutorialTitle" class="article-title-input" maxlength="128" minlength="8">
+  <p>Add some preview that will be visible on tutorial preview (optional)</p>
+  <textarea [formControl]="tutorialPreview" class="article-title-input" maxlength="1024" rows="10"></textarea>
+  <div *ngIf="errorsText" class="error">
+    {{errorsText}}
+  </div>
+  <div class="bottom-buttons">
+    <button (click)="saveAndAddArticle()" [disabled]="!submitButtonEnabled">Create and add article</button>
+    <button (click)="saveAndExit()" [disabled]="!submitButtonEnabled">Create and fill later</button>
+  </div>
+</div>
