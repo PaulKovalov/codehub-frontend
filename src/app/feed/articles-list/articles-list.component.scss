@@ -1,8 +1,9 @@
+@import '../../scss/base.scss';
+
 .dropdown {
   select, option {
     border: none;
     background-color: white;
     font-size: 16px;
   }
-
 }

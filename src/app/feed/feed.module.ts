@@ -23,6 +23,12 @@ import { ArticleEditorGuardService } from './services/article-editor-guard.servi
 import { TutorialsListComponent } from './tutorials-list/tutorials-list.component';
 import { MyTutorialsComponent } from './profile/my-tutorials/my-tutorials.component';
 import { NewTutorialComponent } from './profile/new-tutorial/new-tutorial.component';
+import { TutorialPreviewComponent } from './tutorial-preview/tutorial-preview.component';
+import { TutorialViewComponent } from './tutorial-view/tutorial-view.component';
+import { BaseListComponent } from './base-list/base-list.component';
+import { TutorialContentListComponent } from './tutorial-content-list/tutorial-content-list.component';
+import { NewTutorialArticleComponent } from './profile/new-tutorial-article/new-tutorial-article.component';
+import { NewArticleBaseComponent } from './profile/new-article-base/new-article-base.component';
 
 
 @NgModule({
@@ -38,6 +44,12 @@ import { NewTutorialComponent } from './profile/new-tutorial/new-tutorial.compon
     TutorialsListComponent,
     MyTutorialsComponent,
     NewTutorialComponent,
+    TutorialPreviewComponent,
+    TutorialViewComponent,
+    BaseListComponent,
+    TutorialContentListComponent,
+    NewTutorialArticleComponent,
+    NewArticleBaseComponent,
   ],
   providers: [
     ContentService,

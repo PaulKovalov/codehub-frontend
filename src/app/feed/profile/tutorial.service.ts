@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateTutorial, Tutorial } from '../interfaces';
+import { CreateArticle, CreateTutorial, Tutorial, TutorialArticle } from '../interfaces';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../shared/utils';
@@ -16,7 +16,11 @@ export class TutorialService {
     return this.http.post<Tutorial>(Utils.doApiUrl('tutorials/'), createTutorial);
   }
 
-  public postTutorialArticle(tutorialId: number) {
-    Utils.doApiUrl(`tutorials/${tutorialId}/`);
+  public postTutorialArticle(tutorialId: number, article: CreateArticle): Observable<TutorialArticle> {
+    return this.http.post<TutorialArticle>(Utils.doApiUrl(`tutorials/${tutorialId}/`), article);
+  }
+
+  public editTutorialArticle(tutorialId: number, article: CreateArticle): Observable<TutorialArticle> {
+    return this.http.patch<TutorialArticle>(Utils.doApiUrl(`tutorials/${tutorialId}/`), article);
   }
 }

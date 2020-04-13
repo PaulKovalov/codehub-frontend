@@ -1,0 +1,5 @@
+<div class="table-of-contents">
+  <div *ngFor="let item of tableOfContent; let i = index" class="item">
+    <a [routerLink]="getLinkToArticle(item.id)">{{i}} {{item.title}}</a>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class CreateTutorialFlowService {
   public tutorialTitle: string;
   public tutorialPreview: string | null;
+  public tutorialId: number;
 
   constructor() {
   }

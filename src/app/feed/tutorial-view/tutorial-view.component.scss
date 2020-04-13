@@ -1,0 +1,12 @@
+@import '../../scss/base.scss';
+
+.tutorial {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.table-of-content {
+  max-width: 200px;
+}

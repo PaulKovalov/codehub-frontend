@@ -12,6 +12,7 @@ import { ArticleEditorGuardService } from './services/article-editor-guard.servi
 import { NewTutorialComponent } from './profile/new-tutorial/new-tutorial.component';
 import { MyTutorialsComponent } from './profile/my-tutorials/my-tutorials.component';
 import { TutorialsListComponent } from './tutorials-list/tutorials-list.component';
+import { TutorialViewComponent } from './tutorial-view/tutorial-view.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'tutorials',
         component: TutorialsListComponent,
+      },
+      {
+        path: 'tutorials/:id',
+        component: TutorialViewComponent,
       },
       {
         path: 'profile',

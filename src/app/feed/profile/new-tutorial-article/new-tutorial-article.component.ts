@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../article.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { TutorialService } from '../tutorial.service';
+import { CreateTutorialFlowService } from '../create-tutorial-flow.service';
 import { ContentService } from '../../services/content.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NewArticleBaseComponent } from '../new-article-base/new-article-base.component';
 
 @Component({
-  selector: 'app-new-article',
-  templateUrl: './new-article.component.html',
-  styleUrls: ['./new-article.component.scss']
+  selector: 'app-new-tutorial-article',
+  templateUrl: './new-tutorial-article.component.html',
+  styleUrls: ['./new-tutorial-article.component.scss']
 })
-export class NewArticleComponent extends NewArticleBaseComponent implements OnInit {
+export class NewTutorialArticleComponent extends NewArticleBaseComponent implements OnInit {
 
-  constructor(private articleService: ArticleService,
+  private tutorialId: number;
+  private tutorialTitle: string;
+
+  constructor(private tutorialService: TutorialService,
+              private createTutorialFlowService: CreateTutorialFlowService,
               private router: Router,
               private contentService: ContentService,
               private activatedRoute: ActivatedRoute) {
@@ -19,16 +24,18 @@ export class NewArticleComponent extends NewArticleBaseComponent implements OnIn
   }
 
   ngOnInit() {
+    this.tutorialTitle = this.createTutorialFlowService.tutorialTitle;
+    this.tutorialId = this.createTutorialFlowService.tutorialId;
     this.mode = this.activatedRoute.snapshot.data.mode;
     if (this.mode === 'create') {
-      this.contentService.myArticlesCount().subscribe((count) => {
-        this.articlesCount = count.count;
+      this.contentService.tutorialArticlesCount(this.tutorialId).subscribe((data) => {
+        this.articlesCount = data.count;
       });
     } else if (this.mode === 'edit') {
-      this.activatedRoute.paramMap.subscribe((params) => {
-        const articleId = params.get('id');
-        this.contentService.loadArticle(articleId).subscribe((article) => {
-          this.editArticleId = article.id;
+      this.activatedRoute.paramMap.subscribe((paramMap) => {
+        this.editArticleId = Number(paramMap.get('id'));
+        // TODO check if we can access tutorial id param here
+        this.contentService.loadTutorialArticle(this.tutorialId, this.editArticleId).subscribe((article) => {
           this.editor = article.text;
           this.articleTitle.patchValue(article.title);
         });
@@ -47,7 +54,7 @@ export class NewArticleComponent extends NewArticleBaseComponent implements OnIn
     };
     this.submitButtonEnabled = false;
     if (this.mode === 'create') {
-      this.articleService.postArticle(article).subscribe(() => {
+      this.tutorialService.postTutorialArticle(this.tutorialId, article).subscribe(() => {
         this.router.navigateByUrl('/profile/my-articles');
       }, (err) => {
         this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
@@ -59,10 +66,9 @@ export class NewArticleComponent extends NewArticleBaseComponent implements OnIn
         text: this.editor,
         title: this.articleTitle.value
       };
-      this.articleService.editArticle(this.editArticleId, updateData).subscribe(() => {
+      this.tutorialService.editTutorialArticle(this.editArticleId, updateData).subscribe(() => {
         this.router.navigateByUrl('/profile/my-articles');
       });
     }
   }
 }
-

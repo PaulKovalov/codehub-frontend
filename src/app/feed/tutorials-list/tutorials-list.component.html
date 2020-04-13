@@ -1,1 +1,10 @@
-<p>tutorials-list works!</p>
+<div *ngIf="content && content.length" class="dropdown">
+  Order by:
+  <select (change)="setOrder()" [formControl]="orderingControl">
+    <option value="views">Views</option>
+    <option selected="true" value="date">Date</option>
+  </select>
+</div>
+<div *ngFor="let tutorial of content">
+  <app-tutorial-preview [tutorial]="tutorial"></app-tutorial-preview>
+</div>

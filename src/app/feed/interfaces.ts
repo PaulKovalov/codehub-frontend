@@ -1,13 +1,21 @@
-export interface ArticlePreview {
+export interface TableOfContentItem {
+  title: string;
+  id: number;
+}
+
+export interface BasePreview {
   id: number;
   date_created: string;
   views: number;
-  estimate_reading_time: string;
   author: number;
   username: string;
   title: string;
   preview: string;
   published?: boolean;
+}
+
+export interface ArticlePreview extends BasePreview {
+  estimate_reading_time: string;
 }
 
 export interface Article extends ArticlePreview {
@@ -19,27 +27,31 @@ export interface CreateArticle {
   text: string;
 }
 
+export interface ArticlesPage {
+  next: string | null;
+  prev: string | null;
+  results: ArticlePreview[];
+}
+
 export interface CreateTutorial {
   title: string;
   preview?: string;
 }
 
-export interface Tutorial {
-  id: number;
-  views: number;
-  author: number;
-  username: string;
+export interface Tutorial extends BasePreview {
   total_views: number;
-  date_created: string;
-  table_of_content: [{ title: string, id: number }];
-  title: string;
-  preview: string;
+  total_articles: number;
+  articles: TutorialArticle[];
 }
 
-export interface ArticlesPage {
+export interface TutorialsPage {
   next: string | null;
   prev: string | null;
-  results: ArticlePreview[];
+  results: Tutorial[];
+}
+
+export interface TutorialArticle extends Article {
+  tutorial: number;
 }
 
 export interface NavbarElement {
@@ -47,4 +59,3 @@ export interface NavbarElement {
   asset: string | null;
   routerLink: string;
 }
-

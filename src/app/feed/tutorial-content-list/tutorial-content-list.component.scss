@@ -1,0 +1,11 @@
+@import '../../scss/base.scss';
+
+.table-of-contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .item {
+    padding: 10px 0px 10px 0px;
+  }
+}

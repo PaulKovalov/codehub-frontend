@@ -1,0 +1,21 @@
+<div *ngIf="tutorial" [routerLink]="linkToTutorial" class="tutorial-preview">
+  <ng-container *ngIf="mode === 'profile'; else noProfileMode">
+    <div class="align-items">
+      <h3>{{tutorial.title}}</h3>
+      <div *ngIf="tutorial.published" class="align-items">
+        <img src="assets/img/published.png">
+        (published)
+      </div>
+      <div *ngIf="!tutorial.published" class="align-items">
+        <img src="assets/img/pending.png">
+        (pending)
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noProfileMode>
+    <h3>{{tutorial.title}}</h3>
+  </ng-template>
+  <p class="tips-text">{{tutorial.username}} on {{dateCreated}}</p>
+  <p class="content-main preview">{{tutorial.preview}}</p>
+  <p class="tips-text">Articles total: {{tutorial.total_articles}} article{{tutorial.total_articles > 1 ? 's' : ''}}</p>
+</div>

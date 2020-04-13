@@ -1,10 +1,10 @@
-<div *ngIf="articles && articles.length" class="dropdown">
+<div *ngIf="content && content.length" class="dropdown">
   Order by:
   <select (change)="setOrder()" [formControl]="orderingControl">
     <option value="views">Views</option>
     <option selected="true" value="date">Date</option>
   </select>
 </div>
-<div *ngFor="let article of articles">
+<div *ngFor="let article of content">
   <app-article-preview [article]="article" [mode]="mode"></app-article-preview>
 </div>
