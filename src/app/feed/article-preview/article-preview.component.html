@@ -1,5 +1,5 @@
 <div *ngIf="article" [routerLink]="linkToArticle" class="article">
-  <ng-container *ngIf="mode === 'profile'; else noProfileMode">
+  <ng-container *ngIf="mode === 'owner'; else noProfileMode">
     <div class="align-items">
       <h3>{{article.title}}</h3>
       <div *ngIf="article.published" class="align-items">

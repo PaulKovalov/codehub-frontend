@@ -6,7 +6,7 @@ import { ContentService } from './content.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateTutorialArticleGuardService {
+export class MyTutorialGuardService {
 
   constructor(private contentService: ContentService) {
   }
@@ -23,5 +23,9 @@ export class CreateTutorialArticleGuardService {
       }
     });
     return subject;
+  }
+
+  public canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
+    return this.canActivate(route, state);
   }
 }

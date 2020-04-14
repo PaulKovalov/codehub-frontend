@@ -21,7 +21,7 @@ export class BaseListComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    if (this.mode === 'profile') {
+    if (this.mode === 'owner') {
       this.urlPrefix = 'my';
     }
     this.next();

@@ -10,3 +10,20 @@
 .table-of-content {
   max-width: 200px;
 }
+
+.tutorial-articles-list {
+  padding-left: 20px;
+  border-left: 1px solid gray;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    display: flex;
+
+    button {
+      margin-right: 20px;
+    }
+  }
+}

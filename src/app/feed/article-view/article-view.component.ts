@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from '../services/content.service';
 import { Article } from '../interfaces';
-import { AccountService } from '../../accounts/account.service';
 
 @Component({
   selector: 'app-article-view',
@@ -11,11 +10,11 @@ import { AccountService } from '../../accounts/account.service';
 })
 export class ArticleViewComponent implements OnInit {
   public article: Article;
-  public viewedByOwner = false;
   public editLink: string;
   public dateCreated: string;
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService,
-              private authService: AccountService) {
+  public mode: string;
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService) {
   }
 
   get articleViews() {
@@ -30,17 +29,15 @@ export class ArticleViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mode = this.activatedRoute.snapshot.data.mode;
     this.activatedRoute.paramMap.subscribe((params) => {
       const articleId = params.get('id');
       this.contentService.loadArticle(articleId).subscribe((article) => {
         this.article = article;
         this.dateCreated = new Date(this.article.date_created).toDateString();
-        this.authService.getCurrentUser$().subscribe((user) => {
-          if (user.id === this.article.author) {
-            this.viewedByOwner = true;
-            this.editLink = `/profile/edit-article/${articleId}`;
-          }
-        });
+        if (this.mode === 'owner') {
+          this.editLink = `/profile/my-articles/${this.article.id}/edit`;
+        }
       }, (error) => {
         this.router.navigateByUrl('404');
       });

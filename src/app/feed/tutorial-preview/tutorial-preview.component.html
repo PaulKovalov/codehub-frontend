@@ -1,5 +1,5 @@
 <div *ngIf="tutorial" [routerLink]="linkToTutorial" class="tutorial-preview">
-  <ng-container *ngIf="mode === 'profile'; else noProfileMode">
+  <ng-container *ngIf="mode === 'owner'; else noProfileMode">
     <div class="align-items">
       <h3>{{tutorial.title}}</h3>
       <div *ngIf="tutorial.published" class="align-items">

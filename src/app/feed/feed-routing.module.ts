@@ -8,13 +8,14 @@ import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { RecentActivityComponent } from './recent-activity/recent-activity.component';
 import { MyArticlesComponent } from './profile/my-articles/my-articles.component';
 import { NewArticleComponent } from './profile/new-article/new-article.component';
-import { ArticleEditorGuardService } from './services/article-editor-guard.service';
 import { NewTutorialComponent } from './profile/new-tutorial/new-tutorial.component';
 import { MyTutorialsComponent } from './profile/my-tutorials/my-tutorials.component';
 import { TutorialsListComponent } from './tutorials-list/tutorials-list.component';
 import { TutorialViewComponent } from './tutorial-view/tutorial-view.component';
 import { NewTutorialArticleComponent } from './profile/new-tutorial-article/new-tutorial-article.component';
-import { CreateTutorialArticleGuardService } from './services/create-tutorial-article-guard.service';
+import { TutorialArticleViewComponent } from './tutorial-article-view/tutorial-article-view.component';
+import { MyTutorialGuardService } from './services/my-tutorial-guard.service';
+import { MyArticleGuardService } from './services/my-article-guard.service';
 
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ const routes: Routes = [
         component: TutorialsListComponent,
       },
       {
-        path: 'tutorials/:id',
+        path: 'tutorials/:tutorialId',
         component: TutorialViewComponent,
       },
       {
@@ -61,31 +62,49 @@ const routes: Routes = [
             component: MyArticlesComponent,
           },
           {
+            path: 'my-articles/:id',
+            component: ArticleViewComponent,
+            canActivate: [MyArticleGuardService],
+            data: {mode: 'owner'}
+          },
+          {
+            path: 'my-articles/:id/edit',
+            component: NewArticleComponent,
+            canActivate: [MyArticleGuardService],
+            data: {mode: 'edit'}
+          },
+          {
             path: 'compose-article',
             component: NewArticleComponent,
             data: {mode: 'create'}
-          },
-          {
-            path: 'edit-article/:id',
-            component: NewArticleComponent,
-            canActivate: [ArticleEditorGuardService],
-            data: {mode: 'edit'}
           },
           {
             path: 'my-tutorials',
             component: MyTutorialsComponent,
           },
           {
+            path: 'my-tutorials/:tutorialId',
+            canActivate: [MyTutorialGuardService],
+            component: TutorialViewComponent,
+            data: {mode: 'owner'}
+          },
+          {
+            path: 'my-tutorials/:tutorialId/new-article',
+            canActivate: [MyTutorialGuardService],
+            component: NewTutorialArticleComponent,
+            data: {mode: 'create'}
+          },
+          {
+            path: 'my-tutorials/:tutorialId/articles/:articleId',
+            canActivate: [],
+            component: TutorialArticleViewComponent,
+            data: {mode: 'owner'}
+          },
+          {
             path: 'compose-tutorial',
             component: NewTutorialComponent,
             data: {mode: 'create'}
           },
-          {
-            path: 'my-tutorials/:tutorialId/new-article',
-            canActivate: [CreateTutorialArticleGuardService],
-            component: NewTutorialArticleComponent,
-            data: {mode: 'create'}
-          }
         ]
       },
     ]

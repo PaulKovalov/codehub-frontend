@@ -17,6 +17,10 @@ export class TutorialPreviewComponent implements OnInit {
 
   ngOnInit() {
     this.dateCreated = new Date(this.tutorial.date_created).toDateString();
-    this.linkToTutorial = '/tutorials/' + this.tutorial.id;
+    if (this.mode === 'owner') {
+      this.linkToTutorial = `/profile/my-tutorials/${this.tutorial.id}`;
+    } else {
+      this.linkToTutorial = `/tutorials/${this.tutorial.id}`;
+    }
   }
 }

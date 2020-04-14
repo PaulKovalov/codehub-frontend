@@ -4,7 +4,7 @@
     <div [innerHTML]="article.text"></div>
     <p> Written by {{ article.username}} on {{dateCreated}}</p>
     <p> {{articleViews}} views</p>
-    <ng-container *ngIf="viewedByOwner">
+    <ng-container *ngIf="mode === 'owner'">
       <div class="bottom-buttons">
         <button [routerLink]="editLink">Edit</button>
       </div>

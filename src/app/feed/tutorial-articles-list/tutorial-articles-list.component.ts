@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseListComponent } from '../base-list/base-list.component';
 import { ContentService } from '../services/content.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TutorialArticlesListComponent extends BaseListComponent implements OnInit {
   public tutorialId: number;
-
+  @Input() public viewedByOwner = false;
   constructor(private contentService: ContentService, private activatedRoute: ActivatedRoute) {
     super();
   }
@@ -31,7 +31,7 @@ export class TutorialArticlesListComponent extends BaseListComponent implements 
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
-      this.tutorialId = Number(paramMap.get('id'));
+      this.tutorialId = Number(paramMap.get('tutorialId'));
       super.ngOnInit();
     });
   }

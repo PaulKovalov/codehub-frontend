@@ -19,7 +19,6 @@ import { NAVBAR_SERVICE_TOKEN, PROFILE_NAVBAR_SERVICE_TOKEN } from './services/i
 import { NewArticleComponent } from './profile/new-article/new-article.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
-import { ArticleEditorGuardService } from './services/article-editor-guard.service';
 import { TutorialsListComponent } from './tutorials-list/tutorials-list.component';
 import { MyTutorialsComponent } from './profile/my-tutorials/my-tutorials.component';
 import { NewTutorialComponent } from './profile/new-tutorial/new-tutorial.component';
@@ -31,6 +30,7 @@ import { NewTutorialArticleComponent } from './profile/new-tutorial-article/new-
 import { NewArticleBaseComponent } from './profile/new-article-base/new-article-base.component';
 import { TutorialArticlesListComponent } from './tutorial-articles-list/tutorial-articles-list.component';
 import { TutorialArticlePreviewComponent } from './tutorial-article-preview/tutorial-article-preview.component';
+import { TutorialArticleViewComponent } from './tutorial-article-view/tutorial-article-view.component';
 
 
 @NgModule({
@@ -54,11 +54,11 @@ import { TutorialArticlePreviewComponent } from './tutorial-article-preview/tuto
     NewArticleBaseComponent,
     TutorialArticlesListComponent,
     TutorialArticlePreviewComponent,
+    TutorialArticleViewComponent,
   ],
   providers: [
     ContentService,
     AuthGuardService,
-    ArticleEditorGuardService,
     {provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'},
     {provide: NAVBAR_SERVICE_TOKEN, useClass: NavbarService},
     {provide: PROFILE_NAVBAR_SERVICE_TOKEN, useClass: ProfileNavbarService}
