@@ -29,6 +29,8 @@ import { BaseListComponent } from './base-list/base-list.component';
 import { TutorialContentListComponent } from './tutorial-content-list/tutorial-content-list.component';
 import { NewTutorialArticleComponent } from './profile/new-tutorial-article/new-tutorial-article.component';
 import { NewArticleBaseComponent } from './profile/new-article-base/new-article-base.component';
+import { TutorialArticlesListComponent } from './tutorial-articles-list/tutorial-articles-list.component';
+import { TutorialArticlePreviewComponent } from './tutorial-article-preview/tutorial-article-preview.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { NewArticleBaseComponent } from './profile/new-article-base/new-article-
     TutorialContentListComponent,
     NewTutorialArticleComponent,
     NewArticleBaseComponent,
+    TutorialArticlesListComponent,
+    TutorialArticlePreviewComponent,
   ],
   providers: [
     ContentService,

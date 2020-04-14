@@ -3,6 +3,7 @@ import { Tutorial } from '../interfaces';
 import { ContentService } from '../services/content.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../../accounts/account.service';
+import { CreateTutorialFlowService } from '../profile/create-tutorial-flow.service';
 
 @Component({
   selector: 'app-tutorial-view',
@@ -18,7 +19,8 @@ export class TutorialViewComponent implements OnInit {
   constructor(private contentService: ContentService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private authService: AccountService) {
+              private authService: AccountService,
+              private tutorialFlowService: CreateTutorialFlowService) {
   }
 
   ngOnInit() {
@@ -35,5 +37,12 @@ export class TutorialViewComponent implements OnInit {
         });
       });
     });
+  }
+
+  public addNewArticle() {
+    this.tutorialFlowService.tutorialId = this.tutorial.id;
+    this.tutorialFlowService.tutorialTitle = this.tutorial.title;
+    this.tutorialFlowService.tutorialPreview = this.tutorial.preview;
+    this.router.navigateByUrl(`/profile/my-tutorials/${this.tutorial.id}/new-article`);
   }
 }

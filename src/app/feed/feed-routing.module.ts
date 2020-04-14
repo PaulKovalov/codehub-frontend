@@ -13,6 +13,8 @@ import { NewTutorialComponent } from './profile/new-tutorial/new-tutorial.compon
 import { MyTutorialsComponent } from './profile/my-tutorials/my-tutorials.component';
 import { TutorialsListComponent } from './tutorials-list/tutorials-list.component';
 import { TutorialViewComponent } from './tutorial-view/tutorial-view.component';
+import { NewTutorialArticleComponent } from './profile/new-tutorial-article/new-tutorial-article.component';
+import { CreateTutorialArticleGuardService } from './services/create-tutorial-article-guard.service';
 
 
 const routes: Routes = [
@@ -76,6 +78,12 @@ const routes: Routes = [
           {
             path: 'compose-tutorial',
             component: NewTutorialComponent,
+            data: {mode: 'create'}
+          },
+          {
+            path: 'my-tutorials/:tutorialId/new-article',
+            canActivate: [CreateTutorialArticleGuardService],
+            component: NewTutorialArticleComponent,
             data: {mode: 'create'}
           }
         ]

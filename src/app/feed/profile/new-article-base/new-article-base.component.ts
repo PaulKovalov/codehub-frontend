@@ -55,6 +55,7 @@ export class NewArticleBaseComponent implements OnInit {
       }
     } else {
       this.errorsText = 'The article is empty';
+      return false;
     }
     return true;
   }

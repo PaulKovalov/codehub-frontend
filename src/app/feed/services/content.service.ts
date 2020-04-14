@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Article, ArticlePreview, ArticlesPage, TableOfContentItem, Tutorial, TutorialArticle, TutorialsPage } from '../interfaces';
+import { Article, ArticlePreview, ArticlesPage, TableOfContentItem, Tutorial, TutorialArticle, TutorialArticlesPage, TutorialsPage } from '../interfaces';
 import { Utils } from '../../shared/utils';
 
 @Injectable({
@@ -27,6 +27,15 @@ export class ContentService {
       return this.http.get<TutorialsPage>(Utils.doApiUrl(`${startUrl}?cursor=${cursor}`));
     } else {
       return this.http.get<TutorialsPage>(Utils.doApiUrl(startUrl));
+    }
+  }
+
+  public loadTutorialArticlesList(tutorialId: number, cursor: string | null): Observable<TutorialArticlesPage> {
+    const startUrl = `tutorials/${tutorialId}/articles`;
+    if (cursor) {
+      return this.http.get<TutorialArticlesPage>(Utils.doApiUrl(`${startUrl}?cursor=${cursor}`));
+    } else {
+      return this.http.get<TutorialArticlesPage>(Utils.doApiUrl(startUrl));
     }
   }
 
@@ -64,5 +73,9 @@ export class ContentService {
 
   public loadTutorial(tutorialId: number): Observable<Tutorial> {
     return this.http.get<Tutorial>(Utils.doApiUrl(`tutorials/${tutorialId}/`));
+  }
+
+  public myTutorialsIds(): Observable<[number]> {
+    return this.http.get<[number]>(Utils.doApiUrl('tutorials/my/ids'));
   }
 }

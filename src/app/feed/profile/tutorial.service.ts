@@ -17,10 +17,10 @@ export class TutorialService {
   }
 
   public postTutorialArticle(tutorialId: number, article: CreateArticle): Observable<TutorialArticle> {
-    return this.http.post<TutorialArticle>(Utils.doApiUrl(`tutorials/${tutorialId}/`), article);
+    return this.http.post<TutorialArticle>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/`), article);
   }
 
-  public editTutorialArticle(tutorialId: number, article: CreateArticle): Observable<TutorialArticle> {
-    return this.http.patch<TutorialArticle>(Utils.doApiUrl(`tutorials/${tutorialId}/`), article);
+  public editTutorialArticle(tutorialId: number, articleId: number, article: CreateArticle): Observable<TutorialArticle> {
+    return this.http.patch<TutorialArticle>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/`), article);
   }
 }

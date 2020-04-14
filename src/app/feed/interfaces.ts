@@ -41,7 +41,6 @@ export interface CreateTutorial {
 export interface Tutorial extends BasePreview {
   total_views: number;
   total_articles: number;
-  articles: TutorialArticle[];
 }
 
 export interface TutorialsPage {
@@ -52,6 +51,16 @@ export interface TutorialsPage {
 
 export interface TutorialArticle extends Article {
   tutorial: number;
+}
+
+export interface TutorialArticlePreview extends ArticlePreview {
+  tutorial: number;
+}
+
+export interface TutorialArticlesPage {
+  next: string | null;
+  prev: string | null;
+  results: TutorialArticlePreview[];
 }
 
 export interface NavbarElement {

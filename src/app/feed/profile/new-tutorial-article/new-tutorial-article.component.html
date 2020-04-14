@@ -1,9 +1,9 @@
 <div class="new-article">
   <ng-container *ngIf="mode === 'create'">
-    <p>You are creating {{articlesCount === 0 ? 'a first' : 'another'}} article in the tutorial {{tutorialTitle}}! We
-      are glad you are
-      contributing to the Code Hub. Please follow our simple rules when creating an article.
+    <p>You are creating {{articlesCount === 0 ? 'a first' : 'another'}} article in the tutorial <span
+      class="tutorial-title">{{tutorialTitle}}</span>!
     </p>
+    <p>We are glad you are contributing to the Code Hub. Please follow our simple rules when creating an article.</p>
     <p>Give a title to your article</p>
   </ng-container>
   <input [formControl]="articleTitle" class="article-title-input" maxlength="128" minlength="8">

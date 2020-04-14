@@ -24,12 +24,14 @@ export class NewTutorialArticleComponent extends NewArticleBaseComponent impleme
   }
 
   ngOnInit() {
-    this.tutorialTitle = this.createTutorialFlowService.tutorialTitle;
-    this.tutorialId = this.createTutorialFlowService.tutorialId;
     this.mode = this.activatedRoute.snapshot.data.mode;
     if (this.mode === 'create') {
-      this.contentService.tutorialArticlesCount(this.tutorialId).subscribe((data) => {
-        this.articlesCount = data.count;
+      this.activatedRoute.paramMap.subscribe((paramMap) => {
+        this.tutorialId = Number(paramMap.get('tutorialId'));
+        this.contentService.loadTutorial(this.tutorialId).subscribe((data) => {
+          this.tutorialTitle = data.title;
+          this.articlesCount = data.total_articles;
+        });
       });
     } else if (this.mode === 'edit') {
       this.activatedRoute.paramMap.subscribe((paramMap) => {
@@ -55,7 +57,7 @@ export class NewTutorialArticleComponent extends NewArticleBaseComponent impleme
     this.submitButtonEnabled = false;
     if (this.mode === 'create') {
       this.tutorialService.postTutorialArticle(this.tutorialId, article).subscribe(() => {
-        this.router.navigateByUrl('/profile/my-articles');
+        this.router.navigateByUrl('/profile/my-tutorials');
       }, (err) => {
         this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
         this.submitButtonEnabled = true;
@@ -66,8 +68,8 @@ export class NewTutorialArticleComponent extends NewArticleBaseComponent impleme
         text: this.editor,
         title: this.articleTitle.value
       };
-      this.tutorialService.editTutorialArticle(this.editArticleId, updateData).subscribe(() => {
-        this.router.navigateByUrl('/profile/my-articles');
+      this.tutorialService.editTutorialArticle(this.tutorialId, this.editArticleId, updateData).subscribe(() => {
+        this.router.navigateByUrl('/profile/my-tutorials');
       });
     }
   }
