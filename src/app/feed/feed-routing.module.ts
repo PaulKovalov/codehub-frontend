@@ -49,6 +49,10 @@ const routes: Routes = [
         component: TutorialViewComponent,
       },
       {
+        path: 'tutorials/:tutorialId/articles/:articleId',
+        component: TutorialArticleViewComponent,
+      },
+      {
         path: 'profile',
         canActivate: [AuthGuardService],
         children: [
@@ -96,9 +100,13 @@ const routes: Routes = [
           },
           {
             path: 'my-tutorials/:tutorialId/articles/:articleId',
-            canActivate: [],
             component: TutorialArticleViewComponent,
             data: {mode: 'owner'}
+          },
+          {
+            path: 'my-tutorials/:tutorialId/articles/:articleId/edit',
+            component: NewTutorialArticleComponent,
+            data: {mode: 'edit'}
           },
           {
             path: 'compose-tutorial',

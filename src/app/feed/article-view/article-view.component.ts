@@ -39,7 +39,7 @@ export class ArticleViewComponent implements OnInit {
           this.editLink = `/profile/my-articles/${this.article.id}/edit`;
         }
       }, (error) => {
-        this.router.navigateByUrl('404');
+        this.router.navigateByUrl('/404');
       });
     });
   }

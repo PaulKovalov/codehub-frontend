@@ -25,21 +25,19 @@ export class NewTutorialComponent implements OnInit {
 
   public saveAndAddArticle() {
     if (this.validate()) {
-      this.createTutorialFlowService.tutorialTitle = this.tutorialTitle.value;
-      this.createTutorialFlowService.tutorialPreview = this.tutorialPreview.value;
+      this.save().subscribe((data) => {
+        this.submitButtonEnabled = true;
+        this.router.navigateByUrl(`/profile/my-tutorials/${data.id}/new-article`);
+      }, (err) => {
+        this.submitButtonEnabled = true;
+        this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
+      });
     }
   }
 
   public saveAndExit() {
-    this.submitButtonEnabled = false;
     if (this.validate()) {
-      const data = {
-        title: this.tutorialTitle.value,
-      };
-      if (this.tutorialPreview.value) {
-        data['preview' as keyof CreateTutorial] = this.tutorialPreview.value;
-      }
-      this.tutorialService.postTutorial(data).subscribe(() => {
+      this.save().subscribe(() => {
         this.submitButtonEnabled = true;
         this.router.navigateByUrl('/profile/my-tutorials');
       }, (err) => {
@@ -47,6 +45,18 @@ export class NewTutorialComponent implements OnInit {
         this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
       });
     }
+  }
+
+  private save() {
+    this.submitButtonEnabled = false;
+    this.errorsText = '';
+    const data = {
+      title: this.tutorialTitle.value,
+    };
+    if (this.tutorialPreview.value) {
+      data['preview' as keyof CreateTutorial] = this.tutorialPreview.value;
+    }
+    return this.tutorialService.postTutorial(data);
   }
 
   private validate(): boolean {

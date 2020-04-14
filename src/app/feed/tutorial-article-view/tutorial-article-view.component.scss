@@ -1,0 +1,26 @@
+@import '../../scss/base.scss';
+
+.article {
+  max-width: 1200px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  .prev-button {
+    order: 1;
+  }
+
+  .next-button {
+    order: 2;
+    margin-left: 20px;
+  }
+}

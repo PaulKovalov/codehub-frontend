@@ -63,12 +63,8 @@ export class ContentService {
     return this.http.get<TableOfContentItem[]>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/table-of-content/`));
   }
 
-  public tutorialArticlesCount(tutorialId: number): Observable<{ count: number }> {
-    return this.http.get<{ count: number }>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/this-tutorial-count/`));
-  }
-
   public loadTutorialArticle(tutorialId: number, articleId: number): Observable<TutorialArticle> {
-    return this.http.get<TutorialArticle>(`tutorials/${tutorialId}/articles/${articleId}`);
+    return this.http.get<TutorialArticle>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/`));
   }
 
   public loadTutorial(tutorialId: number): Observable<Tutorial> {

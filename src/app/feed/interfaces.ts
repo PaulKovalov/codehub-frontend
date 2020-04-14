@@ -49,8 +49,14 @@ export interface TutorialsPage {
   results: Tutorial[];
 }
 
+export interface TutorialArticleNav {
+  next: number;
+  prev: number;
+}
+
 export interface TutorialArticle extends Article {
   tutorial: number;
+  nav: TutorialArticleNav;
 }
 
 export interface TutorialArticlePreview extends ArticlePreview {

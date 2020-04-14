@@ -9,6 +9,7 @@ import { TableOfContentItem } from '../interfaces';
 })
 export class TutorialContentListComponent implements OnInit {
   @Input() public tutorialId: number;
+  @Input() mode: string;
   public tableOfContent: TableOfContentItem[];
 
   constructor(private contentService: ContentService) {
@@ -21,6 +22,10 @@ export class TutorialContentListComponent implements OnInit {
   }
 
   public getLinkToArticle(articleId: number) {
-    return `${articleId}`;
+    if (this.mode === 'owner') {
+      return `/profile/my-tutorials/${this.tutorialId}/articles/${articleId}`;
+    } else {
+      return `/tutorials/${this.tutorialId}/articles/${articleId}`;
+    }
   }
 }

@@ -1,4 +1,9 @@
-<div *ngFor="let article of content">
-  <app-tutorial-article-preview [article]="article" [mode]="mode"
-                                [tutorialId]="tutorialId"></app-tutorial-article-preview>
-</div>
+<ng-container *ngIf="content && content.length; else noContent">
+  <div *ngFor="let article of content">
+    <app-tutorial-article-preview [article]="article" [mode]="mode"
+                                  [tutorialId]="tutorialId"></app-tutorial-article-preview>
+  </div>
+</ng-container>
+<ng-template #noContent>
+  <p>No articles yet, click "+ Add article" to add one</p>
+</ng-template>

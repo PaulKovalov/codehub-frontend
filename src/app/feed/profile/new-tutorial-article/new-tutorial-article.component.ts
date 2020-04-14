@@ -35,8 +35,8 @@ export class NewTutorialArticleComponent extends NewArticleBaseComponent impleme
       });
     } else if (this.mode === 'edit') {
       this.activatedRoute.paramMap.subscribe((paramMap) => {
-        this.editArticleId = Number(paramMap.get('id'));
-        // TODO check if we can access tutorial id param here
+        this.editArticleId = Number(paramMap.get('articleId'));
+        this.tutorialId = Number(paramMap.get('tutorialId'));
         this.contentService.loadTutorialArticle(this.tutorialId, this.editArticleId).subscribe((article) => {
           this.editor = article.text;
           this.articleTitle.patchValue(article.title);

@@ -1,5 +1,5 @@
 <div *ngIf="tutorial" class="tutorial">
-  <app-tutorial-content-list [tutorialId]="tutorial.id"></app-tutorial-content-list>
+  <app-tutorial-content-list [mode]="mode" [tutorialId]="tutorial.id"></app-tutorial-content-list>
   <div class="tutorial-articles-list">
     <h1>{{tutorial.title}}</h1>
     <div *ngIf="mode === 'owner'" class="buttons">

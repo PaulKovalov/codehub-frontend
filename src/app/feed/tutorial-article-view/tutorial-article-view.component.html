@@ -1,1 +1,25 @@
-<p>tutorial-article-view works!</p>
+<ng-container *ngIf="article; else loading">
+  <div class="article">
+    <h2>{{ article.title }}</h2>
+    <div [innerHTML]="article.text"></div>
+    <div class="bottom-buttons">
+      <button *ngIf="article.nav.next !== -1" [routerLink]="nextArticle()" class="next-button">Next</button>
+      <button *ngIf="article.nav.prev !== -1" [routerLink]="prevArticle()" class="prev-button">Previous</button>
+    </div>
+    <p> Written by {{ article.username}} on {{dateCreated}}</p>
+    <p> {{articleViews}} views</p>
+    <ng-container *ngIf="mode === 'owner'">
+      <div class="bottom-buttons">
+        <button [routerLink]="editLink">Edit</button>
+      </div>
+    </ng-container>
+    <div class="discussion">
+      <h3>Discussion</h3>
+    </div>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <div class="loading">
+    Loading article...
+  </div>
+</ng-template>
