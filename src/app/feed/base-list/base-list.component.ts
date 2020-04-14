@@ -10,7 +10,6 @@ import { BasePreview } from '../interfaces';
 export class BaseListComponent implements OnInit {
   public orderingControl = new FormControl('date');
   @Input() public mode = '';
-  public loadFunction: (cursor: string | null, my: string) => any;
   public content: BasePreview[] = [];
   protected cursor: string | null;
   protected noContentLeft = false;
