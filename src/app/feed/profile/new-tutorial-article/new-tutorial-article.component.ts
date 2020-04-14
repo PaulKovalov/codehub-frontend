@@ -13,7 +13,7 @@ import { NewArticleBaseComponent } from '../new-article-base/new-article-base.co
 export class NewTutorialArticleComponent extends NewArticleBaseComponent implements OnInit {
 
   private tutorialId: number;
-  private tutorialTitle: string;
+  public tutorialTitle: string;
 
   constructor(private tutorialService: TutorialService,
               private createTutorialFlowService: CreateTutorialFlowService,

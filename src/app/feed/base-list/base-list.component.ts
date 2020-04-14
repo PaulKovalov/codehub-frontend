@@ -11,7 +11,7 @@ export class BaseListComponent implements OnInit {
   public orderingControl = new FormControl('date');
   @Input() public mode = '';
   public loadFunction: (cursor: string | null, my: string) => any;
-  protected content: BasePreview[] = [];
+  public content: BasePreview[] = [];
   protected cursor: string | null;
   protected noContentLeft = false;
   protected canRequestNext = true;
