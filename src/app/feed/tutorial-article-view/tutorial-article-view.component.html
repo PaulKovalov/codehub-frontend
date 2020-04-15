@@ -7,6 +7,7 @@
       <button *ngIf="article.nav.prev !== -1" [routerLink]="prevArticle()" class="prev-button">Previous</button>
     </div>
     <p> Written by {{ article.username}} on {{dateCreated}}</p>
+    <p *ngIf="dateEdited">Last edit on {{dateEdited}}</p>
     <p> {{articleViews}} views</p>
     <ng-container *ngIf="mode === 'owner'">
       <div class="bottom-buttons">

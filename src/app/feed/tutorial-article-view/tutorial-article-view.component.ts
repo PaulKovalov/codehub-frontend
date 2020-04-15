@@ -16,6 +16,7 @@ export class TutorialArticleViewComponent implements OnInit {
   public article: TutorialArticle;
   public editLink: string;
   public dateCreated: string;
+  public dateEdited: string | null = null;
 
   constructor(private router: Router, private contentService: ContentService, private activatedRoute: ActivatedRoute) {
   }
@@ -42,6 +43,9 @@ export class TutorialArticleViewComponent implements OnInit {
       this.contentService.loadTutorialArticle(this.tutorialId, this.articleId).subscribe((data) => {
         this.article = data;
         this.dateCreated = new Date(this.article.date_created).toDateString();
+        if (this.article.last_modified) {
+          this.dateEdited = new Date(this.article.last_modified).toDateString();
+        }
       }, (err) => {
         this.router.navigateByUrl('/404');
       });

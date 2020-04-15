@@ -70,6 +70,9 @@ export class NewTutorialArticleComponent extends NewArticleBaseComponent impleme
       };
       this.tutorialService.editTutorialArticle(this.tutorialId, this.editArticleId, updateData).subscribe(() => {
         this.router.navigateByUrl(`/profile/my-tutorials/${this.tutorialId}`);
+      }, (err) => {
+        this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
+        this.submitButtonEnabled = true;
       });
     }
   }

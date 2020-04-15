@@ -12,6 +12,7 @@ export class ArticleViewComponent implements OnInit {
   public article: Article;
   public editLink: string;
   public dateCreated: string;
+  public dateEdited: string | null = null;
   public mode: string;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService) {
@@ -35,6 +36,9 @@ export class ArticleViewComponent implements OnInit {
       this.contentService.loadArticle(articleId).subscribe((article) => {
         this.article = article;
         this.dateCreated = new Date(this.article.date_created).toDateString();
+        if (this.article.last_modified) {
+          this.dateEdited = new Date(this.article.last_modified).toDateString();
+        }
         if (this.mode === 'owner') {
           this.editLink = `/profile/my-articles/${this.article.id}/edit`;
         }

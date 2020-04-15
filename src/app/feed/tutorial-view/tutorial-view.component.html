@@ -2,6 +2,9 @@
   <app-tutorial-content-list [mode]="mode" [tutorialId]="tutorial.id"></app-tutorial-content-list>
   <div class="tutorial-articles-list">
     <h1>{{tutorial.title}}</h1>
+    <p>Created by {{tutorial.username}} on {{dateCreated}}</p>
+    <p *ngIf="dateEdited">Last edit on {{dateEdited}}</p>
+    <p>{{tutorialViews}} views</p>
     <div *ngIf="mode === 'owner'" class="buttons">
       <button (click)="addNewArticle()">+ Add article</button>
       <button>Edit</button>

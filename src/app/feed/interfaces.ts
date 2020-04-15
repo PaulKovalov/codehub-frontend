@@ -20,6 +20,7 @@ export interface ArticlePreview extends BasePreview {
 
 export interface Article extends ArticlePreview {
   text: string | null;
+  last_modified: string;
 }
 
 export interface CreateArticle {
@@ -41,6 +42,7 @@ export interface CreateTutorial {
 export interface Tutorial extends BasePreview {
   total_views: number;
   total_articles: number;
+  last_modified: string;
 }
 
 export interface TutorialsPage {
