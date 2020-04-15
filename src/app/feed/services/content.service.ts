@@ -43,8 +43,8 @@ export class ContentService {
     return this.http.get<ArticlePreview[]>(Utils.doApiUrl('articles/recent/'));
   }
 
-  public loadRecentTutorials(): Observable<ArticlePreview> {
-    return this.http.get<ArticlePreview>(Utils.doApiUrl('tutorials/recent/'));
+  public loadRecentTutorials(): Observable<Tutorial[]> {
+    return this.http.get<Tutorial[]>(Utils.doApiUrl('tutorials/recent/'));
   }
 
   public loadArticle(id: string | number): Observable<Article> {
