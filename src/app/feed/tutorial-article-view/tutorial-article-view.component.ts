@@ -71,4 +71,12 @@ export class TutorialArticleViewComponent implements OnInit {
       }
     }
   }
+
+  public backToTutorial() {
+    if (this.mode === 'owner') {
+      return `/profile/my-tutorials/${this.tutorialId}`;
+    } else {
+      return `/tutorials/${this.tutorialId}`;
+    }
+  }
 }

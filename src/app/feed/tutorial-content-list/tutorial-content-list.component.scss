@@ -14,3 +14,8 @@
     color: black;
   }
 }
+@media (max-width: $mobile_screen_width) {
+  .table-of-contents {
+    padding: 0px;
+  }
+}

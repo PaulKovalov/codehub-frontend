@@ -4,6 +4,7 @@
     <div [innerHTML]="article.text"></div>
     <div class="bottom-buttons">
       <button *ngIf="article.nav.next !== -1" [routerLink]="nextArticle()" class="next-button">Next</button>
+      <button [routerLink]="backToTutorial()" class="back-button">Tutorial main page</button>
       <button *ngIf="article.nav.prev !== -1" [routerLink]="prevArticle()" class="prev-button">Previous</button>
     </div>
     <p> Written by {{ article.username}} on {{dateCreated}}</p>
