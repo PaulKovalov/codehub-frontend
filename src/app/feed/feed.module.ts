@@ -31,6 +31,7 @@ import { NewArticleBaseComponent } from './profile/new-article-base/new-article-
 import { TutorialArticlesListComponent } from './tutorial-articles-list/tutorial-articles-list.component';
 import { TutorialArticlePreviewComponent } from './tutorial-article-preview/tutorial-article-preview.component';
 import { TutorialArticleViewComponent } from './tutorial-article-view/tutorial-article-view.component';
+import { SafeHtmlPipe } from './services/safe-scss';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { TutorialArticleViewComponent } from './tutorial-article-view/tutorial-a
     TutorialArticlesListComponent,
     TutorialArticlePreviewComponent,
     TutorialArticleViewComponent,
+    SafeHtmlPipe,
   ],
   providers: [
     ContentService,

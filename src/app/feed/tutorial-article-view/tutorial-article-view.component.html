@@ -1,7 +1,7 @@
 <ng-container *ngIf="article; else loading">
   <div class="article">
     <h2>{{ article.title }}</h2>
-    <div [innerHTML]="article.text"></div>
+    <div [innerHTML]="article.text | safeHtml"></div>
     <div class="bottom-buttons">
       <button *ngIf="article.nav.next !== -1" [routerLink]="nextArticle()" class="next-button">Next</button>
       <button [routerLink]="backToTutorial()" class="back-button">Tutorial main page</button>
