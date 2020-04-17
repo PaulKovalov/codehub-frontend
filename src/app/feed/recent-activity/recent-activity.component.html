@@ -9,7 +9,7 @@
     <p>Nothing here</p>
   </ng-template>
   <h2>Recent tutorials</h2>
-  <ng-container *ngIf="recentTutorials; else noTutorials">
+  <ng-container *ngIf="recentTutorials && recentTutorials.length; else noTutorials">
     <div *ngFor="let tutorial of recentTutorials">
       <app-tutorial-preview [tutorial]="tutorial"></app-tutorial-preview>
     </div>

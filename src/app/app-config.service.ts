@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 
 interface AppConfig {
   apiUrl: string;
+  googleTag: string;
 }
 
 @Injectable({
@@ -18,6 +19,7 @@ export class AppConfigService {
     const http = this.injector.get(HttpClient);
     return http.get('./app-config.json').toPromise().then((appConfig: AppConfig) => {
       environment.apiUrl = appConfig.apiUrl;
+      environment.googleTag = appConfig.googleTag;
     });
   }
 }

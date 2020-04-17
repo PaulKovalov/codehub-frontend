@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'new-codehub-frontend';
+  constructor(private router: Router, private gtmService: GoogleTagManagerService) {
+    if (gtmService.googleTagManagerId) {
+      router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
+        const gtmTag = {
+          event: 'page',
+          pageName: event.urlAfterRedirects
+        };
+        gtmService.pushTag(gtmTag);
+      });
+    }
+  }
 }

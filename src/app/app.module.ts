@@ -9,6 +9,7 @@ import { AccountsModule } from './accounts/accounts.module';
 import { CookieService } from 'ngx-cookie-service';
 import { AppConfigService } from './app-config.service';
 import { CsrfInjector } from './accounts/csrf-injector.service';
+import { environment } from '../environments/environment';
 
 /**
  * Runs before any other part of the application
@@ -36,6 +37,7 @@ const appEnvironmentFn = (appConfig: AppConfigService) => {
     AppConfigService,
     {provide: APP_INITIALIZER, useFactory: appEnvironmentFn, deps: [AppConfigService], multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: CsrfInjector, multi: true},
+    {provide: 'googleTagManagerId', useFactory: () => environment.googleTag, deps: [APP_INITIALIZER]}
   ],
   exports: [
     FeedModule,
