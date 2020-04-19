@@ -76,3 +76,23 @@ export interface NavbarElement {
   asset: string | null;
   routerLink: string;
 }
+
+export interface CommentsPage {
+  next: string | null;
+  prev: string | null;
+  results: Comment[];
+}
+
+export interface Comment {
+  id: number;
+  article: number;
+  author: number;
+  username: string;
+  date_created: string;
+  text: string;
+  likes: number;
+  dislikes: number;
+  reply_to: number;
+  replies: number[];
+  edited: boolean;
+}

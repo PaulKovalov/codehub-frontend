@@ -1,0 +1,21 @@
+<div class="create-new-comment">
+  <input (click)="this.addCommentShown = true;" [(ngModel)]="commentInput" placeholder="Type comment here">
+  <div *ngIf="addCommentShown" class="cancel-add-button">
+    <button (click)="cancel()" *ngIf="addCommentShown">Cancel</button>
+    <button (click)="postComment()" *ngIf="addCommentShown" [disabled]="disabled()">Add comment</button>
+  </div>
+  <div *ngIf="errorsText" class="error">{{errorsText}}</div>
+</div>
+<div *ngIf="commentsTree && commentsTree.length" class="comments-list">
+  <div *ngFor="let comment of commentsTree" class="comment-node">
+    <img *ngFor="let n of comment.depth | rangeLoop" src="assets/img/dot.png">
+    <div class="comment">
+      <div class="comment-top">
+        <h4>{{comment.comment.username}}</h4>
+        <p>{{dateOf(comment.comment)}}</p>
+      </div>
+      {{comment.comment.text}}
+    </div>
+  </div>
+  <button *ngIf="cursor">Load next</button>
+</div>

@@ -10,3 +10,14 @@ export class SafeHtmlPipe implements PipeTransform {
     return this.sanitizer.bypassSecurityTrustHtml(value);
   }
 }
+
+@Pipe({name: 'rangeLoop'})
+export class RangeLoopPipe implements PipeTransform {
+  transform(value): any {
+    const res = [];
+    for (let i = 0; i < value; i++) {
+      res.push(i);
+    }
+    return res;
+  }
+}

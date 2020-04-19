@@ -1,7 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Article, ArticlePreview, ArticlesPage, TableOfContentItem, Tutorial, TutorialArticle, TutorialArticlesPage, TutorialsPage } from '../interfaces';
+import {
+  Article,
+  ArticlePreview,
+  ArticlesPage,
+  CommentsPage,
+  TableOfContentItem,
+  Tutorial,
+  TutorialArticle,
+  TutorialArticlesPage,
+  TutorialsPage
+} from '../interfaces';
 import { Utils } from '../../shared/utils';
 
 @Injectable({
@@ -73,5 +83,17 @@ export class ContentService {
 
   public myTutorialsIds(): Observable<[number]> {
     return this.http.get<[number]>(Utils.doApiUrl('tutorials/my/ids'));
+  }
+
+  public loadArticleComments(articleId: number, cursor: string | null): Observable<CommentsPage> {
+    if (cursor) {
+      return this.http.get<CommentsPage>(Utils.doApiUrl(`articles/${articleId}/comments/?cursor=${cursor}`));
+    } else {
+      return this.http.get<CommentsPage>(Utils.doApiUrl(`articles/${articleId}/comments/`));
+    }
+  }
+
+  public postArticleComment(articleId: number, data: { text: string }): Observable<Comment> {
+    return this.http.post<Comment>(Utils.doApiUrl(`articles/${articleId}/comments/`), data);
   }
 }
