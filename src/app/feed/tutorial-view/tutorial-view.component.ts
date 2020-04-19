@@ -46,7 +46,7 @@ export class TutorialViewComponent implements OnInit {
           this.dateEdited = new Date(this.tutorial.last_modified).toDateString();
         }
         if (this.mode === 'owner') {
-          this.editLink = `/profile/edit-tutorial/${data.id}`;
+          this.editLink = `/profile/my-tutorials/${data.id}/edit`;
         }
       });
     });

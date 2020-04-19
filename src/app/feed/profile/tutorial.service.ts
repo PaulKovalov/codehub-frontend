@@ -23,4 +23,8 @@ export class TutorialService {
   public editTutorialArticle(tutorialId: number, articleId: number, article: CreateArticle): Observable<TutorialArticle> {
     return this.http.patch<TutorialArticle>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/`), article);
   }
+
+  public editTutorial(tutorialId: number, tutorial: CreateTutorial): Observable<Tutorial> {
+    return this.http.patch<Tutorial>(Utils.doApiUrl(`tutorials/${tutorialId}/`), tutorial);
+  }
 }

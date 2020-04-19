@@ -6,6 +6,7 @@
     <p>Give a title to your article</p>
   </ng-container>
   <input [formControl]="articleTitle" class="article-title-input" maxlength="128" minlength="8">
+  <p>Write your article here</p>
   <editor
     [(ngModel)]="editor"
     [init]="{

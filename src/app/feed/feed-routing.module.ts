@@ -99,6 +99,12 @@ const routes: Routes = [
             data: {mode: 'create'}
           },
           {
+            path: 'my-tutorials/:tutorialId/edit',
+            canActivate: [MyTutorialGuardService],
+            component: NewTutorialComponent,
+            data: {mode: 'edit'}
+          },
+          {
             path: 'my-tutorials/:tutorialId/articles/:articleId',
             component: TutorialArticleViewComponent,
             data: {mode: 'owner'}

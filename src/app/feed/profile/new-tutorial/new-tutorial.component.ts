@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { CreateTutorialFlowService } from '../create-tutorial-flow.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TutorialService } from '../tutorial.service';
 import { CreateTutorial } from '../../interfaces';
+import { ContentService } from '../../services/content.service';
 
 @Component({
   selector: 'app-new-tutorial',
@@ -16,11 +16,26 @@ export class NewTutorialComponent implements OnInit {
   public tutorialPreview = new FormControl();
   public errorsText = '';
   public submitButtonEnabled = true;
+  public mode: string;
+  public tutorialId: number;
 
-  constructor(private createTutorialFlowService: CreateTutorialFlowService, private router: Router, private tutorialService: TutorialService) {
+  constructor(private router: Router,
+              private tutorialService: TutorialService,
+              private activatedRoute: ActivatedRoute,
+              private contentService: ContentService) {
   }
 
   ngOnInit() {
+    this.mode = this.activatedRoute.snapshot.data.mode;
+    if (this.mode === 'edit') {
+      this.activatedRoute.paramMap.subscribe((paramMap) => {
+        this.tutorialId = Number(paramMap.get('tutorialId'));
+        this.contentService.loadTutorial(this.tutorialId).subscribe((tutorial) => {
+          this.tutorialTitle.patchValue(tutorial.title);
+          this.tutorialPreview.patchValue(tutorial.preview);
+        });
+      });
+    }
   }
 
   public saveAndAddArticle() {
@@ -30,7 +45,7 @@ export class NewTutorialComponent implements OnInit {
         this.router.navigateByUrl(`/profile/my-tutorials/${data.id}/new-article`);
       }, (err) => {
         this.submitButtonEnabled = true;
-        this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
+        this.errorsText = 'There is an error occurred. The tutorial wasn\'t created, try again later';
       });
     }
   }
@@ -42,7 +57,26 @@ export class NewTutorialComponent implements OnInit {
         this.router.navigateByUrl('/profile/my-tutorials');
       }, (err) => {
         this.submitButtonEnabled = true;
-        this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
+        this.errorsText = 'There is an error occurred. The tutorial wasn\'t created, try again later';
+      });
+    }
+  }
+
+  public edit() {
+    if (this.validate()) {
+      const data = {
+        title: this.tutorialTitle.value,
+      };
+      if (this.tutorialPreview.value) {
+        data['preview' as keyof CreateTutorial] = this.tutorialPreview.value;
+      }
+      this.submitButtonEnabled = false;
+      this.tutorialService.editTutorial(this.tutorialId, data).subscribe(() => {
+        this.submitButtonEnabled = true;
+        this.router.navigateByUrl('/profile/my-tutorials');
+      }, (error) => {
+        this.submitButtonEnabled = true;
+        this.errorsText = 'There is an error occurred. The tutorial wasn\'t updated, try again later';
       });
     }
   }

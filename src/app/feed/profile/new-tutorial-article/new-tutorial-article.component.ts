@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TutorialService } from '../tutorial.service';
-import { CreateTutorialFlowService } from '../create-tutorial-flow.service';
 import { ContentService } from '../../services/content.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewArticleBaseComponent } from '../new-article-base/new-article-base.component';
@@ -16,7 +15,6 @@ export class NewTutorialArticleComponent extends NewArticleBaseComponent impleme
   public tutorialTitle: string;
 
   constructor(private tutorialService: TutorialService,
-              private createTutorialFlowService: CreateTutorialFlowService,
               private router: Router,
               private contentService: ContentService,
               private activatedRoute: ActivatedRoute) {

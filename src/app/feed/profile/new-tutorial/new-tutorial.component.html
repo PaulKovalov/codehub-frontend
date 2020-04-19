@@ -5,8 +5,15 @@
   <div *ngIf="errorsText" class="error">
     {{errorsText}}
   </div>
-  <div class="bottom-buttons">
-    <button (click)="saveAndAddArticle()" [disabled]="!submitButtonEnabled">Create and add article</button>
-    <button (click)="saveAndExit()" [disabled]="!submitButtonEnabled">Create and fill later</button>
-  </div>
+  <ng-container *ngIf="mode === 'create'">
+    <div class="bottom-buttons">
+      <button (click)="saveAndAddArticle()" [disabled]="!submitButtonEnabled">Create and add article</button>
+      <button (click)="saveAndExit()" [disabled]="!submitButtonEnabled">Create and fill later</button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="mode === 'edit'">
+    <div class="bottom-buttons">
+      <button (click)="edit()" [disabled]="!submitButtonEnabled">Edit</button>
+    </div>
+  </ng-container>
 </div>
