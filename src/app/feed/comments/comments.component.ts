@@ -61,8 +61,9 @@ export class CommentsComponent implements OnInit {
     };
     this.posting = true;
     this.commentService.postArticleComment(this.articleId, data).subscribe((comment) => {
-      this.posting = false;
       this.insertComment(comment);
+      this.commentInput = '';
+      this.posting = false;
     }, (error) => {
       this.posting = false;
       this.errorsText = 'An unexpected error occurred';
@@ -110,16 +111,23 @@ export class CommentsComponent implements OnInit {
   }
 
   public cancelReplyClick() {
-    this.replyNodeActive = null;
+    this.replyNodeActive.reply_field_display = false;
   }
 
-  private parseComments() {
-    for (const comment of this.comments) {
-      // if a comment is root - it's a tree, build a tree from this root
-      if (!comment.reply_to) {
-        this.buildTree(comment);
+  public loadComments() {
+    this.commentService.loadArticleComments(this.articleId, this.cursor).subscribe((page) => {
+      this.comments = this.comments.concat(page.results);
+      if (page.next) {
+        this.cursor = this.getCursorFromUrl(page.next);
+      } else {
+        this.cursor = null;
       }
-    }
+      this.commentsHashTable = {};
+      for (const comment of this.comments) {
+        this.commentsHashTable[comment.id] = comment;
+      }
+      this.parseComments();
+    });
   }
 
   public replyDisabled() {
@@ -148,16 +156,18 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  private loadComments() {
-    this.commentService.loadArticleComments(this.articleId, this.cursor).subscribe((page) => {
-      this.comments = this.comments.concat(page.results);
-      this.cursor = page.next;
-      this.commentsHashTable = {};
-      for (const comment of this.comments) {
-        this.commentsHashTable[comment.id] = comment;
+  private parseComments() {
+    this.commentsTree = [];
+    for (const comment of this.comments) {
+      // if a comment is root - it's a tree, build a tree from this root
+      if (!comment.reply_to) {
+        this.buildTree(comment);
       }
-      this.parseComments();
-    });
+    }
+  }
+
+  private getCursorFromUrl(url: string) {
+    return url.substring(url.indexOf('cursor') + 'cursor'.length + 1);
   }
 
   private buildTree(root: Comment, initialDepth = 0) {

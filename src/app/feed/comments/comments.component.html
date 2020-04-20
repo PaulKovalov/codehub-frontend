@@ -36,5 +36,5 @@
       </div>
     </div>
   </div>
-  <button *ngIf="cursor">Load next</button>
+  <button (click)="loadComments()" *ngIf="cursor">Load next</button>
 </div>
