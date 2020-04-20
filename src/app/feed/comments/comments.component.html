@@ -1,5 +1,5 @@
 <div class="create-new-comment">
-  <input (click)="this.addCommentShown = true;" [(ngModel)]="commentInput" placeholder="Type comment here">
+  <input (click)="inputClick()" [(ngModel)]="commentInput" [placeholder]="inputPlaceholder">
   <div *ngIf="addCommentShown" class="cancel-add-button">
     <button (click)="cancel()" *ngIf="addCommentShown">Cancel</button>
     <button (click)="postComment()" *ngIf="addCommentShown" [disabled]="disabled()">Add comment</button>
@@ -17,11 +17,11 @@
       {{comment.comment.text}}
       <div class="comment-reactions">
         <div class="item">
-          <img src="assets/img/like.png">
+          <img (click)="likeComment(comment.comment)" src="assets/img/like.png">
           <p>{{comment.comment.likes}}</p>
         </div>
         <div class="item">
-          <img src="assets/img/dislike.png">
+          <img (click)="dislikeComment(comment.comment)" src="assets/img/dislike.png">
           <p>{{comment.comment.dislikes}}</p>
         </div>
       </div>
@@ -36,5 +36,7 @@
       </div>
     </div>
   </div>
-  <button (click)="loadComments()" *ngIf="cursor">Load next</button>
+  <div class="load-more">
+    <button (click)="loadComments()" *ngIf="cursor">Load more</button>
+  </div>
 </div>

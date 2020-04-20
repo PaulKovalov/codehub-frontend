@@ -19,6 +19,12 @@
       <h3>Discussion</h3>
     </div>
   </div>
+  <ng-container *ngIf="article.published; else commentsNotAvailable">
+    <app-comments [mode]="'tutorial'"></app-comments>
+  </ng-container>
+  <ng-template #commentsNotAvailable>
+    <p>Discussion will be available when article is published</p>
+  </ng-template>
 </ng-container>
 <ng-template #loading>
   <div class="loading">

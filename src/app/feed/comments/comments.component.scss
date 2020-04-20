@@ -70,6 +70,7 @@ input {
           img {
             width: 15px;
             height: 15px;
+            cursor: pointer;
           }
 
           p {
@@ -86,5 +87,11 @@ input {
         font-size: 14px;
       }
     }
+  }
+
+  .load-more {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
   }
 }

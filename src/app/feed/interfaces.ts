@@ -96,3 +96,8 @@ export interface Comment {
   replies: number[];
   edited: boolean;
 }
+
+export interface Reaction {
+  comment_id: number;
+  user: number;
+}
