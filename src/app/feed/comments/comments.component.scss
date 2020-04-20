@@ -43,6 +43,8 @@ input {
 
         p {
           margin: 0px;
+          font-size: 12px;
+          color: #8190A5;
         }
 
         display: flex;
@@ -52,6 +54,36 @@ input {
         h4 {
           margin-right: 20px;
         }
+      }
+
+      .comment-reactions {
+        margin-top: 8px;
+        display: flex;
+        width: 100px;
+        justify-content: space-between;
+        flex-direction: row;
+
+        .item {
+          display: flex;
+          flex-direction: row;
+
+          img {
+            width: 15px;
+            height: 15px;
+          }
+
+          p {
+            margin: 0 0px 0px 10px;
+            font-size: 12px;
+            color: #8190A5;
+          }
+        }
+      }
+
+      button {
+        margin-top: 8px;
+        color: #8190A5;
+        font-size: 14px;
       }
     }
   }

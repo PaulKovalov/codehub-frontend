@@ -2,9 +2,9 @@
   <div class="article">
     <h2>{{ article.title }}</h2>
     <div [innerHTML]="article.text"></div>
-    <p> Written by {{ article.username}} on {{dateCreated}}</p>
-    <p *ngIf="dateEdited">Last edit on {{dateEdited}}</p>
-    <p> {{articleViews}} views</p>
+    <p class="author"> Written by {{ article.username}} on {{dateCreated}}</p>
+    <p *ngIf="dateEdited" class="last-edit">Last edit on {{dateEdited}}</p>
+    <p class="views"> {{articleViews}} views</p>
     <ng-container *ngIf="mode === 'owner'">
       <div class="bottom-buttons">
         <button [routerLink]="editLink">Edit</button>

@@ -15,6 +15,25 @@
         <p>{{dateOf(comment.comment)}}</p>
       </div>
       {{comment.comment.text}}
+      <div class="comment-reactions">
+        <div class="item">
+          <img src="assets/img/like.png">
+          <p>{{comment.comment.likes}}</p>
+        </div>
+        <div class="item">
+          <img src="assets/img/dislike.png">
+          <p>{{comment.comment.dislikes}}</p>
+        </div>
+      </div>
+      <button (click)="replyClick(comment)">Reply</button>
+      <div *ngIf="comment.reply_field_display" class="create-new-comment">
+        <input [(ngModel)]="replyCommentInput" placeholder="Type reply here">
+        <div class="cancel-add-button">
+          <button (click)="cancelReplyClick()">Cancel</button>
+          <button (click)="postReply(comment.comment)" [disabled]="replyDisabled()">Post</button>
+        </div>
+        <div *ngIf="replyErrorsText" class="error">{{replyErrorsText}}</div>
+      </div>
     </div>
   </div>
   <button *ngIf="cursor">Load next</button>
