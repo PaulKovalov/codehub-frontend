@@ -26,7 +26,7 @@ export class CommentsComponent implements OnInit {
   public commentsTree: CommentNode[] = [];
   public replyErrorsText: string;
   public replyCommentInput: string;
-  private cursor: string = null;
+  public cursor: string = null;
   private articleId: number;
   public loggedIn = true;
   private commentsHashTable = {};
