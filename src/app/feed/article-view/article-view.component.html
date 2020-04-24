@@ -5,6 +5,16 @@
     <p class="author"> Written by {{ article.username}} on {{dateCreated}}</p>
     <p *ngIf="dateEdited" class="last-edit">Last edit on {{dateEdited}}</p>
     <p class="views"> {{articleViews}} views</p>
+    <div class="reactions-block">
+      <div class="item">
+        <img (click)="likeArticle()" src="assets/img/like.png">
+        <p>{{article.likes}}</p>
+      </div>
+      <div class="item">
+        <img (click)="dislikeArticle()" src="assets/img/dislike.png">
+        <p>{{article.dislikes}}</p>
+      </div>
+    </div>
     <ng-container *ngIf="mode === 'owner'">
       <div class="bottom-buttons">
         <button [routerLink]="editLink">Edit</button>

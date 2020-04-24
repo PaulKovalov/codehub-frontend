@@ -15,7 +15,7 @@
         <p>{{dateOf(comment.comment)}}</p>
       </div>
       {{comment.comment.text}}
-      <div class="comment-reactions">
+      <div class="reactions-block">
         <div class="item">
           <img (click)="likeComment(comment.comment)" src="assets/img/like.png">
           <p>{{comment.comment.likes}}</p>

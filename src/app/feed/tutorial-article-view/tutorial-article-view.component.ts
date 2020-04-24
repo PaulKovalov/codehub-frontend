@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from '../services/content.service';
 import { TutorialArticle } from '../interfaces';
+import { AccountService } from '../../accounts/account.service';
 
 @Component({
   selector: 'app-tutorial-article-view',
@@ -17,8 +18,12 @@ export class TutorialArticleViewComponent implements OnInit {
   public editLink: string;
   public dateCreated: string;
   public dateEdited: string | null = null;
+  private loggedIn = false;
 
-  constructor(private router: Router, private contentService: ContentService, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router,
+              private contentService: ContentService,
+              private activatedRoute: ActivatedRoute,
+              private authService: AccountService) {
   }
 
   get articleViews() {
@@ -33,6 +38,9 @@ export class TutorialArticleViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.isLoggedIn$().subscribe((isLoggedIn) => {
+      this.loggedIn = isLoggedIn;
+    });
     this.mode = this.activatedRoute.snapshot.data.mode;
     if (this.mode === 'owner') {
       this.editLink = 'edit';
@@ -77,6 +85,48 @@ export class TutorialArticleViewComponent implements OnInit {
       return `/profile/my-tutorials/${this.tutorialId}`;
     } else {
       return `/tutorials/${this.tutorialId}`;
+    }
+  }
+
+  public likeArticle() {
+    if (this.loggedIn) {
+      this.contentService.likeTutorialArticle(this.tutorialId, this.article.id).subscribe((response) => {
+        if (response === 'inc') {
+          this.article.likes += 1;
+        } else if (response === 'swap') {
+          this.article.likes += 1;
+          this.article.dislikes -= 1;
+        } else if (response === 'dec') {
+          this.article.likes -= 1;
+        }
+      }, (error) => {
+        if (!this.article.published) {
+          alert('Reactions will be available when article is published');
+        }
+      });
+    } else {
+      alert('Log in to put "like"');
+    }
+  }
+
+  public dislikeArticle() {
+    if (this.loggedIn) {
+      this.contentService.dislikeTutorialArticle(this.tutorialId, this.article.id).subscribe((response) => {
+        if (response === 'inc') {
+          this.article.dislikes += 1;
+        } else if (response === 'swap') {
+          this.article.dislikes += 1;
+          this.article.likes -= 1;
+        } else if (response === 'dec') {
+          this.article.dislikes -= 1;
+        }
+      }, (error) => {
+        if (!this.article.published) {
+          alert('Reactions will be available when article is published');
+        }
+      });
+    } else {
+      alert('Log in to put "dislike"');
     }
   }
 }

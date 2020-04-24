@@ -74,4 +74,20 @@ export class ContentService {
   public myTutorialsIds(): Observable<[number]> {
     return this.http.get<[number]>(Utils.doApiUrl('tutorials/my/ids'));
   }
+
+  public likeArticle(articleId: number): Observable<string> {
+    return this.http.post<string>(Utils.doApiUrl(`articles/${articleId}/like/`), null);
+  }
+
+  public dislikeArticle(articleId: number): Observable<string> {
+    return this.http.post<string>(Utils.doApiUrl(`articles/${articleId}/like/`), null);
+  }
+
+  public likeTutorialArticle(tutorialId: number, articleId: number): Observable<string> {
+    return this.http.post<string>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/like/`), null);
+  }
+
+  public dislikeTutorialArticle(tutorialId: number, articleId: number): Observable<string> {
+    return this.http.post<string>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/like/`), null);
+  }
 }

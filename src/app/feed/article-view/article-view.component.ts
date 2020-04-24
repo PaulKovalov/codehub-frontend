@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from '../services/content.service';
 import { Article } from '../interfaces';
+import { AccountService } from '../../accounts/account.service';
 
 @Component({
   selector: 'app-article-view',
@@ -14,8 +15,9 @@ export class ArticleViewComponent implements OnInit {
   public dateCreated: string;
   public dateEdited: string | null = null;
   public mode: string;
+  private loggedIn = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService, private authService: AccountService) {
   }
 
   get articleViews() {
@@ -30,6 +32,7 @@ export class ArticleViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.isLoggedIn$().subscribe((loggedIn) => this.loggedIn = loggedIn);
     this.mode = this.activatedRoute.snapshot.data.mode;
     this.activatedRoute.paramMap.subscribe((params) => {
       const articleId = params.get('id');
@@ -46,5 +49,47 @@ export class ArticleViewComponent implements OnInit {
         this.router.navigateByUrl('/404');
       });
     });
+  }
+
+  public likeArticle() {
+    if (this.loggedIn) {
+      this.contentService.likeArticle(this.article.id).subscribe((response) => {
+        if (response === 'inc') {
+          this.article.likes += 1;
+        } else if (response === 'swap') {
+          this.article.likes += 1;
+          this.article.dislikes -= 1;
+        } else if (response === 'dec') {
+          this.article.likes -= 1;
+        }
+      }, (error) => {
+        if (!this.article.published) {
+          alert('Reactions will be available when article is published');
+        }
+      });
+    } else {
+      alert('Log in to put "like"');
+    }
+  }
+
+  public dislikeArticle() {
+    if (this.loggedIn) {
+      this.contentService.dislikeArticle(this.article.id).subscribe((response) => {
+        if (response === 'inc') {
+          this.article.dislikes += 1;
+        } else if (response === 'swap') {
+          this.article.dislikes += 1;
+          this.article.likes -= 1;
+        } else if (response === 'dec') {
+          this.article.dislikes -= 1;
+        }
+      }, (error) => {
+        if (!this.article.published) {
+          alert('Reactions will be available when article is published');
+        }
+      });
+    } else {
+      alert('Log in to put "dislike"');
+    }
   }
 }

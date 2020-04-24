@@ -21,6 +21,8 @@ export interface ArticlePreview extends BasePreview {
 export interface Article extends ArticlePreview {
   text: string | null;
   last_modified: string;
+  likes: number;
+  dislikes: number;
 }
 
 export interface CreateArticle {
@@ -95,9 +97,4 @@ export interface Comment {
   reply_to: number;
   replies: number[];
   edited: boolean;
-}
-
-export interface Reaction {
-  comment_id: number;
-  user: number;
 }
