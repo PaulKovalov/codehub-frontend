@@ -1,0 +1,35 @@
+@import '../../scss/base.scss';
+
+.error-message-block {
+  width: 100%;
+  background-color: #ff8c1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+
+  p {
+    max-width: 80vw;
+  }
+
+  button {
+    padding: 0px;
+    position: absolute;
+    right: 18px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.error-message-block.hidden {
+  transform: translate(0, -150%);
+  transition: transform 0.2s linear;
+}
+
+@media (max-width: $mobile_screen_width) {
+  p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+}

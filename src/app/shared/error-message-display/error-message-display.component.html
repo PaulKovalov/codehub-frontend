@@ -1,0 +1,4 @@
+<div *ngIf="message && show" [ngClass]="displayAnimation ? 'hidden': ''" class="error-message-block">
+  <p>{{message}}</p>
+  <button (click)="close()"><img src="assets/img/close-button.png"></button>
+</div>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Article, ArticlePreview, ArticlesPage, TableOfContentItem, Tutorial, TutorialArticle, TutorialArticlesPage, TutorialsPage } from '../interfaces';
 import { Utils } from '../../shared/utils';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -89,5 +90,11 @@ export class ContentService {
 
   public dislikeTutorialArticle(tutorialId: number, articleId: number): Observable<string> {
     return this.http.post<string>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/like/`), null);
+  }
+
+  public getErrorMessages(): Observable<string> {
+    return this.http.get<[{ message: string }]>(Utils.doApiUrl('errors/')).pipe(map(data => {
+      return data[0].message;
+    }));
   }
 }
