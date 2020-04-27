@@ -25,7 +25,10 @@
           <p>{{comment.comment.dislikes}}</p>
         </div>
       </div>
-      <button (click)="replyClick(comment)">Reply</button>
+      <div class="reply-edit-button">
+        <button (click)="replyClick(comment)">Reply</button>
+        <button (click)="showEditPrompt(comment)" *ngIf="(isAuthor(comment) | async)">Edit</button>
+      </div>
       <div *ngIf="comment.reply_field_display" class="create-new-comment">
         <input [(ngModel)]="replyCommentInput" placeholder="Type reply here">
         <div class="cancel-add-button">

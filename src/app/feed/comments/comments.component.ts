@@ -3,11 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Comment, CommentsPage } from '../interfaces';
 import { CommentsService } from '../services/comments.service';
 import { AccountService } from '../../accounts/account.service';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface CommentNode {
   depth: number;
   comment: Comment;
   reply_field_display: boolean;
+  edited: boolean;
 }
 
 
@@ -27,11 +30,12 @@ export class CommentsComponent implements OnInit {
   public replyErrorsText: string;
   public replyCommentInput: string;
   public cursor: string = null;
-  private articleId: number;
   public loggedIn = true;
+  public inputPlaceholder = 'Type comment here';
   private commentsHashTable = {};
   private replyNodeActive: CommentNode = null;
-  public inputPlaceholder = 'Type comment here';
+  private editNodeActive: CommentNode = null;
+  private articleId: number;
   private tutorialId: number;
 
   constructor(private commentService: CommentsService,
@@ -186,24 +190,28 @@ export class CommentsComponent implements OnInit {
     this.posting = true;
     if (this.mode === 'tutorial') {
       this.commentService.postTutorialArticleComment(this.tutorialId, this.articleId, data).subscribe((comment) => {
-        this.comments.push(comment);
-        this.insertComment(comment);
-        this.replyCommentInput = '';
-        this.replyNodeActive.reply_field_display = false;
-        this.posting = false;
+        this.processReplyPostResponse(comment);
       }, (err) => {
         this.replyErrorsText = 'An unexpected error occured';
       });
     } else {
       this.commentService.postArticleComment(this.articleId, data).subscribe((comment) => {
-        this.comments.push(comment);
-        this.insertComment(comment);
-        this.replyCommentInput = '';
-        this.replyNodeActive.reply_field_display = false;
-        this.posting = false;
+        this.processReplyPostResponse(comment);
       }, (err) => {
         this.replyErrorsText = 'An unexpected error occurred';
       });
+    }
+  }
+
+  public showEditPrompt(node: CommentNode) {
+    if (this.loggedIn) {
+      if (this.editNodeActive) {
+        this.editNodeActive.edited = false;
+      }
+      this.editNodeActive = node;
+      this.replyNodeActive.edited = true;
+    } else {
+      alert('Log in to leave a comment');
     }
   }
 
@@ -291,8 +299,30 @@ export class CommentsComponent implements OnInit {
     return url.substring(url.indexOf('cursor') + 'cursor'.length + 1);
   }
 
+  public editComment() {
+
+  }
+
+  public isAuthor(node: CommentNode): Observable<boolean> {
+    if (this.loggedIn) {
+      return this.authService.getCurrentUser$().pipe(map(user => {
+        return user.id === node.comment.author;
+      }));
+    } else {
+      return of(false);
+    }
+  }
+
+  private processReplyPostResponse(comment: Comment) {
+    this.comments.push(comment);
+    this.insertComment(comment);
+    this.replyCommentInput = '';
+    this.replyNodeActive.reply_field_display = false;
+    this.posting = false;
+  }
+
   private buildTree(root: Comment, initialDepth = 0) {
-    this.commentsTree.push({depth: initialDepth, comment: root, reply_field_display: false});
+    this.commentsTree.push(this.buildCommentNode(root, initialDepth));
     for (const reply of root.replies) {
       // get comment from the hash table, and build a tree from it
       const comment = this.commentsHashTable[reply];
@@ -300,23 +330,22 @@ export class CommentsComponent implements OnInit {
     }
   }
 
+  private buildCommentNode(commentObj: Comment, depthVal: number): CommentNode {
+    return {
+      comment: commentObj,
+      depth: depthVal,
+      reply_field_display: false,
+      edited: false
+    };
+  }
+
   private insertComment(commentToAdd: Comment) {
     // inserts comment in the comment tree
     if (commentToAdd.reply_to) {
       const parentIndex = this.commentsTree.findIndex(c => c.comment.id === commentToAdd.reply_to);
-      const node = {
-        comment: commentToAdd,
-        depth: this.commentsTree[parentIndex].depth + 1,
-        reply_field_display: false
-      };
-      this.commentsTree.splice(parentIndex + 1, 0, node);
+      this.commentsTree.splice(parentIndex + 1, 0, this.buildCommentNode(commentToAdd, this.commentsTree[parentIndex].depth + 1));
     } else {
-      const node = {
-        comment: commentToAdd,
-        depth: 0,
-        reply_field_display: false
-      };
-      this.commentsTree.unshift(node);
+      this.commentsTree.unshift(this.buildCommentNode(commentToAdd, 0));
     }
   }
 }
