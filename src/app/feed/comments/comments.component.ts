@@ -124,23 +124,26 @@ export class CommentsComponent implements OnInit {
     this.posting = true;
     if (this.mode === 'tutorial') {
       this.commentService.postTutorialArticleComment(this.tutorialId, this.articleId, data).subscribe((comment: Comment) => {
-        this.insertComment(comment);
-        this.commentInput = '';
-        this.posting = false;
+        this.processCreateResponse(comment);
       }, (err) => {
         this.posting = false;
         this.errorsText = 'An unexpected error occurred';
       });
     } else {
       this.commentService.postArticleComment(this.articleId, data).subscribe((comment) => {
-        this.insertComment(comment);
-        this.commentInput = '';
-        this.posting = false;
+        this.processCreateResponse(comment);
       }, (error) => {
         this.posting = false;
         this.errorsText = 'An unexpected error occurred';
       });
     }
+  }
+
+  private processCreateResponse(comment: Comment) {
+    this.insertComment(comment);
+    this.commentInput = '';
+    this.posting = false;
+    this.addCommentShown = false;
   }
 
   public cancelNewComment() {
