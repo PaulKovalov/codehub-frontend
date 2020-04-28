@@ -81,7 +81,7 @@ export class ContentService {
   }
 
   public dislikeArticle(articleId: number): Observable<string> {
-    return this.http.post<string>(Utils.doApiUrl(`articles/${articleId}/like/`), null);
+    return this.http.post<string>(Utils.doApiUrl(`articles/${articleId}/dislike/`), null);
   }
 
   public likeTutorialArticle(tutorialId: number, articleId: number): Observable<string> {

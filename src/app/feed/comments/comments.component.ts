@@ -64,9 +64,47 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  public cancel() {
-    this.commentInput = '';
-    this.addCommentShown = false;
+  public loadComments() {
+    if (this.mode === 'tutorial') {
+      this.commentService.loadTutorialArticleComments(this.tutorialId, this.articleId, this.cursor).subscribe((page: CommentsPage) => {
+        this.preprocessRawCommentsData(page);
+      });
+    } else {
+      this.commentService.loadArticleComments(this.articleId, this.cursor).subscribe((page) => {
+        this.preprocessRawCommentsData(page);
+      });
+    }
+  }
+
+  public dateOf(comment: Comment) {
+    const now = new Date();
+    const cDate = new Date(comment.date_created);
+    if (now.getFullYear() === cDate.getFullYear()) {
+      if (now.getMonth() === cDate.getMonth()) {
+        if (now.getDate() === cDate.getDate()) {
+          if (now.getHours() === cDate.getHours()) {
+            if (now.getMinutes() === cDate.getMinutes()) {
+              return 'a few seconds ago';
+            } else {
+              const minutes = now.getMinutes() - cDate.getMinutes();
+              return `${minutes} ${minutes > 1 ? 'minutes' : 'minute'} ago`;
+            }
+          } else {
+            const hours = now.getHours() - cDate.getHours();
+            return `${hours} ${hours > 1 ? 'hours' : 'hour'} ago`;
+          }
+        } else {
+          const days = now.getDate() - cDate.getDate();
+          return `${days} ${days > 1 ? 'days' : 'day'} ago`;
+        }
+      } else {
+        const months = now.getMonth() - cDate.getMonth();
+        return `${months} ${months > 1 ? 'months' : 'month'} ago`;
+      }
+    } else {
+      const years = now.getFullYear() - cDate.getFullYear();
+      return `${years} ${years > 1 ? 'years' : 'year'} ago`;
+    }
   }
 
   public disabled() {
@@ -103,42 +141,19 @@ export class CommentsComponent implements OnInit {
         this.errorsText = 'An unexpected error occurred';
       });
     }
-
   }
 
-  public dateOf(comment: Comment) {
-    const now = new Date();
-    const cDate = new Date(comment.date_created);
-    if (now.getFullYear() === cDate.getFullYear()) {
-      if (now.getMonth() === cDate.getMonth()) {
-        if (now.getDate() === cDate.getDate()) {
-          if (now.getHours() === cDate.getHours()) {
-            if (now.getMinutes() === cDate.getMinutes()) {
-              return 'a few seconds ago';
-            } else {
-              const minutes = now.getMinutes() - cDate.getMinutes();
-              return `${minutes} ${minutes > 1 ? 'minutes' : 'minute'} ago`;
-            }
-          } else {
-            const hours = now.getHours() - cDate.getHours();
-            return `${hours} ${hours > 1 ? 'hours' : 'hour'} ago`;
-          }
-        } else {
-          const days = now.getDate() - cDate.getDate();
-          return `${days} ${days > 1 ? 'days' : 'day'} ago`;
-        }
-      } else {
-        const months = now.getMonth() - cDate.getMonth();
-        return `${months} ${months > 1 ? 'months' : 'month'} ago`;
-      }
-    } else {
-      const years = now.getFullYear() - cDate.getFullYear();
-      return `${years} ${years > 1 ? 'years' : 'year'} ago`;
-    }
+  public cancelNewComment() {
+    this.commentInput = '';
+    this.addCommentShown = false;
   }
 
-  public replyClick(node: CommentNode) {
+  public showReplyPrompt(node: CommentNode) {
     if (this.loggedIn) {
+      if (this.editNodeActive) {
+        this.editNodeActive.edited = false;
+        this.editNodeActive = null;
+      }
       this.replyCommentInput = '';
       if (this.replyNodeActive) {
         this.replyNodeActive.reply_field_display = false;
@@ -150,25 +165,13 @@ export class CommentsComponent implements OnInit {
     }
   }
 
-  public cancelReplyClick() {
+  public cancelReplyComment() {
     this.replyNodeActive.reply_field_display = false;
   }
 
   public inputClick() {
     if (this.loggedIn) {
       this.addCommentShown = true;
-    }
-  }
-
-  public loadComments() {
-    if (this.mode === 'tutorial') {
-      this.commentService.loadTutorialArticleComments(this.tutorialId, this.articleId, this.cursor).subscribe((page: CommentsPage) => {
-        this.preprocessRawCommentsData(page);
-      });
-    } else {
-      this.commentService.loadArticleComments(this.articleId, this.cursor).subscribe((page) => {
-        this.preprocessRawCommentsData(page);
-      });
     }
   }
 
@@ -205,13 +208,55 @@ export class CommentsComponent implements OnInit {
 
   public showEditPrompt(node: CommentNode) {
     if (this.loggedIn) {
+      if (this.replyNodeActive) {
+        this.replyNodeActive.reply_field_display = false;
+        this.replyNodeActive = null;
+      }
       if (this.editNodeActive) {
         this.editNodeActive.edited = false;
       }
       this.editNodeActive = node;
-      this.replyNodeActive.edited = true;
+      this.editNodeActive.edited = true;
     } else {
       alert('Log in to leave a comment');
+    }
+  }
+
+  public editDisabled(comment: Comment) {
+    if (this.posting) {
+      return true;
+    }
+    if (comment.text) {
+      return !comment.text.trim().length;
+    }
+    return true;
+  }
+
+  public editComment(comment: CommentNode) {
+    const data = {
+      text: comment.comment.text
+    };
+    this.posting = true;
+    if (this.mode === 'tutorial') {
+      this.commentService.editTutorialArticleComment(this.tutorialId, this.articleId, comment.comment.id, data).subscribe(r => this.cancelEditComment());
+    } else {
+      this.commentService.editArticleComment(this.articleId, comment.comment.id, data).subscribe(r => this.cancelEditComment());
+    }
+  }
+
+  public cancelEditComment() {
+    this.editNodeActive.edited = false;
+    this.editNodeActive = null;
+    this.posting = false;
+  }
+
+  public isAuthor(node: CommentNode): Observable<boolean> {
+    if (this.loggedIn) {
+      return this.authService.getCurrentUser$().pipe(map(user => {
+        return user.id === node.comment.author;
+      }));
+    } else {
+      return of(false);
     }
   }
 
@@ -295,24 +340,6 @@ export class CommentsComponent implements OnInit {
     }
   }
 
-  private getCursorFromUrl(url: string) {
-    return url.substring(url.indexOf('cursor') + 'cursor'.length + 1);
-  }
-
-  public editComment() {
-
-  }
-
-  public isAuthor(node: CommentNode): Observable<boolean> {
-    if (this.loggedIn) {
-      return this.authService.getCurrentUser$().pipe(map(user => {
-        return user.id === node.comment.author;
-      }));
-    } else {
-      return of(false);
-    }
-  }
-
   private processReplyPostResponse(comment: Comment) {
     this.comments.push(comment);
     this.insertComment(comment);
@@ -347,5 +374,9 @@ export class CommentsComponent implements OnInit {
     } else {
       this.commentsTree.unshift(this.buildCommentNode(commentToAdd, 0));
     }
+  }
+
+  private getCursorFromUrl(url: string) {
+    return url.substring(url.indexOf('cursor') + 'cursor'.length + 1);
   }
 }

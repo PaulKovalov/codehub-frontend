@@ -51,4 +51,12 @@ export class CommentsService {
   public dislikeTutorialArticleComment(tutorialId: number, articleId: number, commentId: number): Observable<string> {
     return this.http.post<string>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/comments/${commentId}/dislike/`), null);
   }
+
+  public editArticleComment(articleId: number, commentId: number, data: { text: string }): Observable<Comment> {
+    return this.http.patch<Comment>(Utils.doApiUrl(`articles/${articleId}/comments/${commentId}/`), data);
+  }
+
+  public editTutorialArticleComment(tutorialId: number, articleId: number, commentId: number, data: { text: string }): Observable<Comment> {
+    return this.http.patch<Comment>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/comments/${commentId}/`), data);
+  }
 }

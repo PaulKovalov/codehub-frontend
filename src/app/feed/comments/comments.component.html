@@ -1,7 +1,7 @@
 <div class="create-new-comment">
   <input (click)="inputClick()" [(ngModel)]="commentInput" [placeholder]="inputPlaceholder">
   <div *ngIf="addCommentShown" class="cancel-add-button">
-    <button (click)="cancel()" *ngIf="addCommentShown">Cancel</button>
+    <button (click)="cancelNewComment()" *ngIf="addCommentShown">Cancel</button>
     <button (click)="postComment()" *ngIf="addCommentShown" [disabled]="disabled()">Add comment</button>
   </div>
   <div *ngIf="errorsText" class="error">{{errorsText}}</div>
@@ -14,7 +14,18 @@
         <h4>{{comment.comment.username}}</h4>
         <p>{{dateOf(comment.comment)}}</p>
       </div>
-      {{comment.comment.text}}
+      <ng-container *ngIf="!comment.edited; else edited">
+        {{comment.comment.text}}
+      </ng-container>
+      <ng-template #edited>
+        <input [(ngModel)]="comment.comment.text">
+        <div class="cancel-add-button">
+          <button (click)="cancelEditComment()">Cancel</button>
+          <button (click)="editComment(comment)" *ngIf="(isAuthor(comment) | async)"
+                  [disabled]="editDisabled(comment.comment)">Save
+          </button>
+        </div>
+      </ng-template>
       <div class="reactions-block">
         <div class="item">
           <img (click)="likeComment(comment.comment)" src="assets/img/like.png">
@@ -26,13 +37,13 @@
         </div>
       </div>
       <div class="reply-edit-button">
-        <button (click)="replyClick(comment)">Reply</button>
+        <button (click)="showReplyPrompt(comment)">Reply</button>
         <button (click)="showEditPrompt(comment)" *ngIf="(isAuthor(comment) | async)">Edit</button>
       </div>
       <div *ngIf="comment.reply_field_display" class="create-new-comment">
         <input [(ngModel)]="replyCommentInput" placeholder="Type reply here">
         <div class="cancel-add-button">
-          <button (click)="cancelReplyClick()">Cancel</button>
+          <button (click)="cancelReplyComment()">Cancel</button>
           <button (click)="postReply(comment.comment)" [disabled]="replyDisabled()">Post</button>
         </div>
         <div *ngIf="replyErrorsText" class="error">{{replyErrorsText}}</div>
