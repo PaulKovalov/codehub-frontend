@@ -98,3 +98,17 @@ export interface Comment {
   replies: number[];
   edited: boolean;
 }
+
+export interface SearchResult {
+  time: number;
+  results: {
+    articles: ArticlePreview[],
+    tutorials: Tutorial[],
+    tutorial_articles: TutorialArticlePreview[],
+  };
+}
+
+export interface Search {
+  query: string;
+  result: SearchResult;
+}

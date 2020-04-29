@@ -16,6 +16,7 @@ import { NewTutorialArticleComponent } from './profile/new-tutorial-article/new-
 import { TutorialArticleViewComponent } from './tutorial-article-view/tutorial-article-view.component';
 import { MyTutorialGuardService } from './services/my-tutorial-guard.service';
 import { MyArticleGuardService } from './services/my-article-guard.service';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'tutorials/:tutorialId/articles/:articleId',
         component: TutorialArticleViewComponent,
+      },
+      {
+        path: 'search',
+        component: SearchComponent,
       },
       {
         path: 'profile',

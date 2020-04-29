@@ -33,6 +33,7 @@ import { TutorialArticlePreviewComponent } from './tutorial-article-preview/tuto
 import { TutorialArticleViewComponent } from './tutorial-article-view/tutorial-article-view.component';
 import { RangeLoopPipe, SafeHtmlPipe } from './services/pipes';
 import { CommentsComponent } from './comments/comments.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { CommentsComponent } from './comments/comments.component';
     SafeHtmlPipe,
     CommentsComponent,
     RangeLoopPipe,
+    SearchComponent,
   ],
   providers: [
     ContentService,

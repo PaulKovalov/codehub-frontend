@@ -1,7 +1,6 @@
 @import '../../scss/base.scss';
 
 .error-message-block {
-  width: 100%;
   background-color: #ff8c1a;
   display: flex;
   justify-content: center;
@@ -33,6 +32,7 @@
     margin-bottom: 4px;
   }
   .error-message-block {
+    width: 93vw;
     justify-content: unset;
     padding-left: 10px;
   }
