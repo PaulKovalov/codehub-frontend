@@ -34,6 +34,7 @@ import { TutorialArticleViewComponent } from './tutorial-article-view/tutorial-a
 import { RangeLoopPipe, SafeHtmlPipe } from './services/pipes';
 import { CommentsComponent } from './comments/comments.component';
 import { SearchComponent } from './search/search.component';
+import { SettingsComponent } from './profile/settings/settings.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { SearchComponent } from './search/search.component';
     CommentsComponent,
     RangeLoopPipe,
     SearchComponent,
+    SettingsComponent,
   ],
   providers: [
     ContentService,

@@ -17,6 +17,7 @@ import { TutorialArticleViewComponent } from './tutorial-article-view/tutorial-a
 import { MyTutorialGuardService } from './services/my-tutorial-guard.service';
 import { MyArticleGuardService } from './services/my-article-guard.service';
 import { SearchComponent } from './search/search.component';
+import { SettingsComponent } from './profile/settings/settings.component';
 
 
 const routes: Routes = [
@@ -124,6 +125,10 @@ const routes: Routes = [
             component: NewTutorialComponent,
             data: {mode: 'create'}
           },
+          {
+            path: 'settings',
+            component: SettingsComponent
+          }
         ]
       },
     ]

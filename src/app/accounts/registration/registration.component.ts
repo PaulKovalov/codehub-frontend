@@ -40,6 +40,7 @@ const controlErrorsOrder = {
 })
 export class RegistrationComponent implements OnInit {
   public errorsText: string;
+  public registrationInProgress = false;
   public userDataFormGroup = new FormGroup({
     username: new FormControl('', [
       Validators.required
@@ -64,10 +65,13 @@ export class RegistrationComponent implements OnInit {
 
   public register() {
     if (this.userDataFormGroup.valid) {
+      this.registrationInProgress = true;
       this.accountService.registerUser(this.userDataFormGroup.value as UserData).subscribe(() => {
         this.accountService.updateAuthState();
+        this.registrationInProgress = false;
         this.router.navigateByUrl('/');
       }, (err) => {
+        this.registrationInProgress = false;
         this.errorsText = 'Error occured';
       });
     } else {
