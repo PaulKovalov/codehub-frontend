@@ -13,7 +13,7 @@ export class NewTutorialArticleComponent extends NewArticleBaseComponent impleme
 
   private tutorialId: number;
   public tutorialTitle: string;
-
+  public loadingEditorDone = false;
   constructor(private tutorialService: TutorialService,
               private router: Router,
               private contentService: ContentService,

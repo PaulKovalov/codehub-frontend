@@ -21,7 +21,7 @@ const nonAuthenticatedNavbarSet: NavbarElement[] = [
   },
   {
     title: 'search',
-    asset: 'assets/img/search.png',
+    asset: null,
     routerLink: '/search',
   }
 ];

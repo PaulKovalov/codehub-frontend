@@ -18,4 +18,12 @@
     display: none;
     height: 0px;
   }
+
+  .selected {
+    border-left: solid 6px #E5E9F2;
+
+    span {
+      margin-left: 3px;
+    }
+  }
 }

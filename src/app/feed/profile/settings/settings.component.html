@@ -1,1 +1,24 @@
-<p>settings works!</p>
+<div class="settings-list">
+  <div class="personal-info-settings">
+    <h3>Personal Info</h3>
+    <p class="tips-text">Edit your personal info here</p>
+    <form [formGroup]="userDataFormGroup">
+      <p class="label">Username</p>
+      <input formControlName="username">
+    </form>
+  </div>
+  <div class="separator"></div>
+  <div class="notification-settings">
+    <h3>Notifications</h3>
+    <p class="tips-text">Set up your email notifications preferences here</p>
+    <p>Receive email on:</p>
+    <div class="checkbox-item">
+      <input type="checkbox">
+      <p>New comment on my article</p>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox">
+      <p>Reply to my comment</p>
+    </div>
+  </div>
+</div>

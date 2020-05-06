@@ -10,7 +10,7 @@ import { NewArticleBaseComponent } from '../new-article-base/new-article-base.co
   styleUrls: ['./new-article.component.scss']
 })
 export class NewArticleComponent extends NewArticleBaseComponent implements OnInit {
-
+  public loadingEditorDone = false;
   constructor(private articleService: ArticleService,
               private router: Router,
               private contentService: ContentService,

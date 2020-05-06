@@ -94,7 +94,10 @@ export class ContentService {
 
   public getErrorMessages(): Observable<string> {
     return this.http.get<[{ message: string }]>(Utils.doApiUrl('errors/')).pipe(map(data => {
-      return data[0].message;
+      if (data.length) {
+        return data[0].message;
+      }
+      return '';
     }));
   }
 }

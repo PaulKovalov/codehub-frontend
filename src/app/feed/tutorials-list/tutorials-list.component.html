@@ -1,10 +1,15 @@
-<div *ngIf="content && content.length" class="dropdown">
-  Order by:
-  <select (change)="setOrder()" [formControl]="orderingControl">
-    <option value="views">Views</option>
-    <option selected="true" value="date">Date</option>
-  </select>
-</div>
-<div *ngFor="let tutorial of content">
-  <app-tutorial-preview [mode]="mode" [tutorial]="tutorial"></app-tutorial-preview>
-</div>
+<ng-container *ngIf="content && content.length else noContent">
+  <div class="dropdown">
+    Order by:
+    <select (change)="setOrder()" [formControl]="orderingControl">
+      <option value="views">Views</option>
+      <option selected="true" value="date">Date</option>
+    </select>
+  </div>
+  <div *ngFor="let tutorial of content">
+    <app-tutorial-preview [mode]="mode" [tutorial]="tutorial"></app-tutorial-preview>
+  </div>
+</ng-container>
+<ng-template #noContent>
+  Nothing here
+</ng-template>

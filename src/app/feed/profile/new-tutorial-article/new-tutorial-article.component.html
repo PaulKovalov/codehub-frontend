@@ -8,6 +8,9 @@
   </ng-container>
   <input [formControl]="articleTitle" class="article-title-input" maxlength="128" minlength="8">
   <p>Write your article here</p>
+  <div *ngIf="!loadingEditorDone" class="loading-editor-alert">
+    Loading editor ...
+  </div>
   <editor
     [(ngModel)]="editor"
     [init]="{
@@ -23,6 +26,7 @@
      toolbar:
        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | codesample | removeformat | help'
    }"
+    (onInit)="loadingEditorDone = true"
   ></editor>
   <div class="bottom-content">
     <p>You can edit the article at any time after it's submitted</p>
