@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from '../services/content.service';
 import { TutorialArticle } from '../interfaces';
@@ -8,6 +8,7 @@ import { AccountService } from '../../accounts/account.service';
   selector: 'app-tutorial-article-view',
   templateUrl: './tutorial-article-view.component.html',
   styleUrls: ['./tutorial-article-view.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class TutorialArticleViewComponent implements OnInit {
 

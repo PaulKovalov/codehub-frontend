@@ -2,6 +2,10 @@
 
 .article {
   max-width: 1200px;
+
+  pre {
+    overflow-x: scroll;
+  }
 }
 
 .loading {

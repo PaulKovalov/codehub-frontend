@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from '../services/content.service';
 import { Article } from '../interfaces';
@@ -7,7 +7,8 @@ import { AccountService } from '../../accounts/account.service';
 @Component({
   selector: 'app-article-view',
   templateUrl: './article-view.component.html',
-  styleUrls: ['./article-view.component.scss']
+  styleUrls: ['./article-view.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ArticleViewComponent implements OnInit {
   public article: Article;
