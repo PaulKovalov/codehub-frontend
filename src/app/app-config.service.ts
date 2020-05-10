@@ -5,6 +5,8 @@ import { environment } from '../environments/environment';
 interface AppConfig {
   apiUrl: string;
   googleTag: string;
+  maxArticleLength: number;
+  minArticleLength: number;
 }
 
 @Injectable({
@@ -20,6 +22,8 @@ export class AppConfigService {
     return http.get('./app-config.json').toPromise().then((appConfig: AppConfig) => {
       environment.apiUrl = appConfig.apiUrl;
       environment.googleTag = appConfig.googleTag;
+      environment.minArticleLength = appConfig.minArticleLength;
+      environment.maxArticleLength = appConfig.maxArticleLength;
     });
   }
 }

@@ -1,4 +1,6 @@
 {
   "apiUrl": "${API_URL}",
-  "googleTag": "${GOOGLE_TAG}"
+  "googleTag": "${GOOGLE_TAG}",
+  "maxArticleLength": "${MAX_ARTICLE_LENGTH}",
+  "minArticleLength": "${MIN_ARTICLE_LENGTH}"
 }

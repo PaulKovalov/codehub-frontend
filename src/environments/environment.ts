@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   apiUrl: '',
   googleTag: '',
+  maxArticleLength: 65536,
+  minArticleLength: 128,
 };
 
 /*

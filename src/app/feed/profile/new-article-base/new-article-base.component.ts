@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-new-article-base',
@@ -45,11 +46,11 @@ export class NewArticleBaseComponent implements OnInit {
       return false;
     }
     if (this.editor) {
-      if (this.editor.length < 64) {
+      if (this.editor.length < environment.minArticleLength) {
         this.errorsText = 'The article is too short';
         return false;
       }
-      if (this.editor.length > 32768) {
+      if (this.editor.length > environment.maxArticleLength) {
         this.errorsText = 'The article is too big';
         return false;
       }
