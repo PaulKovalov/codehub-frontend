@@ -63,6 +63,7 @@ export class TutorialArticleViewComponent implements OnInit {
 
   public nextArticle() {
     if (this.article.nav.next !== -1) {
+      window.scroll(0, 0);
       if (this.mode === 'owner') {
         return `/profile/my-tutorials/${this.tutorialId}/articles/${this.article.nav.next}`;
       } else {
@@ -73,6 +74,7 @@ export class TutorialArticleViewComponent implements OnInit {
 
   public prevArticle() {
     if (this.article.nav.prev !== -1) {
+      window.scroll(0, 0);
       if (this.mode === 'owner') {
         return `/profile/my-tutorials/${this.tutorialId}/articles/${this.article.nav.prev}`;
       } else {
