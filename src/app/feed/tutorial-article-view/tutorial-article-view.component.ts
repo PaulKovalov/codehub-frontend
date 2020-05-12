@@ -65,9 +65,9 @@ export class TutorialArticleViewComponent implements OnInit {
     if (this.article.nav.next !== -1) {
       window.scroll(0, 0);
       if (this.mode === 'owner') {
-        return `/profile/my-tutorials/${this.tutorialId}/articles/${this.article.nav.next}`;
+        this.router.navigateByUrl(`/profile/my-tutorials/${this.tutorialId}/articles/${this.article.nav.next}`);
       } else {
-        return `/tutorials/${this.tutorialId}/articles/${this.article.nav.next}`;
+        this.router.navigateByUrl(`/tutorials/${this.tutorialId}/articles/${this.article.nav.next}`);
       }
     }
   }
@@ -76,9 +76,9 @@ export class TutorialArticleViewComponent implements OnInit {
     if (this.article.nav.prev !== -1) {
       window.scroll(0, 0);
       if (this.mode === 'owner') {
-        return `/profile/my-tutorials/${this.tutorialId}/articles/${this.article.nav.prev}`;
+        this.router.navigateByUrl(`/profile/my-tutorials/${this.tutorialId}/articles/${this.article.nav.prev}`);
       } else {
-        return `/tutorials/${this.tutorialId}/articles/${this.article.nav.prev}`;
+        this.router.navigateByUrl(`/tutorials/${this.tutorialId}/articles/${this.article.nav.prev}`);
       }
     }
   }

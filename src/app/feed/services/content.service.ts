@@ -89,7 +89,7 @@ export class ContentService {
   }
 
   public dislikeTutorialArticle(tutorialId: number, articleId: number): Observable<string> {
-    return this.http.post<string>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/like/`), null);
+    return this.http.post<string>(Utils.doApiUrl(`tutorials/${tutorialId}/articles/${articleId}/dislike/`), null);
   }
 
   public getErrorMessages(): Observable<string> {
