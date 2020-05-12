@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.accountService.updateAuthState();
         this.router.navigateByUrl('/');
       }, (err) => {
-        this.errorsText = 'Unable to log in';
+        this.errorsText = 'Invalid email or password';
       });
     } else {
       this.errorsText = this.parseErrors(this.userDataFormGroup);

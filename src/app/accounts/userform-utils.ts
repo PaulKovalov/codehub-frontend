@@ -1,4 +1,4 @@
-import { FormGroup, ValidationErrors } from '@angular/forms';
+import { FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export interface FormControlError {
   control: string;
@@ -36,3 +36,9 @@ export function sortErrors(controlErrorsOrder, errors: ValidationErrors[]) {
 
   errors.sort(compareErrors);
 }
+
+export const passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const newPassword = control.get('password');
+  const confirmNewPassword = control.get('confirmPassword');
+  return newPassword && confirmNewPassword && newPassword.value !== confirmNewPassword.value ? {passwordMatchValidator: true} : null;
+};

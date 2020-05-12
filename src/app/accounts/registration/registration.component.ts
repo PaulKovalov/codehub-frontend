@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
-import { getFormValidationErrors, sortErrors } from '../userform-utils';
+import { getFormValidationErrors, passwordMatchValidator, sortErrors } from '../userform-utils';
 import { Router } from '@angular/router';
 import { UserData } from '../interfaces';
-
-
-const passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
-  const newPassword = control.get('password');
-  const confirmNewPassword = control.get('confirmPassword');
-  return newPassword && confirmNewPassword && newPassword.value !== confirmNewPassword.value ? {passwordMatchValidator: true}:null;
-};
 
 interface FormError {
   username: string;
