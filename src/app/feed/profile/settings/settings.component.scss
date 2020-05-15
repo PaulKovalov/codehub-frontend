@@ -36,4 +36,27 @@
       margin: 5px 0px 5px 0px;
     }
   }
+
+  .bottom {
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: fit-content;
+  }
+
+  .bottom-messages {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .error {
+      padding: 0px;
+    }
+  }
+
+  .success {
+    color: #33cc33;
+  }
 }

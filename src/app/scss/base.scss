@@ -52,22 +52,18 @@ $mobile_screen_width: 600px;
     }
   }
 
-
-  .two-column {
-    display: flex;
-    justify-content: space-between;
-
-    .column-wrapper {
-      flex-grow: 0;
-    }
-  }
-
   .tips-text {
     color: #47525E;
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
     margin: 0px;
+  }
+
+  .error {
+    color: #cc0000;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
   }
 
   .reactions-block {

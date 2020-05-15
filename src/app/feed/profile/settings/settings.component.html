@@ -8,17 +8,22 @@
     </form>
   </div>
   <div class="separator"></div>
-  <div class="notification-settings">
+  <div *ngIf="notificationSettings" class="bottom">
     <h3>Notifications</h3>
     <p class="tips-text">Set up your email notifications preferences here</p>
     <p>Receive email on:</p>
     <div class="checkbox-item">
-      <input type="checkbox">
+      <input [(ngModel)]="notificationSettings.new_comment" type="checkbox">
       <p>New comment on my article</p>
     </div>
     <div class="checkbox-item">
-      <input type="checkbox">
+      <input [(ngModel)]="notificationSettings.comment_reply" type="checkbox">
       <p>Reply to my comment</p>
     </div>
+  </div>
+  <div class="bottom-messages">
+    <p *ngIf="errorsText" class="error">{{errorsText}}</p>
+    <p *ngIf="updated" class="success">Settings have been updated</p>
+    <button (click)="updateSettings()">Update settings</button>
   </div>
 </div>

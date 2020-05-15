@@ -112,3 +112,9 @@ export interface Search {
   query: string;
   result: SearchResult;
 }
+
+export interface NotificationSettings {
+  new_comment: boolean;
+  comment_reply: boolean;
+  id?: number;
+}
