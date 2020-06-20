@@ -28,6 +28,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/app-config.json",
+              "src/googled889930f50feaf88.html",
               {
                 "glob": "**/*",
                 "input": "node_modules/tinymce",
