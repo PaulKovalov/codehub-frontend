@@ -1,16 +1,16 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from '../services/content.service';
 import { TutorialArticle } from '../interfaces';
 import { AccountService } from '../../accounts/account.service';
+import { HighlightService } from '../services/highlight.service';
 
 @Component({
   selector: 'app-tutorial-article-view',
   templateUrl: './tutorial-article-view.component.html',
   styleUrls: ['./tutorial-article-view.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class TutorialArticleViewComponent implements OnInit {
+export class TutorialArticleViewComponent implements OnInit, AfterViewChecked {
 
   public mode: string;
   public tutorialId: number;
@@ -20,11 +20,13 @@ export class TutorialArticleViewComponent implements OnInit {
   public dateCreated: string;
   public dateEdited: string | null = null;
   private loggedIn = false;
+  private highlighted = false;
 
   constructor(private router: Router,
               private contentService: ContentService,
               private activatedRoute: ActivatedRoute,
-              private authService: AccountService) {
+              private authService: AccountService,
+              private highlightService: HighlightService) {
   }
 
   get articleViews() {
@@ -36,6 +38,13 @@ export class TutorialArticleViewComponent implements OnInit {
       return `${(this.article.views - (this.article.views % mod)) / 1e3}K`;
     }
     return this.article.views;
+  }
+
+  ngAfterViewChecked() {
+    if (this.article && !this.highlighted) {
+      this.highlightService.highlightAll();
+      this.highlighted = true;
+    }
   }
 
   ngOnInit() {

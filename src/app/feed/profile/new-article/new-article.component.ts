@@ -61,6 +61,9 @@ export class NewArticleComponent extends NewArticleBaseComponent implements OnIn
       };
       this.articleService.editArticle(this.editArticleId, updateData).subscribe(() => {
         this.router.navigateByUrl('/profile/my-articles');
+      }, (err) => {
+        this.errorsText = 'There is an error occurred during processing your article. The article wasn\'t saved, make sure to save it!';
+        this.submitButtonEnabled = true;
       });
     }
   }

@@ -35,6 +35,7 @@ import { RangeLoopPipe, SafeHtmlPipe } from './services/pipes';
 import { CommentsComponent } from './comments/comments.component';
 import { SearchComponent } from './search/search.component';
 import { SettingsComponent } from './profile/settings/settings.component';
+import { HighlightService } from './services/highlight.service';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { SettingsComponent } from './profile/settings/settings.component';
     AuthGuardService,
     {provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'},
     {provide: NAVBAR_SERVICE_TOKEN, useClass: NavbarService},
-    {provide: PROFILE_NAVBAR_SERVICE_TOKEN, useClass: ProfileNavbarService}
+    {provide: PROFILE_NAVBAR_SERVICE_TOKEN, useClass: ProfileNavbarService},
+    HighlightService
   ],
   imports: [
     CommonModule,

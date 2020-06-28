@@ -1,24 +1,26 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from '../services/content.service';
 import { Article } from '../interfaces';
 import { AccountService } from '../../accounts/account.service';
+import { HighlightService } from '../services/highlight.service';
 
 @Component({
   selector: 'app-article-view',
   templateUrl: './article-view.component.html',
   styleUrls: ['./article-view.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class ArticleViewComponent implements OnInit {
+export class ArticleViewComponent implements OnInit, AfterViewChecked {
   public article: Article;
   public editLink: string;
   public dateCreated: string;
   public dateEdited: string | null = null;
   public mode: string;
   private loggedIn = false;
+  private highlighted = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService, private authService: AccountService) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private contentService: ContentService, private authService: AccountService,
+              private highlightService: HighlightService) {
   }
 
   get articleViews() {
@@ -30,6 +32,13 @@ export class ArticleViewComponent implements OnInit {
       return `${(this.article.views - (this.article.views % mod)) / 1e3}K`;
     }
     return this.article.views;
+  }
+
+  ngAfterViewChecked() {
+    if (this.article && !this.highlighted) {
+      this.highlightService.highlightAll();
+      this.highlighted = true;
+    }
   }
 
   ngOnInit() {
