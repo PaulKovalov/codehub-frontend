@@ -24,7 +24,7 @@
   color: #8190A5;
 }
 @media (max-width: $mobile_screen_width) {
-  img {
+  :host ::ng-deep img {
     width: 100%;
     height: 100%;
   }
