@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../../../accounts/account.service';
 import { SettingsService } from '../settings.service';
 import { NotificationSettings } from '../../interfaces';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-settings',
@@ -17,6 +18,9 @@ export class SettingsComponent implements OnInit {
   public updated = false;
   public errorsText: string;
   private readonly errorTextSample = 'Something went wrong. Please try again later';
+  public imageChangedEvent: any = '';
+  public croppedImage: any = '';
+  public currentAvatarUrl: string = '';
 
   constructor(private accountService: AccountService, private settingsService: SettingsService) {
   }
@@ -24,6 +28,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.accountService.getCurrentUser$().subscribe(user => {
       this.userDataFormGroup.patchValue({username: user.username});
+      this.currentAvatarUrl = user.avatar;
     });
     this.settingsService.getNotificationSettings().subscribe(data => {
       this.notificationSettings = data;
@@ -51,5 +56,25 @@ export class SettingsComponent implements OnInit {
     } else {
       this.errorsText = 'Invalid value for username';
     }
+  }
+
+  public fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+
+  public imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+
+  public imageLoaded() {
+    // show cropper
+  }
+
+  public cropperReady() {
+    // cropper ready
+  }
+
+  public loadImageFailed() {
+    // show message
   }
 }

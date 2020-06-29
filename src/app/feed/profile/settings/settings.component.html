@@ -1,16 +1,29 @@
 <div class="settings-list">
   <div class="personal-info-settings">
     <h3>Personal Info</h3>
-    <p class="tips-text">Edit your personal info here</p>
+    <!--    <input type="file" (change)="fileChangeEvent($event)"/>-->
+    <!--    <image-cropper-->
+    <!--      [imageChangedEvent]="imageChangedEvent"-->
+    <!--      [maintainAspectRatio]="true"-->
+    <!--      [aspectRatio]="1"-->
+    <!--      format="png"-->
+    <!--      (imageCropped)="imageCropped($event)"-->
+    <!--      (imageLoaded)="imageLoaded()"-->
+    <!--      (cropperReady)="cropperReady()"-->
+    <!--      (loadImageFailed)="loadImageFailed()"-->
+    <!--    ></image-cropper>-->
+    <!--    <img [src]="croppedImage"/>-->
+    <p class="tips-text">Edit personal info here</p>
     <form [formGroup]="userDataFormGroup">
       <p class="label">Username</p>
       <input formControlName="username">
     </form>
+    <img [src]="currentAvatarUrl" class="avatar-display">
   </div>
   <div class="separator"></div>
   <div *ngIf="notificationSettings" class="bottom">
     <h3>Notifications</h3>
-    <p class="tips-text">Set up your email notifications preferences here</p>
+    <p class="tips-text">Set up email notifications preferences here</p>
     <p>Receive email on:</p>
     <div class="checkbox-item">
       <input [(ngModel)]="notificationSettings.new_comment" type="checkbox">

@@ -36,6 +36,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { SearchComponent } from './search/search.component';
 import { SettingsComponent } from './profile/settings/settings.component';
 import { HighlightService } from './services/highlight.service';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { HighlightService } from './services/highlight.service';
     ClickOutsideModule,
     ReactiveFormsModule,
     EditorModule,
-    FormsModule
+    FormsModule,
+    ImageCropperModule
   ],
 })
 export class FeedModule {
