@@ -2,7 +2,13 @@
   <div class="article">
     <h2>{{ article.title }}</h2>
     <div [innerHTML]="article.text"></div>
-    <p class="author"> Written by {{ article.username}} on {{dateCreated}}</p>
+    <div class="author-info">
+      <img [src]="article.author_avatar">
+      <div class="date-container">
+        <p>{{ article.username}}</p>
+        <p>{{dateCreated}}</p>
+      </div>
+    </div>
     <p *ngIf="dateEdited" class="last-edit">Last edit on {{dateEdited}}</p>
     <p class="views"> {{articleViews}} views</p>
     <div class="reactions-block">

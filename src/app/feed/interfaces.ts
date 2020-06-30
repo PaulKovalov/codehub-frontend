@@ -23,6 +23,7 @@ export interface Article extends ArticlePreview {
   last_modified: string;
   likes: number;
   dislikes: number;
+  author_avatar: string;
 }
 
 export interface CreateArticle {

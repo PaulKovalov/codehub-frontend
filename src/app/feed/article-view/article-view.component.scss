@@ -6,6 +6,24 @@
   pre {
     overflow-x: scroll;
   }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 10px;
+      width: 35px;
+      height: 35px;
+    }
+
+    .date-container {
+      p {
+        margin-bottom: 3px;
+        margin-top: 3px;
+      }
+    }
+  }
 }
 
 .loading {

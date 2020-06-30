@@ -4,6 +4,7 @@ import { AccountService } from '../../../accounts/account.service';
 import { SettingsService } from '../settings.service';
 import { NotificationSettings } from '../../interfaces';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-settings',
@@ -18,11 +19,13 @@ export class SettingsComponent implements OnInit {
   public updated = false;
   public errorsText: string;
   private readonly errorTextSample = 'Something went wrong. Please try again later';
+  public currentAvatarUrl = '';
   public imageChangedEvent: any = '';
   public croppedImage: any = '';
-  public currentAvatarUrl: string = '';
+  public updating = false;
+  private readonly imageUploadError = 'Something went wrong when loading image';
 
-  constructor(private accountService: AccountService, private settingsService: SettingsService) {
+  constructor(private accountService: AccountService, private settingsService: SettingsService, public ngxSmartModalService: NgxSmartModalService) {
   }
 
   ngOnInit() {
@@ -67,14 +70,33 @@ export class SettingsComponent implements OnInit {
   }
 
   public imageLoaded() {
-    // show cropper
-  }
-
-  public cropperReady() {
-    // cropper ready
   }
 
   public loadImageFailed() {
-    // show message
+    alert(this.imageUploadError);
+  }
+
+  public resetImage() {
+    this.imageChangedEvent = null;
+    this.croppedImage = '';
+  }
+
+  public updateUserAvatar() {
+
+    if (this.croppedImage) {
+      this.updating = true;
+      this.settingsService.updateAvatar(this.croppedImage).subscribe(data => {
+        this.currentAvatarUrl = data.avatar;
+        this.ngxSmartModalService.getModal('changeAvatarModal').close();
+        this.updating = false;
+      }, error => {
+        console.log(error.error);
+        if (error.error.avatar) {
+          alert(error.error.avatar[0]);
+        } else {
+          alert(this.errorTextSample);
+        }
+      });
+    }
   }
 }

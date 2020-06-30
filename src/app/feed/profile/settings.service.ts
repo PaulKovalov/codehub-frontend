@@ -4,6 +4,7 @@ import { Utils } from '../../shared/utils';
 import { NotificationSettings } from '../interfaces';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { User } from '../../accounts/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,12 @@ export class SettingsService {
         return null;
       }), catchError(err => null)
     );
+  }
+
+  public updateAvatar(avatarBase64: string): Observable<User> {
+    const data = {
+      avatar: avatarBase64
+    };
+    return this.http.patch<User>(Utils.doApiUrl('accounts/me/'), data);
   }
 }

@@ -1,24 +1,13 @@
 <div class="settings-list">
   <div class="personal-info-settings">
     <h3>Personal Info</h3>
-    <!--    <input type="file" (change)="fileChangeEvent($event)"/>-->
-    <!--    <image-cropper-->
-    <!--      [imageChangedEvent]="imageChangedEvent"-->
-    <!--      [maintainAspectRatio]="true"-->
-    <!--      [aspectRatio]="1"-->
-    <!--      format="png"-->
-    <!--      (imageCropped)="imageCropped($event)"-->
-    <!--      (imageLoaded)="imageLoaded()"-->
-    <!--      (cropperReady)="cropperReady()"-->
-    <!--      (loadImageFailed)="loadImageFailed()"-->
-    <!--    ></image-cropper>-->
-    <!--    <img [src]="croppedImage"/>-->
     <p class="tips-text">Edit personal info here</p>
     <form [formGroup]="userDataFormGroup">
       <p class="label">Username</p>
       <input formControlName="username">
     </form>
-    <img [src]="currentAvatarUrl" class="avatar-display">
+    <img (click)="ngxSmartModalService.getModal('changeAvatarModal').open()" [src]="currentAvatarUrl"
+         class="avatar-display">
   </div>
   <div class="separator"></div>
   <div *ngIf="notificationSettings" class="bottom">
@@ -40,3 +29,19 @@
     <button (click)="updateSettings()">Update settings</button>
   </div>
 </div>
+<ngx-smart-modal #changeAvatarModal customClass="change-avatar-modal" identifier="changeAvatarModal">
+  <input (change)="fileChangeEvent($event)" type="file"/>
+  <image-cropper
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (loadImageFailed)="loadImageFailed()"
+    [aspectRatio]="1"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    format="png"
+  ></image-cropper>
+  <div class="bottom-buttons">
+    <button (click)="resetImage()" [disabled]="!croppedImage || updating">Reset</button>
+    <button (click)="updateUserAvatar()" [disabled]="!croppedImage || updating">Update</button>
+  </div>
+</ngx-smart-modal>

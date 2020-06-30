@@ -7,7 +7,13 @@
       <button [routerLink]="backToTutorial()" class="back-button">Tutorial main page</button>
       <button (click)="prevArticle()" *ngIf="article.nav.prev !== -1" class="prev-button">Previous</button>
     </div>
-    <p> Written by {{ article.username}} on {{dateCreated}}</p>
+    <div class="author-info">
+      <img [src]="article.author_avatar">
+      <div class="date-container">
+        <p>{{ article.username}}</p>
+        <p>{{dateCreated}}</p>
+      </div>
+    </div>
     <p *ngIf="dateEdited">Last edit on {{dateEdited}}</p>
     <p> {{articleViews}} views</p>
     <div class="reactions-block">
