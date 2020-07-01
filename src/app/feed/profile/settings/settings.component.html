@@ -6,6 +6,7 @@
       <p class="label">Username</p>
       <input formControlName="username">
     </form>
+    <p class="label">Profile picture</p>
     <img (click)="ngxSmartModalService.getModal('changeAvatarModal').open()" [src]="currentAvatarUrl"
          class="avatar-display">
   </div>
