@@ -1,7 +1,7 @@
 <ng-container *ngIf="article; else loading">
   <div class="article">
     <h2>{{ article.title }}</h2>
-    <div [innerHTML]="article.text"></div>
+    <div [innerHTML]="article.text | safeHtml"></div>
     <div class="author-info">
       <img [src]="article.author_avatar">
       <div class="date-container">
