@@ -38,6 +38,7 @@ import { SettingsComponent } from './profile/settings/settings.component';
 import { HighlightService } from './services/highlight.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { EditorModuleComponent } from './profile/editor-module/editor-module.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
     RangeLoopPipe,
     SearchComponent,
     SettingsComponent,
+    EditorModuleComponent,
   ],
   providers: [
     ContentService,
