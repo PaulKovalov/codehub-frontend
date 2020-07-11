@@ -45,7 +45,10 @@ export class ArticleViewComponent implements OnInit, AfterViewChecked {
     this.authService.isLoggedIn$().subscribe((loggedIn) => this.loggedIn = loggedIn);
     this.mode = this.activatedRoute.snapshot.data.mode;
     this.activatedRoute.paramMap.subscribe((params) => {
-      const articleId = params.get('id');
+      const articleId = Number(params.get('id'));
+      if (isNaN(articleId)) {
+        this.router.navigateByUrl('/404');
+      }
       this.contentService.loadArticle(articleId).subscribe((article) => {
         this.article = article;
         this.dateCreated = new Date(this.article.date_created).toDateString();

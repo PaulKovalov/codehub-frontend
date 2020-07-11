@@ -58,6 +58,9 @@ export class TutorialArticleViewComponent implements OnInit, AfterViewChecked {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       this.tutorialId = Number(paramMap.get('tutorialId'));
       this.articleId = Number(paramMap.get('articleId'));
+      if (isNaN(this.tutorialId) || isNaN(this.articleId)) {
+        this.router.navigateByUrl('/404');
+      }
       this.contentService.loadTutorialArticle(this.tutorialId, this.articleId).subscribe((data) => {
         this.article = data;
         this.dateCreated = new Date(this.article.date_created).toDateString();

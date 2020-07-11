@@ -39,6 +39,9 @@ export class TutorialViewComponent implements OnInit {
     this.mode = this.activatedRoute.snapshot.data.mode;
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       const tutorialId = Number(paramMap.get('tutorialId'));
+      if (isNaN(tutorialId)) {
+        this.router.navigateByUrl('/404');
+      }
       this.contentService.loadTutorial(tutorialId).subscribe((data) => {
         this.tutorial = data;
         this.dateCreated = new Date(this.tutorial.date_created).toDateString();

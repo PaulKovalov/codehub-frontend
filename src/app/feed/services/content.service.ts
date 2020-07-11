@@ -48,7 +48,7 @@ export class ContentService {
     return this.http.get<Tutorial[]>(Utils.doApiUrl('tutorials/recent/'));
   }
 
-  public loadArticle(id: string | number): Observable<Article> {
+  public loadArticle(id: number): Observable<Article> {
     return this.http.get<Article>(Utils.doApiUrl(`articles/${id}/`));
   }
 

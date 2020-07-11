@@ -26,7 +26,10 @@ export class NewArticleComponent extends NewArticleBaseComponent implements OnIn
       });
     } else if (this.mode === 'edit') {
       this.activatedRoute.paramMap.subscribe((params) => {
-        const articleId = params.get('id');
+        const articleId = Number(params.get('id'));
+        if (isNaN(articleId)) {
+          this.router.navigateByUrl('/404');
+        }
         this.contentService.loadArticle(articleId).subscribe((article) => {
           this.editArticleId = article.id;
           this.editor = article.text;
