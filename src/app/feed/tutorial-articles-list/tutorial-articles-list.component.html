@@ -4,5 +4,5 @@
   </div>
 </ng-container>
 <ng-template #noContent>
-  <p>No articles yet, click "+ Add article" to add one</p>
+  <p *ngIf="viewedByOwner">No articles yet, click "+ Add article" to add one</p>
 </ng-template>
