@@ -2,11 +2,11 @@
 FROM node:alpine3.10 as builder
 
 WORKDIR /ng-app
-COPY package.json package-lock.json ./
-RUN npm install
+COPY package.json yarn.lock ./
+RUN yarn install
 COPY src ./src
 COPY angular.json tsconfig.json tsconfig.app.json tslint.json ./
-RUN $(npm bin)/ng build --prod
+RUN $(yarn bin)/ng build --prod
 
 ### STAGE 2: Setup ###
 FROM nginx:1.17.9-alpine
