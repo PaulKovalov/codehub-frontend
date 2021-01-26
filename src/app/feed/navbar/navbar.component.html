@@ -1,19 +1,15 @@
-<div (clickOutside)="outsideClickHandler()" class="base-style">
-  <div class="mobile-toolbar">
-    <button (click)="mobileOpened = !mobileOpened"
-            [ngClass]="mobileOpened ? 'is-active' : ''"
-            class="hamburger hamburger--slider"
-            type="button">
+<div (clickOutside)="outsideClickHandler()" class="mobile-toolbar">
+  <button (click)="navbarOpened = !navbarOpened"
+          [ngClass]="navbarOpened ? 'is-active' : ''"
+          class="hamburger hamburger--slider">
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
           </span>
+  </button>
+</div>
+<div [ngClass]="navbarOpened ? 'navbar-elements' : 'hide-navbar'" class="navbar-elements">
+  <div *ngFor="let item of navbarItems">
+    <button [routerLink]="item.routerLink" routerLinkActive="selected"><span>{{item.title | titlecase}}</span>
     </button>
-  </div>
-  <div *ngFor="let item of navbarItems" [ngClass]="mobileOpened ? '' : 'hide-navbar'">
-    <div class="nav-element">
-      <img *ngIf="item.asset" src="{{item.asset}}">
-      <button [routerLink]="item.routerLink" routerLinkActive="selected"><span>{{item.title | titlecase}}</span>
-      </button>
-    </div>
   </div>
 </div>

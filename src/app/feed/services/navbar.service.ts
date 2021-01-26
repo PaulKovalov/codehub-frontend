@@ -6,22 +6,18 @@ import { AccountService } from '../../accounts/account.service';
 const nonAuthenticatedNavbarSet: NavbarElement[] = [
   {
     title: 'home',
-    asset: null,
     routerLink: '/home'
   },
   {
     title: 'articles',
-    asset: null,
     routerLink: '/articles',
   },
   {
     title: 'tutorials',
-    asset: null,
     routerLink: '/tutorials',
   },
   {
     title: 'search',
-    asset: null,
     routerLink: '/search',
   }
 ];
@@ -29,7 +25,6 @@ const nonAuthenticatedNavbarSet: NavbarElement[] = [
 const authenticatedNavbarSet: NavbarElement[] = [...nonAuthenticatedNavbarSet, ...[
   {
     title: 'profile',
-    asset: null,
     routerLink: '/profile/my-articles',
   },
 ]

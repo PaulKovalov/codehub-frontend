@@ -1,19 +1,13 @@
-.base-style {
+.mobile-toolbar {
+  display: none;
+}
+
+.navbar-elements {
   display: flex;
   justify-content: space-between;
   max-width: 800px;
   padding-left: 20px;
   padding-right: 20px;
-
-  .nav-element {
-    margin-bottom: 4px;
-    width: max-content;
-  }
-
-  .mobile-toolbar {
-    display: none;
-    height: 0px;
-  }
 
   .selected {
     border-bottom: 8px solid #E5E9F2;

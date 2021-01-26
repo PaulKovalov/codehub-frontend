@@ -12,7 +12,7 @@ import { filter } from 'rxjs/operators';
 export class NavbarComponent implements OnDestroy {
 
   public navbarItems: NavbarElement[];
-  public mobileOpened = false;
+  public navbarOpened = false;
   private navbarService;
   private routeChangesSubscription;
 
@@ -30,8 +30,8 @@ export class NavbarComponent implements OnDestroy {
   }
 
   public outsideClickHandler() {
-    if (this.mobileOpened) {
-      this.mobileOpened = !this.mobileOpened;
+    if (this.navbarOpened) {
+      this.navbarOpened = !this.navbarOpened;
     }
   }
 

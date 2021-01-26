@@ -76,7 +76,6 @@ export interface TutorialArticlesPage {
 
 export interface NavbarElement {
   title: string;
-  asset: string | null;
   routerLink: string;
 }
 

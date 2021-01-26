@@ -1,22 +1,21 @@
 @import '~hamburgers/_sass/hamburgers/hamburgers.scss';
 
-.base-style {
+.hamburger {
+  padding: 10px 15px !important;
+}
+
+.hide-navbar {
+  display: none !important;
+}
+
+.navbar-elements {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  padding-left: 10px;
 
-  .nav-element {
-    padding: 10px 0px 10px 10px;
-  }
-
-  .hamburger {
-    padding: 10px 15px;
-  }
-
-  .hide-navbar {
-    display: none;
-    height: 0px;
+  button {
+    height: 35px;
   }
 
   .selected {
