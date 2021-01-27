@@ -3,12 +3,15 @@
 .base-style {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  height: 100vh;
+  text-align: center;
 
   .container {
     .item {
       padding: 6px;
-      text-align: center;
+      display: flex;
+      justify-content: space-around;
 
       .content-secondary {
         margin-top: 45px;
@@ -35,7 +38,6 @@
         height: 40px;
         padding: 5px 14px 5px 14px;
         font-size: 18px;
-        color: #8190A5;
       }
 
       .action-button {
@@ -53,3 +55,14 @@
     }
   }
 }
+
+// dark theme styling
+:host-context(.dark-theme) input {
+  background-color: $input-background_d;
+  color: $font_d;
+}
+
+:host-context(.dark-theme) input::placeholder {
+  color: $tips-text_d;
+}
+

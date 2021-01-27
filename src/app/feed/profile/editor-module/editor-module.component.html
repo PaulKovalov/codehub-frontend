@@ -3,6 +3,8 @@
   (onInit)="editorLoaded.emit('loaded')"
   [(ngModel)]="editor"
   [init]="{
+     skin: 'oxide-dark',
+     content_css: 'dark',
      base_url: '/tinymce',
      suffix: '.min',
      height: 500,

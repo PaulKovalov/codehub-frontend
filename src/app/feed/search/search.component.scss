@@ -16,3 +16,8 @@
 h3 {
   border-bottom: 1px solid black;
 }
+
+:host-context(.dark-theme) input {
+  background-color: $input-background_d;
+  color: $font_d;
+}

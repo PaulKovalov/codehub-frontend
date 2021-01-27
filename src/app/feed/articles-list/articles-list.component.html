@@ -1,6 +1,6 @@
 <ng-container *ngIf="content && content.length; else noContent">
   <div class="dropdown">
-    Order by:
+    <p>Order by:</p>
     <select (change)="setOrder()" [formControl]="orderingControl">
       <option value="views">Views</option>
       <option selected="true" value="date">Date</option>

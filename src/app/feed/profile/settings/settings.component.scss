@@ -13,7 +13,6 @@
       width: 200px;
       padding: 5px;
       font-size: 18px;
-      color: #8190A5;
     }
 
     .avatar-display {
@@ -43,7 +42,7 @@
     align-items: center;
 
     p {
-      margin: 5px 0px 5px 0px;
+      margin: 5px 0 5px 0;
     }
   }
 
@@ -62,11 +61,30 @@
     align-items: flex-end;
 
     .error {
-      padding: 0px;
+      padding: 0;
     }
   }
 
   .success {
     color: #33cc33;
   }
+}
+
+
+// dark theme styles
+:host-context(.dark-theme) input {
+  background-color: $input-background_d;
+  color: $font_d;
+}
+
+:host-context(.dark-theme) input::placeholder {
+  color: $tips-text_d;
+}
+
+:host-context(.dark-theme) .tips-text {
+  color: $tips-text_d;
+}
+
+:host-context(.dark-theme) .separator {
+  border-bottom: 1px solid $tips-text_d;
 }

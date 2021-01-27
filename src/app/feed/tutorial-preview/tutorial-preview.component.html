@@ -4,11 +4,11 @@
       <h3>{{tutorial.title}}</h3>
       <div *ngIf="tutorial.published" class="align-items">
         <img src="assets/img/published.png">
-        (published)
+        <span class="tips-text">(published)</span>
       </div>
       <div *ngIf="!tutorial.published" class="align-items">
         <img src="assets/img/pending.png">
-        (pending)
+        <span class="tips-text">(pending)</span>
       </div>
     </div>
   </ng-container>

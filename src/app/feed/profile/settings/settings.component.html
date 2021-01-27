@@ -24,6 +24,15 @@
       <p>Reply to my comment</p>
     </div>
   </div>
+  <div class="separator"></div>
+  <div>
+    <h3>Site settings</h3>
+    <div class="checkbox-item">
+      <input (change)="darkModeService.toggleMode()" [checked]="darkModeService.enabled" type="checkbox">
+      <p>Dark mode</p>
+    </div>
+  </div>
+  <div class="separator"></div>
   <div class="bottom-messages">
     <p *ngIf="errorsText" class="error">{{errorsText}}</p>
     <p *ngIf="updated" class="success">Settings have been updated</p>

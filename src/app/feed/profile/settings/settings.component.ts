@@ -5,6 +5,7 @@ import { SettingsService } from '../settings.service';
 import { NotificationSettings } from '../../interfaces';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { DarkModeService } from '../../../dark-mode.service';
 
 @Component({
   selector: 'app-settings',
@@ -25,7 +26,10 @@ export class SettingsComponent implements OnInit {
   public updating = false;
   private readonly imageUploadError = 'Something went wrong when loading image';
 
-  constructor(private accountService: AccountService, private settingsService: SettingsService, public ngxSmartModalService: NgxSmartModalService) {
+  constructor(private accountService: AccountService,
+              private settingsService: SettingsService,
+              public ngxSmartModalService: NgxSmartModalService,
+              public darkModeService: DarkModeService) {
   }
 
   ngOnInit() {
