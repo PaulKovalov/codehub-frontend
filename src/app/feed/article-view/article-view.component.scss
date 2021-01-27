@@ -10,7 +10,6 @@
   .author-info {
     display: flex;
     align-items: center;
-
     img {
       margin-right: 10px;
       width: 35px;
@@ -41,9 +40,19 @@
 .last-edit, .views {
   color: #8190A5;
 }
+
 @media (max-width: $mobile_screen_width) {
   :host ::ng-deep img {
     width: 100%;
     height: 100%;
   }
+}
+
+// dark theme styles
+:host-context(.dark-theme) .article {
+  color: $font_d;
+}
+
+:host-context(.dark-theme) .last-edit, .views {
+  color: $tips-text_d;
 }

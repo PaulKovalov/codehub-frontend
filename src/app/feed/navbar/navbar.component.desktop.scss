@@ -1,3 +1,5 @@
+@import 'src/app/scss/colors';
+
 .mobile-toolbar {
   display: none;
 }
@@ -10,6 +12,6 @@
   padding-right: 20px;
 
   .selected {
-    border-bottom: 8px solid #E5E9F2;
+    border-bottom: 8px solid $selected-navbar-element;
   }
 }

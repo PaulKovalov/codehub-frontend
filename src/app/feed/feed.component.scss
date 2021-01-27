@@ -5,20 +5,19 @@
   flex-grow: 1;
   flex-direction: column;
 
-  .content {
-    flex: 1 0 auto;
-    padding: 30px 20px 30px 20px;
-  }
-
-  app-header, app-footer {
-    flex-shrink: 0;
+  :host-context(.dark-theme) {
+    background-color: $background_d;
   }
 }
 
+.content {
+  flex-grow: 1;
+  padding: 30px 20px 30px 20px;
+}
+
 @media (max-width: $mobile_screen_width) {
-  :host {
-    .content {
-      padding: 20px 10px 20px 10px;
-    }
+  .content {
+    flex-grow: 1;
+    padding: 20px 10px 20px 10px;
   }
 }

@@ -1,18 +1,14 @@
 @import '../../scss/base.scss';
 
 .tutorial-preview {
-  margin: 20px 0px 20px 0px;
+  margin: 20px 0 20px 0;
   max-width: 800px;
   cursor: pointer;
 
   .content-main {
     font-size: 18px;
     font-weight: 400;
-    margin: 5px 0px 5px 0px;
-
-    .preview {
-      color: #595959;
-    }
+    margin: 5px 0 5px 0;
   }
 
   .align-items {
@@ -24,16 +20,16 @@
   img {
     width: 20px;
     height: 20px;
-    margin: 0px 10px 0px 20px;
+    margin: 0 10px 0 20px;
   }
 }
 
 @media (max-width: $mobile_screen_width) {
   .tutorial-preview {
-    margin: 15px 0px 15px 0px;
+    margin: 15px 0 15px 0;
 
     .content-main {
-      margin: 5px 0px 5px 0px;
+      margin: 5px 0 5px 0;
       font-size: 16px;
     }
 
@@ -43,8 +39,12 @@
     }
 
     img {
-      margin: 0px 5px 0px 10px;
+      margin: 0 5px 0 10px;
     }
   }
 }
 
+// dark theme styles
+:host-context(.dark-theme) .tips-text {
+  color: $tips-text_d;
+}

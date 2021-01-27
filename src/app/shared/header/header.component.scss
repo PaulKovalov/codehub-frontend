@@ -1,9 +1,23 @@
 @import '../../scss/base.scss';
 
+.logo {
+  @extend h1;
+}
+
+.header-elements {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 @media (max-width: $mobile_screen_width) {
-  @import "header.component.mobile.scss";
+  .base-style {
+    padding: 10px;
+  }
 }
 
 @media (min-width: $mobile_screen_width) {
-  @import "header.component.desktop.scss";
+  .base-style {
+    padding: 20px;
+  }
 }
