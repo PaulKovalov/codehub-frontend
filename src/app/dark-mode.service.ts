@@ -30,14 +30,13 @@ export class DarkModeService {
     const appRoot = document.getElementsByTagName('app-root')[0];
     appRoot.classList.add('dark-theme');
     this.darkModeEnabled = true;
-    this.cookieService.set('dm', String(this.darkModeEnabled), {sameSite: 'Strict'});
-    this.cookieService.set('dm', String(this.darkModeEnabled));
+    this.cookieService.set('dm', String(this.darkModeEnabled), {path: '/', expires: 365});
   }
 
   private disableDarkMode() {
     const appRoot = document.getElementsByTagName('app-root')[0];
     appRoot.classList.remove('dark-theme');
     this.darkModeEnabled = false;
-    this.cookieService.set('dm', String(this.darkModeEnabled));
+    this.cookieService.set('dm', String(this.darkModeEnabled), {path: '/', expires: 365});
   }
 }

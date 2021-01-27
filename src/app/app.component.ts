@@ -11,7 +11,6 @@ import { DarkModeService } from './dark-mode.service';
 })
 export class AppComponent {
   constructor(private router: Router, private gtmService: GoogleTagManagerService, private darkModeService: DarkModeService) {
-
     if (gtmService.googleTagManagerId) {
       router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
         const gtmTag = {

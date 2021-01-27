@@ -1,3 +1,6 @@
 {
-  "apiUrl": "/api/v1/"
+  "apiUrl": "/api/v1/",
+  "googleTag": "gtmtag",
+  "maxArticleLength": 65536,
+  "minArticleLength": 256
 }
