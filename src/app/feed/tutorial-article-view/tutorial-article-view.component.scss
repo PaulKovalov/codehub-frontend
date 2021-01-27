@@ -47,6 +47,7 @@
     margin-left: 20px;
   }
 }
+
 @media (max-width: $mobile_screen_width) {
   :host ::ng-deep img {
     width: 100%;
@@ -54,3 +55,11 @@
   }
 }
 
+// dark theme styles
+:host-context(.dark-theme) .article {
+  color: $font_d;
+}
+
+:host-context(.dark-theme) .last-edit, .views {
+  color: $tips-text_d;
+}
