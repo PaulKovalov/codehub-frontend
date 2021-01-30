@@ -2,6 +2,10 @@
   .article {
     color: map-get($theme, text);
 
+    .reactions-block > .item > .reaction-button {
+      color: map-get($theme, helper-text);
+    }
+
     .bottom-buttons {
       button {
         color: map-get($theme, text);

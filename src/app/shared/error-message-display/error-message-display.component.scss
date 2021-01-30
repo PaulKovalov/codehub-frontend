@@ -1,37 +1,35 @@
 @use '../../scss/base';
 
 .error-message-block {
+  background: #ff9900;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: fit-content;
+  padding: 0 10px 0 10px;
+  min-height: 40px;
 
-  p {
-    @include base.text-style;
-    max-width: 80vw;
+  .text-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    p {
+      color: black;
+      @include base.text-style;
+      margin: 0;
+    }
   }
+
 
   button {
     @include base.button-style;
-    position: absolute;
-    right: 25px;
     background-color: inherit;
+    font-size: unset;
+    height: 24px;
   }
 }
 
 .error-message-block.hidden {
   transform: translate(0, -150%);
   transition: transform 0.2s linear;
-}
-
-@media (max-width: base.$mobile_screen_width) {
-  p {
-    margin-top: 4px;
-    margin-bottom: 4px;
-  }
-  .error-message-block {
-    width: 93vw;
-    justify-content: unset;
-    padding-left: 10px;
-  }
 }

@@ -1,11 +1,13 @@
-@import '~hamburgers/_sass/hamburgers/hamburgers.scss';
-
-.hamburger {
-  padding: 10px 15px !important;
-}
+@use '../../scss/base';
 
 .hide-navbar {
   display: none !important;
+}
+
+.mobile-toolbar {
+  button {
+    border: none;
+  }
 }
 
 .navbar-elements {

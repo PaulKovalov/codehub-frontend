@@ -1,6 +1,0 @@
-@mixin error-message-display-component($theme) {
-  .error-message-block {
-    color: map-get($theme, text);
-    background-color: map-get($theme, error-banner);
-  }
-}

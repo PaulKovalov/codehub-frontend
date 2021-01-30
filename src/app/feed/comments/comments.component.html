@@ -8,7 +8,7 @@
 </div>
 <div *ngIf="commentsTree && commentsTree.length" class="comments-list">
   <div *ngFor="let comment of commentsTree" class="comment-node">
-    <img *ngFor="let _ of comment.depth | rangeLoop" src="assets/img/dot.png">
+    <mat-icon *ngFor="let _ of comment.depth | rangeLoop" class="circle">circle</mat-icon>
     <div class="comment">
       <div class="comment-top">
         <h4>{{comment.comment.username}}</h4>
@@ -28,11 +28,11 @@
       </ng-template>
       <div class="reactions-block">
         <div class="item">
-          <img (click)="likeComment(comment.comment)" src="assets/img/like.png">
+          <mat-icon (click)="likeComment(comment.comment)" class="reaction-button">thumb_up</mat-icon>
           <p>{{comment.comment.likes}}</p>
         </div>
         <div class="item">
-          <img (click)="dislikeComment(comment.comment)" src="assets/img/dislike.png">
+          <mat-icon (click)="dislikeComment(comment.comment)" class="reaction-button">thumb_down</mat-icon>
           <p>{{comment.comment.dislikes}}</p>
         </div>
       </div>

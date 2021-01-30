@@ -9,13 +9,26 @@
 
     @media (max-width: base.$mobile_screen_width) {
       .selected {
-        border-left: solid 6px map-get($theme, selected-navbar-element);
+        border-left: 6px solid map-get($theme, selected-navbar-element) !important;
       }
     }
 
     @media (min-width: base.$mobile_screen_width) {
       .selected {
-        border-bottom: solid 6px map-get($theme, selected-navbar-element) !important;
+        border-bottom: 6px solid map-get($theme, selected-navbar-element) !important;
+      }
+    }
+  }
+  @media (max-width: base.$mobile_screen_width) {
+    .mobile-toolbar {
+      button {
+        border: none;
+        background: map-get($theme, background);
+
+        mat-icon {
+          color: map-get($theme, text);
+          font-size: 32px;
+        }
       }
     }
   }

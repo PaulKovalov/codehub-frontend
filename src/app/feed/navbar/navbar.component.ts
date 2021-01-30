@@ -38,4 +38,8 @@ export class NavbarComponent implements OnDestroy {
   ngOnDestroy() {
     this.routeChangesSubscription.unsubscribe();
   }
+
+  get menuIcon() {
+    return this.navbarOpened ? 'menu_opened' : 'menu';
+  }
 }

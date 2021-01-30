@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppConfigService } from './app-config.service';
 import { CsrfInjector } from './accounts/csrf-injector.service';
 import { environment } from '../environments/environment';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 /**
  * Runs before any other part of the application
@@ -31,6 +32,7 @@ const appEnvironmentFn = (appConfig: AppConfigService) => {
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    NoopAnimationsModule,
   ],
   providers: [
     CookieService,

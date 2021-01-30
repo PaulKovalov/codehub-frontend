@@ -10,7 +10,7 @@
   }
 
   .reactions-block {
-    @include reactions-block.reactions-block;
+    @include reactions-block.reactions-block(20px);
   }
 
   .author-info {

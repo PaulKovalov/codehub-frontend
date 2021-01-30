@@ -1,7 +1,6 @@
 @import 'app/app.component.colors';
 @import 'app/shared/header/header.component.colors';
 @import 'app/shared/footer/footer.component.colors';
-@import 'app/shared/error-message-display/error-message-display-component.colors';
 @import 'app/feed/article-preview/article.preview.component.colors';
 @import 'app/feed/article-view/article-view.component.colors';
 @import 'app/feed/articles-list/articles-list.component.colors';
@@ -24,7 +23,6 @@
   @include app-component-colors($theme);
   @include header-component-colors($theme);
   @include footer-component-colors($theme);
-  @include error-message-display-component($theme);
   @include article-preview-component-colors($theme);
   @include article-view-component-colors($theme);
   @include articles-list-component-colors($theme);

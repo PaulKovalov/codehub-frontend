@@ -1,13 +1,10 @@
 @use '../../scss/base';
 
-.article {
+@mixin preview {
+  @include base.text-style;
   margin: 20px 0 20px 0;
   max-width: 800px;
   cursor: pointer;
-
-  h3 {
-    @include base.header-style(3);
-  }
 
   .content-main {
     font-size: 18px;
@@ -18,12 +15,10 @@
   .align-items {
     display: flex;
     align-items: center;
-  }
 
-  img {
-    width: 20px;
-    height: 20px;
-    margin: 0 10px 0 20px;
+    .icon-pending, .icon-published {
+      margin: 0 5px 0 15px;
+    }
   }
 
   .helper-text {
@@ -31,22 +26,26 @@
   }
 }
 
+.article {
+  @include preview;
+}
+
+@mixin mobile-preview {
+  margin: 15px 0 15px 0;
+
+  .content-main {
+    margin: 5px 0 5px 0;
+    font-size: 16px;
+  }
+
+  .helper-text {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
 @media (max-width: base.$mobile_screen_width) {
   .article {
-    margin: 15px 0 15px 0;
-
-    .content-main {
-      margin: 5px 0 5px 0;
-      font-size: 16px;
-    }
-
-    .helper-text {
-      font-size: 14px;
-      line-height: 20px;
-    }
-
-    img {
-      margin: 0 5px 0 10px;
-    }
+    @include mobile-preview;
   }
 }

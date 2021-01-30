@@ -39,6 +39,7 @@ import { HighlightService } from './services/highlight.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
 import { EditorModuleComponent } from './profile/editor-module/editor-module.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { EditorModuleComponent } from './profile/editor-module/editor-module.com
     EditorModule,
     FormsModule,
     ImageCropperModule,
+    MatIconModule,
     NgxSmartModalModule.forChild()
   ],
 })

@@ -2,6 +2,10 @@
   .tutorial-article {
     color: map-get($theme, text);
 
+    .reactions-block > .item > .reaction-button {
+      color: map-get($theme, helper-text);
+    }
+
     .last-edit, .views {
       color: map-get($theme, helper-text);
     }

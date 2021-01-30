@@ -1,5 +1,8 @@
 <div *ngIf="message && show" [ngClass]="displayAnimation ? 'hidden': ''" class="error-message-block">
-  <p>{{message}}</p>
-<!--  TODO change this to something that can be colored-->
-  <button (click)="close()"><img src="assets/img/close-button.png"></button>
+  <div class="text-block">
+    <p>{{message}}</p>
+  </div>
+  <button (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
 </div>

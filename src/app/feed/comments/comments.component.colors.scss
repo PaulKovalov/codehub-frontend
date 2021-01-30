@@ -14,8 +14,14 @@
       }
     }
   }
-
+  .comments-list > .comment-node > .circle {
+    color: map-get($theme, helper-text);
+  }
   .comment {
+    .reactions-block {
+      color: map-get($theme, helper-text);
+    }
+
     .comment-top {
       p {
         color: map-get($theme, helper-text);

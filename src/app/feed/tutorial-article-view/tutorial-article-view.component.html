@@ -18,11 +18,11 @@
     <p class="views"> {{articleViews}} views</p>
     <div class="reactions-block">
       <div class="item">
-        <img (click)="likeArticle()" src="assets/img/like.png">
+        <mat-icon (click)="likeArticle()" class="reaction-button">thumb_up</mat-icon>
         <p>{{article.likes}}</p>
       </div>
       <div class="item">
-        <img (click)="dislikeArticle()" src="assets/img/dislike.png">
+        <mat-icon (click)="dislikeArticle()" class="reaction-button">thumb_down</mat-icon>
         <p>{{article.dislikes}}</p>
       </div>
     </div>

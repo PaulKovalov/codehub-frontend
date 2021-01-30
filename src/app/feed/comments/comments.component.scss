@@ -47,20 +47,25 @@ input {
     align-items: center;
     margin-top: 20px;
 
+    .circle {
+      font-size: 8px;
+    }
+
     .comment {
       @include base.text-style;
 
+      p {
+        margin: 0;
+      }
+
       .comment-top {
         height: 30px;
+        display: flex;
+        align-items: center;
 
         p {
-          margin: 0;
           font-size: 12px;
         }
-
-        display: flex;
-        flex-direction: row;
-        align-items: center;
 
         h4 {
           margin: 0 20px 0 0;
@@ -68,7 +73,7 @@ input {
       }
 
       .reactions-block {
-        @include reactions-block.reactions-block;
+        @include reactions-block.reactions-block(15px);
         margin-top: 8px;
         margin-bottom: 8px;
       }

@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ErrorMessageDisplayComponent } from './error-message-display/error-message-display.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ErrorMessageDisplayComponent } from './error-message-display/error-mess
   imports: [
     CommonModule,
     RouterModule,
+    MatIconModule
   ]
 })
 export class SharedModule {
