@@ -1,9 +1,8 @@
 @mixin articles-list-component-colors($theme) {
+  .dropdown > p, .no-articles > p {
+    color: map-get($theme, text);
+  }
   .dropdown {
-    p {
-      color: map-get($theme, text);
-    }
-
     select, option {
       background: map-get($theme, input-bg);
       color: map-get($theme, text);
