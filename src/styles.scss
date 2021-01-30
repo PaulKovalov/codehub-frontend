@@ -1,7 +1,7 @@
+@use 'app/scss/base';
 @import "~prismjs/plugins/toolbar/prism-toolbar";
 @import "~prismjs/themes/prism-okaidia";
 @import "~ngx-smart-modal/ngx-smart-modal";
-@import "app/app.component";
 
 body {
   margin: 0;
@@ -15,9 +15,9 @@ body {
   .bottom-buttons {
     display: flex;
     justify-content: flex-end;
-    flex-direction: row;
 
     button {
+      @include base.button-style;
       margin-left: 15px;
     }
   }
