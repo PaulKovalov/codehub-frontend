@@ -1,4 +1,4 @@
-@import '../../../scss/base.scss';
+@use '../../../scss/base';
 
 .tutorial-title {
   font-weight: bold;
@@ -18,7 +18,12 @@
 }
 
 .new-article {
+  @include base.text-style;
   max-width: 1200px;
+
+  button {
+    @include base.button-style;
+  }
 }
 
 .loading-editor-alert {

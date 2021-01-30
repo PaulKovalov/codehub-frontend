@@ -5,7 +5,7 @@ import { BaseListComponent } from '../base-list/base-list.component';
 @Component({
   selector: 'app-tutorials-list',
   templateUrl: './tutorials-list.component.html',
-  styleUrls: ['./tutorials-list.component.scss']
+  styleUrls: ['../articles-list/articles-list.component.scss']
 })
 export class TutorialsListComponent extends BaseListComponent implements OnInit {
 

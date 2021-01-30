@@ -1,0 +1,13 @@
+@import '../../../app-theme';
+
+$theme: (
+  background: #222f3e,
+  text: #fff,
+  helper-text: #b3d9ff,
+  error-banner: #ff9900,
+  input-bg: #2b3d52,
+  selected-navbar-element: #e5e9f2,
+  separator: #b3d9ff
+);
+
+@include app-colors($theme);

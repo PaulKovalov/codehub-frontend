@@ -1,9 +1,13 @@
-@import '../../scss/base.scss';
+@use '../../scss/base';
 
 .article {
   margin: 20px 0 20px 0;
   max-width: 800px;
   cursor: pointer;
+
+  h3 {
+    @include base.header-style(3);
+  }
 
   .content-main {
     font-size: 18px;
@@ -13,7 +17,6 @@
 
   .align-items {
     display: flex;
-    flex-direction: row;
     align-items: center;
   }
 
@@ -22,9 +25,13 @@
     height: 20px;
     margin: 0 10px 0 20px;
   }
+
+  .helper-text {
+    @include base.helper-text;
+  }
 }
 
-@media (max-width: $mobile_screen_width) {
+@media (max-width: base.$mobile_screen_width) {
   .article {
     margin: 15px 0 15px 0;
 
@@ -33,7 +40,7 @@
       font-size: 16px;
     }
 
-    .tips-text {
+    .helper-text {
       font-size: 14px;
       line-height: 20px;
     }
@@ -42,9 +49,4 @@
       margin: 0 5px 0 10px;
     }
   }
-}
-
-// dark theme styles
-:host-context(.dark-theme) .tips-text {
-  color: $tips-text_d;
 }

@@ -1,0 +1,21 @@
+@mixin settings-component-colors($theme) {
+  .settings-list {
+    color: map-get($theme, text);
+
+    .separator {
+      border-bottom: 1px solid map-get($theme, separator);
+    }
+
+    button {
+      color: map-get($theme, text);
+      background: map-get($theme, background);
+    }
+
+    .personal-info-settings {
+      input {
+        background: map-get($theme, input-bg);
+        color: map-get($theme, text);
+      }
+    }
+  }
+}

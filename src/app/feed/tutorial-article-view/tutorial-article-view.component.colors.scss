@@ -1,0 +1,23 @@
+@mixin tutorial-article-view-component-colors($theme) {
+  .tutorial-article {
+    color: map-get($theme, text);
+
+    .last-edit, .views {
+      color: map-get($theme, helper-text);
+    }
+
+    span, p, h1, h2, h3, h4, h5, h6 {
+      color: map-get($theme, text);
+    }
+
+    .bottom-buttons {
+      button {
+        color: map-get($theme, text);
+        background: map-get($theme, background);
+      }
+    }
+  }
+  .no-comments {
+    color: map-get($theme, text);
+  }
+}

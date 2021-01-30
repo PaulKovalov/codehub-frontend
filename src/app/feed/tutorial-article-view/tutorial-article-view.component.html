@@ -1,5 +1,5 @@
 <ng-container *ngIf="article; else loading">
-  <div class="article">
+  <div class="tutorial-article">
     <h2>{{ article.title }}</h2>
     <div [innerHTML]="article.text | safeHtml"></div>
     <div class="bottom-buttons">
@@ -14,8 +14,8 @@
         <p>{{dateCreated}}</p>
       </div>
     </div>
-    <p *ngIf="dateEdited">Last edit on {{dateEdited}}</p>
-    <p> {{articleViews}} views</p>
+    <p *ngIf="dateEdited" class="last-edit">Last edit on {{dateEdited}}</p>
+    <p class="views"> {{articleViews}} views</p>
     <div class="reactions-block">
       <div class="item">
         <img (click)="likeArticle()" src="assets/img/like.png">
@@ -39,7 +39,7 @@
     <app-comments [mode]="'tutorial'"></app-comments>
   </ng-container>
   <ng-template #commentsNotAvailable>
-    <p>Discussion will be available when article is published</p>
+    <p class="no-comments">Discussion will be available when article is published</p>
   </ng-template>
 </ng-container>
 <ng-template #loading>

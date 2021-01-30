@@ -1,11 +1,12 @@
-@import '../../../scss/base.scss';
+@use '../../../scss/base';
 
 .compose-button {
-  margin: 20px 0px 20px 0px;
+  @include base.button-style;
+  margin: 20px 0 20px 0;
 }
 
-@media (max-width: $mobile_screen_width) {
+@media (max-width: base.$mobile_screen_width) {
   .compose-button {
-    margin: 10px 0px 20px 0px;
+    margin: 10px 0 20px 0;
   }
 }

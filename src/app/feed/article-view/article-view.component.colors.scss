@@ -1,0 +1,15 @@
+@mixin article-view-component-colors($theme) {
+  .article {
+    color: map-get($theme, text);
+
+    .bottom-buttons {
+      button {
+        color: map-get($theme, text);
+        background: map-get($theme, background);
+      }
+    }
+  }
+  .last-edit, .views {
+    color: map-get($theme, helper-text);
+  }
+}

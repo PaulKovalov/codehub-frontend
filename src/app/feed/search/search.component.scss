@@ -1,23 +1,19 @@
-@import "../../scss/base";
+@use '../../scss/base';
 
-.search-prompt {
-  display: flex;
-  flex-direction: row;
+.search-component {
+  @include base.text-style;
 
-  button {
-    margin-left: 20px;
+  .search-prompt {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      @include base.button-style;
+      margin-left: 20px;
+    }
+
+    input {
+      padding: 5px;
+    }
   }
-
-  input {
-    padding: 5px;
-  }
-}
-
-h3 {
-  border-bottom: 1px solid black;
-}
-
-:host-context(.dark-theme) input {
-  background-color: $input-background_d;
-  color: $font_d;
 }

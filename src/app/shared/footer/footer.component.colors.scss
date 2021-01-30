@@ -1,0 +1,7 @@
+@mixin footer-component-colors($theme) {
+  .footer {
+    a, p {
+      color: map-get($theme, helper-text);
+    }
+  }
+}

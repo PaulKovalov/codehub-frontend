@@ -4,18 +4,18 @@
       <h3>{{tutorial.title}}</h3>
       <div *ngIf="tutorial.published" class="align-items">
         <img src="assets/img/published.png">
-        <span class="tips-text">(published)</span>
+        <span class="helper-text">(published)</span>
       </div>
       <div *ngIf="!tutorial.published" class="align-items">
         <img src="assets/img/pending.png">
-        <span class="tips-text">(pending)</span>
+        <span class="helper-text">(pending)</span>
       </div>
     </div>
   </ng-container>
   <ng-template #noProfileMode>
     <h3>{{tutorial.title}}</h3>
   </ng-template>
-  <p class="tips-text">{{tutorial.username}} on {{dateCreated}}</p>
+  <p class="helper-text">{{tutorial.username}} on {{dateCreated}}</p>
   <p class="content-main preview">{{tutorial.preview}}</p>
-  <p class="tips-text">{{tutorial.total_articles}} article{{tutorial.total_articles > 1 ? 's' : ''}}</p>
+  <p class="helper-text">{{tutorial.total_articles}} article{{tutorial.total_articles > 1 ? 's' : ''}}</p>
 </div>

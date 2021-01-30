@@ -1,5 +1,9 @@
-@import '../../scss/base.scss';
-.header-border {
-  max-width: 800px;
-  border-bottom: 1px solid #8190A5;;
+@use '../../scss/base';
+
+.recent-activity {
+  @include base.text-style;
+
+  .header-border {
+    max-width: 800px;
+  }
 }

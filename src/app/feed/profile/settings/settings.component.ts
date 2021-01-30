@@ -5,7 +5,7 @@ import { SettingsService } from '../settings.service';
 import { NotificationSettings } from '../../interfaces';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { DarkModeService } from '../../../dark-mode.service';
+import { ThemeSwitchService } from '../../../theme-switch.service';
 
 @Component({
   selector: 'app-settings',
@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
   constructor(private accountService: AccountService,
               private settingsService: SettingsService,
               public ngxSmartModalService: NgxSmartModalService,
-              public darkModeService: DarkModeService) {
+              public themeSwitchService: ThemeSwitchService) {
   }
 
   ngOnInit() {

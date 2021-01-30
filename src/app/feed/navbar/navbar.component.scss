@@ -1,9 +1,15 @@
-@import '../../scss/base.scss';
+@use '../../scss/base';
 
-@media (max-width: $mobile_screen_width) {
+.navbar-elements {
+  button {
+    @include base.button-style;
+  }
+}
+
+@media (max-width: base.$mobile_screen_width) {
   @import "navbar.component.mobile.scss";
 }
 
-@media (min-width: $mobile_screen_width) {
+@media (min-width: base.$mobile_screen_width) {
   @import "navbar.component.desktop.scss";
 }

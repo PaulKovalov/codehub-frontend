@@ -1,4 +1,4 @@
-@import '../../../scss/base.scss';
+@use '../../../scss/base';
 
 .article-title-input {
   margin-bottom: 20px;
@@ -15,14 +15,14 @@
 
 .new-article {
   max-width: 1200px;
+  @include base.text-style;
+
+  button {
+    @include base.button-style;
+  }
 }
 
 .loading-editor-alert {
   display: flex;
   justify-content: center;
-}
-
-:host-context(.dark-theme) input {
-  background-color: $background_d;
-  color: $font_d;
 }

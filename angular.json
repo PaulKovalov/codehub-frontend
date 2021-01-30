@@ -23,6 +23,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "extractCss": true,
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -36,7 +37,19 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "src/app/scss/themes/dark.scss",
+                "inject": false,
+                "bundleName": "assets/dark"
+              },
+              {
+                "input": "src/app/scss/themes/light.scss",
+                "inject": false,
+                "bundleName": "assets/light"
+              }
             ],
             "scripts": [
               "node_modules/tinymce/tinymce.min.js"
@@ -50,6 +63,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "sourceMap": false,
               "optimization": true,
               "outputHashing": "all",
               "extractCss": true,

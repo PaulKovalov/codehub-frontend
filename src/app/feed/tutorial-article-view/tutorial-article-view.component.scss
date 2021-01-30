@@ -1,25 +1,8 @@
-@import '../../scss/base.scss';
+@use '../../scss/base';
+@use '../article-view/article-view.component';
 
-.article {
-  max-width: 1200px;
-
-  .author-info {
-    display: flex;
-    align-items: center;
-
-    img {
-      margin-right: 10px;
-      width: 35px;
-      height: 35px;
-    }
-
-    .date-container {
-      p {
-        margin-bottom: 3px;
-        margin-top: 3px;
-      }
-    }
-  }
+.tutorial-article {
+  @include article-view.article-style;
 }
 
 .loading {
@@ -32,6 +15,10 @@
 .bottom-buttons {
   display: flex;
   justify-content: flex-end;
+
+  button {
+    @include base.button-style;
+  }
 
   .prev-button {
     order: 1;
@@ -48,18 +35,13 @@
   }
 }
 
-@media (max-width: $mobile_screen_width) {
+.no-comments {
+  @include base.text-style;
+}
+
+@media (max-width: base.$mobile_screen_width) {
   :host ::ng-deep img {
     width: 100%;
     height: 100%;
   }
-}
-
-// dark theme styles
-:host-context(.dark-theme) .article {
-  color: $font_d;
-}
-
-:host-context(.dark-theme) .last-edit, .views {
-  color: $tips-text_d;
 }

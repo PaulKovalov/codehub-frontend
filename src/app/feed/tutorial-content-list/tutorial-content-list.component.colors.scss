@@ -1,0 +1,7 @@
+@mixin tutorial-content-list-component-colors($theme) {
+  .table-of-contents {
+    a, h3 {
+      color: map-get($theme, text);
+    }
+  }
+}

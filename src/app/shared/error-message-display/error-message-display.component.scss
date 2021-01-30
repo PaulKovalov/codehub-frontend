@@ -1,23 +1,21 @@
-@import '../../scss/base.scss';
+@use '../../scss/base';
 
 .error-message-block {
-  background-color: #ff8c1a;
   display: flex;
   justify-content: center;
   align-items: center;
   height: fit-content;
 
   p {
+    @include base.text-style;
     max-width: 80vw;
   }
 
   button {
-    padding: 0px;
+    @include base.button-style;
     position: absolute;
     right: 25px;
     background-color: inherit;
-    border: none;
-    cursor: pointer;
   }
 }
 
@@ -26,7 +24,7 @@
   transition: transform 0.2s linear;
 }
 
-@media (max-width: $mobile_screen_width) {
+@media (max-width: base.$mobile_screen_width) {
   p {
     margin-top: 4px;
     margin-bottom: 4px;

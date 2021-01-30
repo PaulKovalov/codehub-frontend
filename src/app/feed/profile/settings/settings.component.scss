@@ -1,6 +1,7 @@
-@import "../../../scss/base.scss";
+@use '../../../scss/base';
 
 .settings-list {
+  @include base.text-style;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -8,8 +9,6 @@
 
   .personal-info-settings {
     input {
-      border: 1px solid #8492A6;
-      border-radius: 5px;
       width: 200px;
       padding: 5px;
       font-size: 18px;
@@ -31,14 +30,12 @@
   }
 
   .separator {
-    border-bottom: 1px solid black;
     margin-top: 10px;
     margin-bottom: 10px;
   }
 
   .checkbox-item {
     display: flex;
-    flex-direction: row;
     align-items: center;
 
     p {
@@ -51,6 +48,7 @@
   }
 
   button {
+    @include base.button-style;
     width: fit-content;
   }
 
@@ -68,23 +66,4 @@
   .success {
     color: #33cc33;
   }
-}
-
-
-// dark theme styles
-:host-context(.dark-theme) input {
-  background-color: $input-background_d;
-  color: $font_d;
-}
-
-:host-context(.dark-theme) input::placeholder {
-  color: $tips-text_d;
-}
-
-:host-context(.dark-theme) .tips-text {
-  color: $tips-text_d;
-}
-
-:host-context(.dark-theme) .separator {
-  border-bottom: 1px solid $tips-text_d;
 }

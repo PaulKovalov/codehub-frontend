@@ -1,0 +1,9 @@
+@mixin article-preview-component-colors($theme) {
+  .article {
+    color: map-get($theme, text);
+
+    .helper-text {
+      color: map-get($theme, helper-text);
+    }
+  }
+}

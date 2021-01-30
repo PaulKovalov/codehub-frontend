@@ -1,0 +1,22 @@
+@use '../../scss/base.scss';
+
+@mixin navbar-component-colors($theme) {
+  .navbar-elements {
+    button {
+      background: map-get($theme, background);
+      color: map-get($theme, text);
+    }
+
+    @media (max-width: base.$mobile_screen_width) {
+      .selected {
+        border-left: solid 6px map-get($theme, selected-navbar-element);
+      }
+    }
+
+    @media (min-width: base.$mobile_screen_width) {
+      .selected {
+        border-bottom: solid 6px map-get($theme, selected-navbar-element) !important;
+      }
+    }
+  }
+}

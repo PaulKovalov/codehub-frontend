@@ -1,0 +1,9 @@
+@mixin tutorial-preview-component-colors($theme) {
+  .tutorial-preview {
+    color: map-get($theme, text);
+
+    .helper-text {
+      color: map-get($theme, helper-text);
+    }
+  }
+}

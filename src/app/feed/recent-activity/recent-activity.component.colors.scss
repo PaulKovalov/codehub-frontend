@@ -1,0 +1,9 @@
+@mixin recent-activity-component-colors($theme) {
+  .recent-activity {
+    color: map-get($theme, text);
+
+    .header-border {
+      border-bottom: 1px solid map-get($theme, separator);
+    }
+  }
+}

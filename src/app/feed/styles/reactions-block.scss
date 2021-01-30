@@ -1,0 +1,23 @@
+@mixin reactions-block {
+  margin-bottom: 20px;
+  display: flex;
+  width: 100px;
+  justify-content: space-between;
+  flex-direction: row;
+
+  .item {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
+
+    p {
+      margin: 0 0 0 10px;
+      font-size: 12px;
+    }
+  }
+}

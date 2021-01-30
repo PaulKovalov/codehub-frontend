@@ -1,16 +1,22 @@
-@import '../../scss/base.scss';
+@use '../../scss/base';
 
 .table-of-contents {
+  @include base.text-style;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 0 30px 10px 10px;
 
   .item {
+    a {
+      @include base.a-style;
+    }
+
     padding: 10px 0 10px 0;
   }
 }
-@media (max-width: $mobile_screen_width) {
+
+@media (max-width: base.$mobile_screen_width) {
   .table-of-contents {
     padding: 0;
   }

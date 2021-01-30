@@ -1,0 +1,11 @@
+@mixin header-component-colors($theme) {
+  .logo {
+    color: map-get($theme, text);
+  }
+  .header {
+    button {
+      color: map-get($theme, text);
+      background: map-get($theme, background);
+    }
+  }
+}

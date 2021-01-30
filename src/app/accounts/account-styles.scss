@@ -1,4 +1,4 @@
-@import '../scss/base.scss';
+@use '../scss/base';
 
 .base-style {
   display: flex;
@@ -9,13 +9,14 @@
 
   .container {
     .item {
+      @include base.text-style;
       padding: 6px;
       display: flex;
       justify-content: space-around;
+      text-align: center;
 
       .content-secondary {
         margin-top: 45px;
-        color: #8190a5;
         font-weight: 400;
       }
 
@@ -45,8 +46,11 @@
       }
 
       ::placeholder {
-        color: #8190A5;
         font-size: 18px;
+      }
+
+      button {
+        @include base.button-style;
       }
     }
 
@@ -55,14 +59,3 @@
     }
   }
 }
-
-// dark theme styling
-:host-context(.dark-theme) input {
-  background-color: $input-background_d;
-  color: $font_d;
-}
-
-:host-context(.dark-theme) input::placeholder {
-  color: $tips-text_d;
-}
-

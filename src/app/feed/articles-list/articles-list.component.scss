@@ -1,21 +1,15 @@
-@import '../../scss/base.scss';
+@use '../../scss/base';
 
 .dropdown {
   display: flex;
 
   p {
+    @include base.text-style;
     margin: 0 10px 0 0;
   }
 
   select, option {
     border: none;
-    //background-color: white;
     font-size: 16px;
-  }
-
-  // dark theme style
-  select, option {
-    background-color: $background_d;
-    color: $font_d;
   }
 }

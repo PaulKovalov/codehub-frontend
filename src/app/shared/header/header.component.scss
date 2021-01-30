@@ -1,7 +1,8 @@
-@import '../../scss/base.scss';
+@use '../../scss/base';
 
 .logo {
-  @extend h1;
+  @include base.header-style(1);
+  @include base.a-style;
 }
 
 .header-elements {
@@ -10,14 +11,17 @@
   justify-content: space-between;
 }
 
-@media (max-width: $mobile_screen_width) {
-  .base-style {
-    padding: 10px;
+.header {
+  padding: 20px;
+
+  button {
+    @include base.button-style;
   }
 }
 
-@media (min-width: $mobile_screen_width) {
-  .base-style {
-    padding: 20px;
+
+@media (max-width: base.$mobile_screen_width) {
+  .header {
+    padding: 10px;
   }
 }

@@ -1,0 +1,6 @@
+@mixin my-articles-component-colors($theme) {
+  .compose-button {
+    background: map-get($theme, background);
+    color: map-get($theme, text);
+  }
+}

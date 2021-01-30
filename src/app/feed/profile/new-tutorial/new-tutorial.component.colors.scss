@@ -1,0 +1,10 @@
+@mixin new-tutorial-component-colors($theme) {
+  .new-tutorial {
+    color: map-get($theme, text);
+
+    textarea {
+      color: map-get($theme, text);
+      background: map-get($theme, input-bg);
+    }
+  }
+}

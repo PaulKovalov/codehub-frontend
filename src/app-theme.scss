@@ -1,0 +1,45 @@
+@import 'app/app.component.colors';
+@import 'app/shared/header/header.component.colors';
+@import 'app/shared/footer/footer.component.colors';
+@import 'app/shared/error-message-display/error-message-display-component.colors';
+@import 'app/feed/article-preview/article.preview.component.colors';
+@import 'app/feed/article-view/article-view.component.colors';
+@import 'app/feed/articles-list/articles-list.component.colors';
+@import 'app/feed/comments/comments.component.colors';
+@import 'app/feed/navbar/navbar.component.colors';
+@import 'app/feed/profile/my-articles/my-articles.component.colors';
+@import 'app/feed/profile/new-article/new-article.component.colors';
+@import 'app/feed/profile/new-tutorial/new-tutorial.component.colors';
+@import 'app/feed/profile/new-tutorial-article/new-tutorial-article.component.colors';
+@import 'app/feed/profile/settings/settings.component.colors';
+@import 'app/feed/recent-activity/recent-activity.component.colors';
+@import 'app/feed/search/search.component.colors';
+@import 'app/feed/tutorial-article-view/tutorial-article-view.component.colors';
+@import 'app/feed/tutorial-content-list/tutorial-content-list.component.colors';
+@import 'app/feed/tutorial-preview/tutorial-preview.component.colors';
+@import 'app/feed/tutorial-view/tutorial-view.component.colors';
+@import 'app/accounts/accounts.colors';
+
+@mixin app-colors($theme) {
+  @include app-component-colors($theme);
+  @include header-component-colors($theme);
+  @include footer-component-colors($theme);
+  @include error-message-display-component($theme);
+  @include article-preview-component-colors($theme);
+  @include article-view-component-colors($theme);
+  @include articles-list-component-colors($theme);
+  @include comments-component-colors($theme);
+  @include navbar-component-colors($theme);
+  @include my-articles-component-colors($theme);
+  @include new-article-component-colors($theme);
+  @include new-tutorial-component-colors($theme);
+  @include new-tutorial-article-component-colors($theme);
+  @include settings-component-colors($theme);
+  @include recent-activity-component-colors($theme);
+  @include search-component-colors($theme);
+  @include tutorial-article-view-component-colors($theme);
+  @include tutorial-content-list-component-colors($theme);
+  @include tutorial-preview-component-colors($theme);
+  @include tutorial-view-component-colors($theme);
+  @include accounts-colors($theme);
+}

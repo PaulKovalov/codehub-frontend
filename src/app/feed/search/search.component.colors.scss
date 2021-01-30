@@ -1,0 +1,20 @@
+@mixin search-component-colors($theme) {
+  .search-prompt {
+    button {
+      color: map-get($theme, text);
+      background: map-get($theme, background);
+    }
+
+    input {
+      color: map-get($theme, text);
+      background: map-get($theme, input-bg);
+    }
+  }
+  .search-component {
+    color: map-get($theme, text);
+
+    .search-class {
+      border-bottom: 1px solid map-get($theme, separator);
+    }
+  }
+}

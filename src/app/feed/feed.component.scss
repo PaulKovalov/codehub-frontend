@@ -1,13 +1,9 @@
-@import '../scss/base.scss';
+@use '../scss/base';
 
 :host {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-
-  :host-context(.dark-theme) {
-    background-color: $background_d;
-  }
 }
 
 .content {
@@ -15,7 +11,7 @@
   padding: 30px 20px 30px 20px;
 }
 
-@media (max-width: $mobile_screen_width) {
+@media (max-width: base.$mobile_screen_width) {
   .content {
     flex-grow: 1;
     padding: 20px 10px 20px 10px;

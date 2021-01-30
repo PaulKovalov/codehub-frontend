@@ -28,7 +28,7 @@
   <div>
     <h3>Site settings</h3>
     <div class="checkbox-item">
-      <input (change)="darkModeService.toggleMode()" [checked]="darkModeService.enabled" type="checkbox">
+      <input (change)="themeSwitchService.toggleTheme()" [checked]="themeSwitchService.darkModeEnabled" type="checkbox">
       <p>Dark mode</p>
     </div>
   </div>

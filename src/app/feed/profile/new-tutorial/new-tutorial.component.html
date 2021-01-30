@@ -1,7 +1,7 @@
-<div class="main"><p>Create a title for your tutorial</p>
-  <input [formControl]="tutorialTitle" class="article-title-input" maxlength="128" minlength="8">
+<div class="new-tutorial"><p>Create a title for your tutorial</p>
+  <input [formControl]="tutorialTitle" maxlength="128" minlength="8">
   <p>Add some preview that will be visible on tutorial preview (optional)</p>
-  <textarea [formControl]="tutorialPreview" class="article-title-input" maxlength="1024" rows="10"></textarea>
+  <textarea [formControl]="tutorialPreview" maxlength="1024" rows="10"></textarea>
   <div *ngIf="errorsText" class="error">
     {{errorsText}}
   </div>

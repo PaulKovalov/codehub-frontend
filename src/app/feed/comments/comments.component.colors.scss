@@ -1,0 +1,34 @@
+@mixin comments-component-colors($theme) {
+  .comment, .create-new-comment {
+    button {
+      background: map-get($theme, background);
+      color: map-get($theme, text);
+    }
+
+    input {
+      background: map-get($theme, input-bg);
+      color: map-get($theme, text);
+
+      ::placeholder {
+        color: map-get($theme, helper-text);
+      }
+    }
+  }
+
+  .comment {
+    .comment-top {
+      p {
+        color: map-get($theme, helper-text);
+      }
+
+      h4 {
+        color: map-get($theme, text);
+      }
+    }
+
+    p, button {
+      color: map-get($theme, text);
+    }
+  }
+
+}

@@ -1,0 +1,5 @@
+@mixin new-article-component-colors($theme) {
+  .new-article {
+    color: map-get($theme, text);
+  }
+}

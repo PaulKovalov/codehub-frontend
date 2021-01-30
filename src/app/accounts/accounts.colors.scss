@@ -1,0 +1,23 @@
+@mixin accounts-colors($theme) {
+  .base-style {
+    .container {
+      .item, button {
+        color: map-get($theme, text);
+        background: map-get($theme, background);
+
+        .content-secondary {
+          color: map-get($theme, helper-text);
+        }
+      }
+
+      input {
+        background: map-get($theme, input-bg);
+        color: map-get($theme, text);
+
+        ::placeholder {
+          color: map-get($theme, helper-text);
+        }
+      }
+    }
+  }
+}
