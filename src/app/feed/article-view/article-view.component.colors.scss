@@ -16,4 +16,7 @@
   .last-edit, .views {
     color: map-get($theme, helper-text);
   }
+  .loading {
+    color: map-get($theme, text);
+  }
 }

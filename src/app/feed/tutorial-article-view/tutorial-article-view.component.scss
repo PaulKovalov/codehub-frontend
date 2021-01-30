@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   height: 300px;
+  @include base.text-style;
 }
 
 .bottom-buttons {
