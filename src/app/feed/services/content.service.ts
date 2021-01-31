@@ -14,7 +14,7 @@ export class ContentService {
   }
 
   public loadArticlesList(cursor: string | null, my: string = ''): Observable<ArticlesPage> {
-    const startUrl = `articles/${my}/`;
+    const startUrl = `articles/${my}`;
     if (cursor) {
       return this.http.get<ArticlesPage>(Utils.doApiUrl(`${startUrl}?cursor=${cursor}`));
     } else {
@@ -23,7 +23,7 @@ export class ContentService {
   }
 
   public loadTutorialsList(cursor: string | null, my: string = ''): Observable<TutorialsPage> {
-    const startUrl = `tutorials/${my}/`;
+    const startUrl = `tutorials/${my}`;
     if (cursor) {
       return this.http.get<TutorialsPage>(Utils.doApiUrl(`${startUrl}?cursor=${cursor}`));
     } else {
